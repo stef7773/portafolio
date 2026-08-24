@@ -1,39 +1,65 @@
 [
   {
-    "id": "educare-ai",
-    "categoria": "PROYECTO INSIGNIA • LIVE",
-    "titulo": "Educare AI — Ecosistema Móvil Inteligente",
-    "descripcion": "Aplicación Android nativa desarrollada en Kotlin & Jetpack Compose. Incorpora motor conversacional IA con inferencia local (offline-first), monetización avanzada con AdMob y arquitectura escalable multi-idioma.",
-    "tags": ["Kotlin", "Jetpack Compose", "Local IA / LLM", "AdMob", "Firebase"],
-    "video_url": "assets/videos/educare.mp4",
-    "link": "https://play.google.com/store/apps/details?id=com.educareai.app&hl=es_419",
-    "destacado": true
+    "id": "educare_ai_suite",
+    "titulo": "Educare AI Suite",
+    "categoria": "Mobile & AI",
+    "descripcion": "Suite principal de aplicaciones móviles educativas impulsadas por IA local y remota, con arquitectura modular y monetización.",
+    "techs": ["Kotlin", "Jetpack Compose", "Python", "AdMob", "Firebase"],
+    "link_demo": "https://play.google.com/store/apps/details?id=com.educareai.app",
+    "link_repo": ""
   },
   {
-    "id": "scanner-medico",
-    "categoria": "VISIÓN & HEALTH AI",
-    "titulo": "Scanner de Documentos Médicos AI",
-    "descripcion": "Sistema de captura y digitalización inteligente capaz de parsear exámenes clínicos e informes médicos estructurando diagnósticos al instante mediante OCR.",
-    "tags": ["Python", "Computer Vision", "OCR", "Health AI"],
-    "video_url": "assets/videos/scanner.mp4",
-    "link": ""
+    "id": "med_ai_scanner",
+    "titulo": "Med AI Scanner",
+    "categoria": "AI & Health",
+    "descripcion": "Herramienta de asistencia y análisis médico asistido por inteligencia artificial para clasificación y soporte diagnóstico.",
+    "techs": ["Python", "TensorFlow/PyTorch", "Computer Vision"],
+    "link_demo": "",
+    "link_repo": ""
   },
   {
-    "id": "gestor-gmail",
-    "categoria": "ENTERPRISE AUTOMATION",
-    "titulo": "Gestor Automatizado de Correos de Gmail",
-    "descripcion": "Bot empresarial que analiza bandejas de entrada en tiempo real, extrae casos críticos de asistencia internacional y procesa expedientes sin intervención manual.",
-    "tags": ["Python", "Gmail API", "Automation", "NLP"],
-    "video_url": "assets/videos/gmail.mp4",
-    "link": ""
+    "id": "cyber_hud",
+    "titulo": "Cyber HUD",
+    "categoria": "Linux & UI",
+    "descripcion": "Interfaz gráfica con estética futurista / cyberpunk para monitoreo y control contextual de tareas en entorno de escritorio Linux.",
+    "techs": ["Python", "Linux Mint", "Desktop UI", "Shell"],
+    "link_demo": "",
+    "link_repo": ""
   },
   {
-    "id": "tamagotchi-ai",
-    "categoria": "AGENTES CONVERSACIONALES",
-    "titulo": "Tamagotchi AI & Mascota Virtual",
-    "descripcion": "Mascota virtual con estados emocionales dinámicos y agentes conversacionales persistentes integrados.",
-    "tags": ["Python", "AI Agents", "JSON DB"],
-    "video_url": "assets/videos/tamagotchi.mp4",
-    "link": ""
+    "id": "system_monitor",
+    "titulo": "System Monitor CLI",
+    "categoria": "Linux Tools",
+    "descripcion": "Utilidad ligera de línea de comandos para auditoría y monitoreo en tiempo real de recursos, procesos y red en Linux.",
+    "techs": ["Python 3", "Linux CLI", "Bash"],
+    "link_demo": "",
+    "link_repo": ""
+  },
+  {
+    "id": "tamagotchi_ai",
+    "titulo": "Tamagotchi AI",
+    "categoria": "AI & Gaming",
+    "descripcion": "Mascota virtual interactiva impulsada por modelos conversacionales locales de IA que evolucionan según el trato recibido.",
+    "techs": ["Python", "LLM Local", "Gaming UI"],
+    "link_demo": "",
+    "link_repo": ""
+  },
+  {
+    "id": "asistencias_email_bot",
+    "titulo": "Asistencias Email Bot",
+    "categoria": "Automation",
+    "descripcion": "Bot de automatización para procesamiento, clasificación y respuesta de correos de asistencia médica internacional.",
+    "techs": ["Python", "IMAP/SMTP", "Automation", "Parsing"],
+    "link_demo": "",
+    "link_repo": ""
+  },
+  {
+    "id": "educare_email_bot",
+    "titulo": "Educare Email Bot",
+    "categoria": "Automation",
+    "descripcion": "Sistema automatizado de gestión de correo y soporte a usuarios para el ecosistema de Educare AI.",
+    "techs": ["Python", "API REST", "Automation"],
+    "link_demo": "",
+    "link_repo": ""
   }
 ]
