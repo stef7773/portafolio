@@ -1,314 +1,294 @@
 import json
-import re
+from jinja2 import Template
 
-def generar_html():
-    try:
-        with open('proyectos.json', 'r', encoding='utf-8') as f:
-            proyectos = json.load(f)
-    except Exception as e:
-        print(f"Error al cargar proyectos.json: {e}")
-        return
+with open('proyectos.json', 'r', encoding='utf-8') as f:
+    proyectos = json.load(f)
 
-    destacado = next((p for p in proyectos if p.get('destacado')), proyectos[0] if proyectos else None)
-    otros_proyectos = [p for p in proyectos if p != destacado]
+categorias = sorted(list(set(p['categoria'] for p in proyectos)))
 
-    def process_url(url):
-        if not url:
-            return {"type": "none", "url": ""}
-        
-        # YouTube
-        if "youtube.com" in url or "youtu.be" in url:
-            yt_id = url.split('/')[-1].split('?')[0]
-            if "watch?v=" in url:
-                yt_id = url.split('v=')[1].split('&')[0]
-            return {"type": "youtube", "id": yt_id}
-        
-        # Google Drive Video Embed
-        elif "drive.google.com" in url:
-            file_id = re.search(r'/d/([a-zA-Z0-9_-]+)', url)
-            if file_id:
-                return {"type": "drive", "embed_url": f"https://drive.google.com/file/d/{file_id.group(1)}/preview"}
-            return {"type": "drive", "embed_url": url.replace("/view", "/preview")}
-        
-        # Video MP4 directo
-        else:
-            return {"type": "video", "url": url}
-
-    def render_media(url, titulo=""):
-        media = process_url(url)
-        
-        if media["type"] == "none":
-            return '<div class="w-full h-full bg-gray-950 flex items-center justify-center font-mono text-xs text-cyan-600">[ MEDIA PREVIEW ]</div>'
-        
-        elif media["type"] == "youtube":
-            return f'''<iframe class="w-full h-full rounded-xl" src="https://www.youtube.com/embed/{media['id']}?autoplay=1&mute=1&loop=1&playlist={media['id']}" title="{titulo}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'''
-        
-        elif media["type"] == "drive":
-            return f'''<iframe class="w-full h-full rounded-xl" src="{media['embed_url']}" allow="autoplay" frameborder="0" allowfullscreen></iframe>'''
-        
-        else:
-            return f'''<video class="w-full h-full object-cover rounded-xl" autoplay loop muted playsinline preload="auto">
-                <source src="{media['url']}" type="video/mp4">
-                Tu navegador no soporta el formato de video.
-            </video>'''
-
-    html_content = f"""<!DOCTYPE html>
+html_template = """<!DOCTYPE html>
 <html lang="es" class="dark scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stefano Del Moro | Lead Software & AI Engineer</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {{
-      darkMode: 'class',
-      theme: {{
-        extend: {{
-          colors: {{
-            cyber: {{
-              blue: '#00f0ff',
-              cyan: '#00d8f6',
-              dark: '#030712',
-              card: '#08101e',
-              border: '#0e2338'
-            }}
-          }}
-        }}
-      }}
-    }}
-  </script>
-  <style>
-    body {{
-      background-color: #030712;
-      background-image: 
-        linear-gradient(to right, rgba(0, 240, 255, 0.08) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(0, 240, 255, 0.08) 1px, transparent 1px),
-        radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.15) 0%, transparent 70%);
-      background-size: 36px 36px, 36px 36px, 100% 100%;
-    }}
-    .glow-cyan {{
-      box-shadow: 0 0 25px rgba(0, 240, 255, 0.15);
-    }}
-    .glow-cyan:hover {{
-      box-shadow: 0 0 35px rgba(0, 240, 255, 0.3);
-    }}
-    .glow-text {{
-      text-shadow: 0 0 20px rgba(0, 240, 255, 0.7);
-    }}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stefano Del Moro | Full Stack & AI Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #030712;
+            color: #f3f4f6;
+        }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        
+        /* Grid background pattern */
+        .bg-grid-pattern {
+            background-size: 36px 36px;
+            background-image: 
+                linear-gradient(to right, rgba(6, 182, 212, 0.07) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(6, 182, 212, 0.07) 1px, transparent 1px);
+        }
+
+        /* Glow & Text Effects */
+        .glow-title {
+            text-shadow: 0 0 35px rgba(6, 182, 212, 0.45);
+        }
+
+        /* Neon Glow card animation */
+        .project-card {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -15px rgba(6, 182, 212, 0.3);
+            border-color: rgba(56, 189, 248, 0.5);
+        }
+
+        /* Filter buttons */
+        .filter-btn.active {
+            background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+            color: #ffffff;
+            border-color: #38bdf8;
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+        }
+
+        /* Glassmorphism */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+    </style>
 </head>
-<body class="text-gray-200 min-h-screen font-sans antialiased pt-28">
+<body class="bg-grid-pattern min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-black">
 
-  <!-- NAVBAR FIXED SUPERIOR PROFESIONAL -->
-  <header class="fixed top-0 left-0 right-0 z-40 bg-[#030712]/95 backdrop-blur-md border-b border-cyan-500/30 px-6 py-4 shadow-[0_10px_30px_rgba(0,0,0,0.9)]">
-    <div class="max-w-6xl mx-auto flex justify-between items-center">
-      <div class="flex items-center gap-3">
-        <span class="relative flex h-3.5 w-3.5">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-cyan-400 shadow-[0_0_12px_#00f0ff]"></span>
-        </span>
-        <div>
-          <h1 class="text-xl font-black text-white tracking-widest uppercase glow-text">STEFANO DEL MORO</h1>
-          <p class="text-[11px] text-cyan-400 font-mono font-bold tracking-widest uppercase">Full Stack & AI Engineer • Mobile Architect</p>
-        </div>
-      </div>
-      
-      <div class="flex items-center gap-4">
-        <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-cyan-950/60 border border-cyan-500/40 rounded-xl text-xs font-mono text-cyan-400">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span>SYSTEM_ONLINE</span>
-        </div>
-        <a href="#contacto" class="px-5 py-2.5 bg-cyan-400 text-black font-extrabold text-xs font-mono rounded-xl hover:bg-cyan-300 transition duration-300 shadow-[0_0_20px_rgba(0,240,255,0.4)] uppercase tracking-wider">
-          CONTACTAR
-        </a>
-      </div>
-    </div>
-  </header>
-
-  <main class="max-w-6xl mx-auto px-6">
-
-    <!-- HERO METRICS / HEADER PROFESIONAL -->
-    <div class="text-center max-w-4xl mx-auto mb-16">
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold bg-cyan-400/10 text-cyan-400 border border-cyan-400/40 uppercase tracking-widest mb-6 shadow-[0_0_15px_rgba(0,240,255,0.2)]">
-        <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
-        <span>High-Scale Engineering & On-Device AI</span>
-      </div>
-
-      <h2 class="text-4xl md:text-6xl font-black text-white leading-none tracking-tight mb-6 uppercase">
-        ARQUITECTURA MÓVIL, <br/>
-        <span class="text-cyan-400 glow-text">IA LOCAL & SISTEMAS AUTÓNOMOS</span>
-      </h2>
-      <p class="text-gray-300 text-sm md:text-lg leading-relaxed max-w-2xl mx-auto font-light">
-        Especialista en desarrollo Android Nativo (Kotlin/Compose), integración de LLMs locales con inferencia offline y automatización de procesos bajo Linux.
-      </p>
-    </div>
-
-    <!-- PROYECTO INSIGNIA -->
-    """
-
-    if destacado:
-        html_content += f"""
-    <section class="mb-16">
-      <div class="bg-cyber-card border border-cyan-400/60 rounded-3xl p-6 md:p-8 glow-cyan transition duration-300">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          <div class="lg:col-span-6 flex flex-col justify-between h-full">
-            <div>
-              <div class="mb-4">
-                <span class="px-3 py-1 bg-cyan-400/15 border border-cyan-400/50 text-cyan-400 font-mono font-bold text-xs uppercase tracking-wider rounded-lg">
-                  {destacado.get('categoria', 'PROYECTO INSIGNIA')}
+    <!-- Navbar / Header -->
+    <nav class="sticky top-0 z-40 glass-panel border-b border-slate-800/80 px-6 py-4 shadow-[0_4px_30px_rgba(0,0,0,0.8)]">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-3.5 h-3.5 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_12px_#06b6d4]"></div>
+                <span class="font-black text-xl text-white tracking-wider uppercase">Stefano Del Moro</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="text-xs font-mono font-bold text-cyan-400 bg-cyan-950/80 border border-cyan-800/80 px-4 py-1.5 rounded-full hidden sm:inline-block tracking-wider uppercase">
+                    ⚡ Full Stack & AI Architect
                 </span>
-              </div>
-              <h3 class="text-2xl md:text-4xl font-black text-white mb-4 leading-tight tracking-wide">
-                {destacado.get('titulo', '')}
-              </h3>
-              <p class="text-gray-300 text-sm md:text-base leading-relaxed mb-6 font-normal">
-                {destacado.get('descripcion', '')}
-              </p>
-              <div class="flex flex-wrap gap-2 mb-8">
-                {"".join([f'<span class="text-xs font-mono bg-gray-950 text-cyan-400 px-3 py-1 rounded-lg border border-cyan-900/80">{tag}</span>' for tag in destacado.get('tags', [])])}
-              </div>
+                <a href="#contacto" class="text-xs font-black uppercase tracking-widest bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-5 py-2.5 rounded-xl transition shadow-lg shadow-cyan-950/80">
+                    Contactar
+                </a>
             </div>
-            
-            <div class="flex flex-wrap items-center gap-4">
-              <button onclick="openModal('{destacado.get('video_url', '')}', '{destacado.get('titulo', '')}')" class="px-6 py-3 bg-cyan-400 text-black font-black text-xs font-mono uppercase tracking-wider rounded-xl hover:bg-cyan-300 transition shadow-[0_0_20px_rgba(0,240,255,0.4)] flex items-center gap-2">
-                <span>🔍</span> VER DEMO HD AMPLADA
-              </button>
-              {f'<a href="{destacado["link"]}" target="_blank" class="px-6 py-3 bg-cyan-950 border border-cyan-400/60 text-cyan-400 font-bold text-xs font-mono uppercase tracking-wider rounded-xl hover:bg-cyan-400 hover:text-black transition">Google Play ➔</a>' if destacado.get('link') else ''}
-            </div>
-          </div>
-
-          <div class="lg:col-span-6">
-            <div class="aspect-video w-full rounded-2xl overflow-hidden border border-cyan-900/80 shadow-2xl bg-gray-950">
-              {render_media(destacado.get('video_url', ''), destacado.get('titulo', ''))}
-            </div>
-          </div>
         </div>
-      </div>
-    </section>
-    """
+    </nav>
 
-    html_content += """
-    <!-- OTHER PROJECTS GRID -->
-    <section class="mb-20">
-      <h3 class="text-xl font-black text-white font-mono uppercase tracking-wider mb-8 text-cyan-400 border-l-4 border-cyan-400 pl-4">
-        Sistemas & Desarrollos Autónomos
-      </h3>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-    """
-
-    for p in otros_proyectos:
-        html_content += f"""
-        <div class="bg-cyber-card border border-cyber-border hover:border-cyan-400/60 rounded-2xl p-6 transition duration-300 flex flex-col justify-between glow-cyan">
-          <div>
-            <div class="mb-3">
-              <span class="px-2.5 py-1 bg-cyan-400/10 border border-cyan-400/40 text-cyan-400 text-[11px] font-mono font-bold tracking-wider uppercase rounded-md inline-block">
-                {p.get('categoria', '')}
-              </span>
-            </div>
+    <!-- Hero Section con Titulares Potentes -->
+    <section class="relative text-center py-20 px-6 overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none"></div>
+        
+        <div class="relative z-10 max-w-5xl mx-auto" data-aos="fade-down">
+            <span class="inline-flex items-center gap-2 px-4 py-2 mb-6 text-xs font-mono font-bold tracking-widest text-cyan-300 uppercase bg-slate-900/90 border border-cyan-500/40 rounded-full shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+                <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+                Portafolio de Ingeniería de Software & Inteligencia Artificial
+            </span>
             
-            <h4 class="text-xl font-bold text-white mb-3 leading-snug">{p.get('titulo', '')}</h4>
-            <p class="text-gray-400 text-xs leading-relaxed mb-6">{p.get('descripcion', '')}</p>
-
-            <div class="aspect-video w-full rounded-xl overflow-hidden border border-cyan-900/80 mb-6 bg-gray-950">
-              {render_media(p.get('video_url', ''), p.get('titulo', ''))}
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-black text-white mb-6 tracking-tight leading-tight uppercase">
+                ARQUITECTURA MÓVIL, <br/>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-cyan-200 to-blue-500 glow-title">IA LOCAL & HIGH-SCALE SYSTEMS</span>
+            </h1>
+            
+            <p class="text-slate-300 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed mb-10 font-normal">
+                Especialista en aplicaciones Android nativas con motores LLM de inferencia offline, automatización avanzada en entornos Linux Mint y sistemas de alto rendimiento.
+            </p>
+            
+            <!-- Quick Stats Bar -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto glass-panel p-5 rounded-2xl border border-slate-800/90 shadow-2xl">
+                <div>
+                    <div class="text-3xl font-black text-cyan-400 font-mono">3+ Años</div>
+                    <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mt-1">Desarrollo Android</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-black text-cyan-400 font-mono">LLM Local</div>
+                    <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mt-1">IA Offline Módulos</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-black text-cyan-400 font-mono">Linux Mint</div>
+                    <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mt-1">Entorno & Automation</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-black text-cyan-400 font-mono">7+</div>
+                    <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mt-1">Sistemas Clave</div>
+                </div>
             </div>
-          </div>
+        </div>
+    </section>
 
-          <div>
-            <div class="flex flex-wrap gap-2 mb-5">
-              {"".join([f'<span class="text-[10px] font-mono bg-gray-950 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">{tag}</span>' for tag in p.get('tags', [])])}
-            </div>
-            <button onclick="openModal('{p.get('video_url', '')}', '{p.get('titulo', '')}')" class="w-full py-3 bg-cyan-950 border border-cyan-400/80 text-cyan-400 font-mono font-bold text-xs uppercase rounded-xl hover:bg-cyan-400 hover:text-black transition shadow-[0_0_15px_rgba(0,240,255,0.15)] flex items-center justify-center gap-2">
-              <span>🔍</span> VER DEMO HD
+    <!-- Main Projects Section -->
+    <main class="max-w-7xl mx-auto px-6 py-4 flex-grow w-full">
+        
+        <!-- Filter Controls -->
+        <div class="flex flex-wrap justify-center gap-2 mb-12" data-aos="fade-up">
+            <button onclick="filterProjects('all')" class="filter-btn active text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-xl border border-slate-800 bg-slate-900 text-slate-300 hover:border-cyan-500 transition">
+                Todos los Proyectos ({{ proyectos|length }})
             </button>
-          </div>
+            {% for cat in categorias %}
+            <button onclick="filterProjects('{{ cat }}')" class="filter-btn text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-xl border border-slate-800 bg-slate-900 text-slate-300 hover:border-cyan-500 transition">
+                {{ cat }}
+            </button>
+            {% endfor %}
         </div>
-        """
 
-    html_content += """
-      </div>
+        <!-- Projects Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+            {% for p in proyectos %}
+            <div class="project-card glass-panel border border-slate-800/90 rounded-2xl overflow-hidden flex flex-col justify-between" 
+                 data-category="{{ p.categoria }}" data-aos="fade-up">
+                
+                <div>
+                    <!-- Visual Header / Thumbnail -->
+                    <div class="relative h-52 w-full overflow-hidden bg-slate-950 group cursor-pointer" onclick="openMediaModal('{{ p.media_type }}', '{{ p.media_url }}', '{{ p.titulo }}')">
+                        {% if p.media_type == 'video' %}
+                        <video autoplay loop muted playsinline class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-80 group-hover:opacity-100">
+                            <source src="{{ p.media_url }}" type="video/mp4">
+                        </video>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+                        <span class="absolute bottom-3 right-3 bg-cyan-950/90 text-cyan-300 border border-cyan-800 text-[10px] font-mono font-bold px-2.5 py-1 rounded-md flex items-center gap-1 shadow-md">
+                            ▶ VER VIDEO DEMO
+                        </span>
+                        {% else %}
+                        <img src="{{ p.media_url }}" alt="{{ p.titulo }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-80 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+                        <span class="absolute bottom-3 right-3 bg-slate-900/90 text-cyan-300 border border-slate-700 text-[10px] font-mono font-bold px-2.5 py-1 rounded-md flex items-center gap-1 shadow-md">
+                            🔍 AMPLIAR CAPTURA
+                        </span>
+                        {% endif %}
+
+                        <span class="absolute top-3 left-3 text-[10px] uppercase tracking-widest text-cyan-300 font-extrabold px-3 py-1 bg-cyan-950/90 border border-cyan-800 rounded-lg">
+                            {{ p.categoria }}
+                        </span>
+                    </div>
+
+                    <!-- Card Body -->
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-white mb-1 tracking-tight">{{ p.titulo }}</h3>
+                        <p class="text-xs font-mono font-bold text-cyan-400 mb-3">{{ p.subtitulo }}</p>
+                        <p class="text-slate-400 text-sm mb-6 leading-relaxed">{{ p.descripcion }}</p>
+                    </div>
+                </div>
+
+                <!-- Card Footer / Tech & Links -->
+                <div class="px-6 pb-6">
+                    <div class="flex flex-wrap gap-1.5 mb-6">
+                        {% for tech in p.techs %}
+                        <span class="bg-slate-950 border border-slate-800 text-cyan-300 text-[11px] font-mono px-2.5 py-1 rounded-md">
+                            {{ tech }}
+                        </span>
+                        {% endfor %}
+                    </div>
+
+                    <div class="flex gap-2">
+                        {% if p.link_demo %}
+                        <a href="{{ p.link_demo }}" target="_blank" class="flex-1 text-center bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-2.5 px-3 rounded-xl text-xs uppercase tracking-wider transition shadow-lg shadow-cyan-950/50">
+                            Play Store / Demo
+                        </a>
+                        {% endif %}
+
+                        <button onclick="openMediaModal('{{ p.media_type }}', '{{ p.media_url }}', '{{ p.titulo }}')" class="flex-1 text-center bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-slate-700 font-bold py-2.5 px-3 rounded-xl text-xs uppercase tracking-wider transition">
+                            {% if p.media_type == 'video' %}🎬 Ver Demo Video{% else %}🖼️ Captura HD{% endif %}
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <!-- Contact & Footer Section -->
+    <section id="contacto" class="border-t border-slate-800/80 bg-slate-950/80 py-16 px-6 mt-20">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-black text-white mb-4">¿Interesado en colaborar o contratar?</h2>
+            <p class="text-slate-400 mb-8 max-w-xl mx-auto">
+                Disponible para oportunidades como Full Stack Developer, Android Engineer o desarrollador de soluciones de Inteligencia Artificial.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://github.com/stef7773" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-white font-mono text-sm px-6 py-3 rounded-xl border border-slate-700 transition flex items-center gap-2">
+                    💻 GitHub: @stef7773
+                </a>
+            </div>
+        </div>
     </section>
 
-  </main>
+    <footer class="text-center py-6 text-slate-600 border-t border-slate-900 text-xs font-mono">
+        <p>© Stefano Del Moro — Desarrollado en Linux Mint & Python 3</p>
+    </footer>
 
-  <!-- MODAL / LIGHTBOX HD UNIVERSAL -->
-  <div id="videoModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl hidden flex items-center justify-center p-4 md:p-10 transition-all">
-    <div class="relative w-full max-w-5xl bg-cyber-card border border-cyan-400/80 rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(0,240,255,0.3)]">
-      <div class="flex justify-between items-center px-6 py-4 border-b border-cyan-900/80 bg-gray-950">
-        <h3 id="modalTitle" class="text-base font-bold text-cyan-400 font-mono uppercase tracking-wider">DEMO VIDEO</h3>
-        <button onclick="closeModal()" class="text-cyan-400 hover:text-white font-mono text-base font-bold px-3 py-1 bg-cyan-950 rounded-lg border border-cyan-800">✕ CERRAR</button>
-      </div>
-      <div id="modalMediaContainer" class="aspect-video w-full bg-black">
-        <!-- Inyectado dinámicamente -->
-      </div>
+    <!-- Fullscreen Lightbox / Media Modal -->
+    <div id="mediaModal" class="fixed inset-0 bg-black/95 backdrop-blur-xl hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-5xl w-full p-4 relative overflow-hidden flex flex-col shadow-2xl">
+            <div class="flex justify-between items-center mb-4 px-2 border-b border-slate-800 pb-3">
+                <h3 id="modalTitle" class="text-xl font-bold text-cyan-400 font-mono"></h3>
+                <button onclick="closeMediaModal()" class="text-slate-400 hover:text-white text-3xl font-bold leading-none px-3">&times;</button>
+            </div>
+            <div id="modalBody" class="w-full flex justify-center items-center rounded-xl overflow-hidden bg-black/80 min-h-[400px]">
+                <!-- Media rendered here dynamically -->
+            </div>
+        </div>
     </div>
-  </div>
 
-  <script>
-    function openModal(url, title) {
-      if (!url) return;
-      const modal = document.getElementById('videoModal');
-      const modalTitle = document.getElementById('modalTitle');
-      const container = document.getElementById('modalMediaContainer');
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 600, once: true });
 
-      modalTitle.innerText = title || "DEMO VIDEO";
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
 
-      // YouTube
-      if (url.includes("youtube.com") || url.includes("youtu.be")) {
-        let ytId = url.split('/').pop().split('?')[0];
-        if (url.includes("watch?v=")) {
-            ytId = url.split('v=')[1].split('&')[0];
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
         }
-        container.innerHTML = `<iframe class="w-full h-full" src="https://www.youtube.com/embed/${ytId}?autoplay=1&controls=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-      } 
-      // Google Drive
-      else if (url.includes("drive.google.com")) {
-        let embedUrl = url;
-        const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
-        if (match) {
-          embedUrl = `https://drive.google.com/file/d/${match[1]}/preview`;
-        } else {
-          embedUrl = url.replace("/view", "/preview");
+
+        function openMediaModal(type, url, title) {
+            const modal = document.getElementById('mediaModal');
+            const modalBody = document.getElementById('modalBody');
+            document.getElementById('modalTitle').innerText = title;
+
+            if (type === 'video') {
+                modalBody.innerHTML = `<video controls autoplay loop class="max-h-[80vh] w-full object-contain rounded-lg"><source src="${url}" type="video/mp4">Navegador no soporta video.</video>`;
+            } else {
+                modalBody.innerHTML = `<img src="${url}" class="max-h-[80vh] w-auto object-contain rounded-lg" alt="${title}">`;
+            }
+
+            modal.classList.remove('hidden');
         }
-        container.innerHTML = `<iframe class="w-full h-full" src="${embedUrl}" allow="autoplay" frameborder="0" allowfullscreen></iframe>`;
-      } 
-      // Video MP4 directo
-      else {
-        container.innerHTML = `<video class="w-full h-full" controls autoplay><source src="${url}" type="video/mp4"></video>`;
-      }
 
-      modal.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-    }
+        function closeMediaModal() {
+            const modal = document.getElementById('mediaModal');
+            document.getElementById('modalBody').innerHTML = '';
+            modal.classList.add('hidden');
+        }
 
-    function closeModal() {
-      const modal = document.getElementById('videoModal');
-      const container = document.getElementById('modalMediaContainer');
-
-      modal.classList.add('hidden');
-      container.innerHTML = "";
-      document.body.style.overflow = 'auto';
-    }
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') closeModal();
-    });
-  </script>
-
-  <footer id="contacto" class="py-8 border-t border-cyan-900/60 text-center text-xs font-mono text-gray-500 bg-cyber-dark">
-    <p class="text-cyan-400 font-bold mb-1">STEFANO DEL MORO</p>
-    <p>Software & Mobile Engineering Portfolio</p>
-  </footer>
-
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMediaModal(); });
+    </script>
 </body>
 </html>
 """
 
-    with open('index.html', 'w', encoding='utf-8') as f:
-        f.write(html_content)
+template = Template(html_template)
+output_html = template.render(proyectos=proyectos, categorias=categorias)
 
-    print("✅ Portafolio con soporte universal de video y tipografía mejorada.")
+with open('index.html', 'w', encoding='utf-8') as f:
+    f.write(output_html)
 
-if __name__ == '__main__':
-    generar_html()
+print("✅ Landing page 'index.html' generada con los videos funcionales y títulos mejorados.")
