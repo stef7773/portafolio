@@ -1,23 +1,31 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stefano Del Moro | Full Stack & Android Engineer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <title>Stefano Del Moro | Full Stack & Mobile Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        neon: '#00f3ff',
-                        darkBg: '#090d16',
-                        cardBg: 'rgba(15, 23, 42, 0.75)',
+                        neon: {
+                            DEFAULT: '#00f3ff',
+                            glow: 'rgba(0, 243, 255, 0.4)',
+                            dim: 'rgba(0, 243, 255, 0.15)'
+                        },
+                        cyber: {
+                            bg: '#050811',
+                            card: 'rgba(10, 16, 31, 0.75)',
+                            border: 'rgba(0, 243, 255, 0.18)',
+                            accent: '#3b82f6'
+                        }
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
                     }
                 }
             }
@@ -25,157 +33,290 @@
     </script>
     <style>
         body {
-            background-color: #090d16;
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(0, 243, 255, 0.08) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.08) 0px, transparent 50%);
-            background-attachment: fixed;
+            background-color: #050811;
+            color: #e2e8f0;
+            overflow-x: hidden;
         }
+
+        .cyber-grid {
+            background-size: 50px 50px;
+            background-image: 
+                linear-gradient(to right, rgba(0, 243, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
+        }
+
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .orb-1 { width: 500px; height: 500px; top: -100px; left: -100px; background: rgba(0, 243, 255, 0.12); }
+        .orb-2 { width: 600px; height: 600px; bottom: -150px; right: -150px; background: rgba(59, 130, 246, 0.12); }
+
         .glass-card {
-            background: rgba(15, 23, 42, 0.65);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(0, 243, 255, 0.15);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(10, 16, 31, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 243, 255, 0.18);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
         }
         .glass-card:hover {
-            border-color: rgba(0, 243, 255, 0.5);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px 0 rgba(0, 243, 255, 0.15);
+            border-color: rgba(0, 243, 255, 0.6);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px -15px rgba(0, 243, 255, 0.25);
         }
+
+        .text-glow {
+            text-shadow: 0 0 12px rgba(0, 243, 255, 0.6), 0 0 30px rgba(0, 243, 255, 0.2);
+        }
+
+        .video-wrapper {
+            position: relative;
+            border-radius: 0.85rem;
+            overflow: hidden;
+            border: 1px solid rgba(0, 243, 255, 0.25);
+            background: #000;
+        }
+
+        .tech-pill {
+            background: rgba(0, 243, 255, 0.08);
+            border: 1px solid rgba(0, 243, 255, 0.25);
+            color: #00f3ff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            padding: 0.25rem 0.65rem;
+            border-radius: 0.375rem;
+        }
+
+        .sticky-header {
+            background: rgba(5, 8, 17, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.15);
+        }
+
+        .cyber-corner {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-color: #00f3ff;
+            pointer-events: none;
+        }
+        .top-left { top: 0; left: 0; border-top: 2px solid; border-left: 2px solid; }
+        .top-right { top: 0; right: 0; border-top: 2px solid; border-right: 2px solid; }
+        .bottom-left { bottom: 0; left: 0; border-bottom: 2px solid; border-left: 2px solid; }
+        .bottom-right { bottom: 0; right: 0; border-bottom: 2px solid; border-right: 2px solid; }
     </style>
 </head>
-<body class="bg-darkBg text-gray-200 font-sans min-h-screen antialiased flex flex-col justify-between">
+<body class="cyber-grid relative min-h-screen flex flex-col justify-between selection:bg-neon selection:text-black">
 
-    <!-- Header -->
-    <header class="max-w-6xl mx-auto px-6 pt-16 pb-8 text-center">
-        <div class="inline-block px-4 py-1.5 rounded-full border border-neon/30 bg-neon/10 text-neon text-xs font-mono font-semibold tracking-wide uppercase mb-4">
-            Full Stack & Mobile Engineer
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <!-- STICKY HEADER -->
+    <header class="sticky top-0 z-50 sticky-header py-4 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+                <div class="relative flex h-3 w-3">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-neon opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-3 w-3 bg-neon"></span>
+                </div>
+                <div>
+                    <h1 class="text-xl md:text-2xl font-extrabold text-white tracking-tight text-glow">
+                        Stefano Del Moro
+                    </h1>
+                    <p class="text-xs text-neon/80 font-mono tracking-wider">
+                        Full Stack & Mobile Engineer • Android Architect
+                    </p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="hidden md:flex items-center gap-2 px-3 py-1 rounded-full bg-black/40 border border-neon/30 text-xs font-mono text-gray-300">
+                    <span class="text-neon">SYS_STATUS:</span> OPERATIONAL
+                </div>
+            </div>
         </div>
-        <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-4">
-            Stefano Del Moro
-        </h1>
-        <p class="max-w-2xl mx-auto text-gray-400 text-lg">
-            Desarrollo soluciones de alto impacto combinando <span class="text-neon font-medium">Inteligencia Artificial</span>, desarrollo nativo en <span class="text-neon font-medium">Android (Kotlin/Compose)</span> y automatización enterprise.
-        </p>
     </header>
 
-    <!-- Grid de Proyectos -->
-    <main class="max-w-6xl mx-auto px-6 py-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+    <!-- HERO SECTION -->
+    <section class="relative z-10 max-w-5xl mx-auto px-6 pt-12 pb-10 text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-neon/30 bg-neon/10 text-neon text-xs font-mono font-bold uppercase mb-6 tracking-widest">
+            Sistemas Autónomos & Movilidad Inteligente
+        </div>
+        
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight mb-6">
+            Soluciones de Alto Impacto con <br class="hidden sm:inline"/>
+            <span class="bg-clip-text text-transparent bg-gradient-to-r from-neon via-sky-400 to-blue-500 text-glow">
+                Inteligencia Artificial & Android NATIVO
+            </span>
+        </h2>
+        
+        <p class="max-w-3xl mx-auto text-gray-300 text-base leading-relaxed font-light">
+            Arquitectura de software de vanguardia enfocada en modelos de <span class="text-neon font-medium">IA local/offline</span>, ingeniería en <span class="text-neon font-medium">Kotlin/Compose</span>, automatización enterprise y visión por computadora.
+        </p>
+    </section>
 
-        <!-- CARD 1 (NUEVA & DESTACADA): Educare AI (Con Link a Google Play + Video) -->
-        <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between md:col-span-2 border-neon/40">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 p-6 items-center">
-                <div class="lg:col-span-5 flex flex-col justify-between h-full">
+    <!-- GRID DE PROYECTOS -->
+    <main class="relative z-10 max-w-7xl mx-auto px-6 py-4 grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <!-- CARD 1: EDUCARE AI (Con Link a Google Play + Video) -->
+        <div class="glass-card rounded-2xl md:col-span-2 p-6 md:p-8 flex flex-col justify-between border-neon/50">
+            <div class="cyber-corner top-left"></div>
+            <div class="cyber-corner top-right"></div>
+            <div class="cyber-corner bottom-left"></div>
+            <div class="cyber-corner bottom-right"></div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-5 flex flex-col justify-between h-full space-y-6">
                     <div>
                         <div class="flex items-center gap-2 mb-3">
-                            <span class="px-2.5 py-1 bg-neon/20 text-neon text-xs font-mono font-bold rounded-md uppercase">Google Play Live</span>
-                            <span class="text-xs text-gray-400 font-mono">Kotlin • Jetpack Compose • Local AI</span>
+                            <span class="px-3 py-1 bg-neon/20 text-neon text-xs font-mono font-bold rounded-md uppercase tracking-wider border border-neon/40">
+                                PROYECTO INSIGNIA • LIVE
+                            </span>
                         </div>
-                        <h2 class="text-2xl md:text-3xl font-extrabold text-white mb-3">
+                        <h3 class="text-3xl font-extrabold text-white mb-4 tracking-tight">
                             Educare AI — Ecosistema Móvil Inteligente
-                        </h2>
-                        <p class="text-gray-300 text-sm leading-relaxed mb-4">
-                            Aplicación Android nativa impulsada por modelos de lenguaje local e integración AdMob. Diseñada bajo arquitectura moderna, offline-first y optimización multi-idioma.
+                        </h3>
+                        <p class="text-gray-300 text-sm md:text-base leading-relaxed mb-6 font-light">
+                            Aplicación Android nativa desarrollada en <span class="text-neon font-mono">Kotlin & Jetpack Compose</span>. Incorpora motor conversacional IA con inferencia local (offline-first), monetización avanzada con AdMob y arquitectura escalable multi-idioma.
                         </p>
                     </div>
-                    <!-- Único botón a la Play Store -->
-                    <a href="https://play.google.com/store/apps/details?id=com.educareai" target="_blank" rel="noopener noreferrer" 
-                       class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-neon/10 hover:bg-neon/20 text-neon font-semibold text-sm rounded-xl border border-neon/40 transition-all duration-200">
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
-                        Ver en Google Play
-                    </a>
+
+                    <div>
+                        <a href="https://play.google.com/store/apps/details?id=com.educareai" target="_blank" rel="noopener noreferrer" 
+                           class="inline-flex w-full sm:w-auto items-center justify-center gap-3 px-8 py-4 bg-neon/10 hover:bg-neon/20 text-neon font-bold text-sm rounded-xl border border-neon/50 shadow-lg shadow-neon/10 transition-all duration-300">
+                            <svg class="w-6 h-6 fill-current text-neon" viewBox="0 0 24 24"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
+                            <span>Ver en Google Play</span>
+                        </a>
+                    </div>
                 </div>
-                <div class="lg:col-span-7 rounded-xl overflow-hidden bg-black/60 border border-gray-800">
-                    <video class="w-full h-auto max-h-[360px] object-cover" autoplay loop muted playsinline>
-                        <source src="assets/educare_ai.mp4" type="video/mp4">
-                    </video>
+
+                <div class="lg:col-span-7">
+                    <div class="video-wrapper">
+                        <video class="w-full h-auto max-h-[420px] object-cover" autoplay loop muted playsinline>
+                            <source src="assets/educare_ai.mp4" type="video/mp4">
+                        </video>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- CARD 2: Scanner Médico AI (Solo Video, SIN Link) -->
-        <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between">
-            <div class="p-6">
-                <div class="text-xs text-neon font-mono font-bold uppercase mb-2">Vision & Health AI</div>
-                <h2 class="text-xl font-bold text-white mb-2">
-                    Scanner de Documentos Médicos con Visión Artificial
-                </h2>
-                <p class="text-gray-300 text-sm mb-4">
-                    Extracción estructurada de informes clínicos y recetas médicas utilizando modelos de visión por computadora para digitalización instantánea.
+        <!-- CARD 2: SCANNER MÉDICO AI (SIN Botón Play Store) -->
+        <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
+            <div class="cyber-corner top-left"></div>
+            <div class="cyber-corner top-right"></div>
+            <div>
+                <div class="text-xs text-neon font-mono font-bold uppercase tracking-widest mb-2">VISION & HEALTH AI</div>
+                <h3 class="text-2xl font-bold text-white mb-3">
+                    Scanner de Documentos Médicos AI
+                </h3>
+                <p class="text-gray-300 text-sm mb-5 leading-relaxed font-light">
+                    Sistema de captura y digitalización inteligente capaz de parsear exámenes clínicos e informes médicos estructurando diagnósticos al instante mediante OCR.
                 </p>
-                <div class="rounded-xl overflow-hidden bg-black/60 border border-gray-800 mb-4">
-                    <video class="w-full h-48 object-cover" autoplay loop muted playsinline>
+                <div class="video-wrapper mb-5">
+                    <video class="w-full h-56 object-cover" autoplay loop muted playsinline>
                         <source src="assets/med_ai_scanner.mp4" type="video/mp4">
                     </video>
                 </div>
             </div>
-            <div class="px-6 pb-6 text-xs text-gray-400 font-mono">Computer Vision • OCR • LLM Parsing</div>
+            <div class="flex flex-wrap gap-1.5 pt-2">
+                <span class="tech-pill">OpenCV / Vision</span>
+                <span class="tech-pill">OCR Engine</span>
+                <span class="tech-pill">LLM Medical Parsing</span>
+            </div>
         </div>
 
-        <!-- CARD 3: Automatizador de Correos de Gmail -->
-        <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between">
-            <div class="p-6">
-                <div class="text-xs text-neon font-mono font-bold uppercase mb-2">Enterprise Automation</div>
-                <h2 class="text-xl font-bold text-white mb-2">
-                    Automatizador de Correos de Gmail & Gestor de Asistencias
-                </h2>
-                <p class="text-gray-300 text-sm mb-4">
-                    Motor inteligente de procesamiento de correos entrantes que clasifica, extrae datos en tiempo real y gestiona expedientes operativos sin intervención manual.
+        <!-- CARD 3: AUTOMATIZADOR DE EMAIL -->
+        <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
+            <div class="cyber-corner top-left"></div>
+            <div class="cyber-corner top-right"></div>
+            <div>
+                <div class="text-xs text-neon font-mono font-bold uppercase tracking-widest mb-2">ENTERPRISE AUTOMATION</div>
+                <h3 class="text-2xl font-bold text-white mb-3">
+                    Gestor Automatizado de Asistencias & Gmail
+                </h3>
+                <p class="text-gray-300 text-sm mb-5 leading-relaxed font-light">
+                    Bot empresarial que analiza bandejas de entrada en tiempo real, extrae casos críticos de asistencia internacional y procesa expedientes sin intervención manual.
                 </p>
-                <div class="rounded-xl overflow-hidden bg-black/60 border border-gray-800 mb-4">
-                    <video class="w-full h-48 object-cover" autoplay loop muted playsinline>
+                <div class="video-wrapper mb-5">
+                    <video class="w-full h-56 object-cover" autoplay loop muted playsinline>
                         <source src="assets/asistencias_email_bot.mp4" type="video/mp4">
                     </video>
                 </div>
             </div>
-            <div class="px-6 pb-6 text-xs text-gray-400 font-mono">Python • Gmail API • Parsing Engine</div>
+            <div class="flex flex-wrap gap-1.5 pt-2">
+                <span class="tech-pill">Python API</span>
+                <span class="tech-pill">Gmail OAuth2</span>
+                <span class="tech-pill">Data Extraction</span>
+            </div>
         </div>
 
-        <!-- CARD 4: Tamagotchi AI -->
-        <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between">
-            <div class="p-6">
-                <div class="text-xs text-neon font-mono font-bold uppercase mb-2">Interactive AI</div>
-                <h2 class="text-xl font-bold text-white mb-2">
-                    Mascota Virtual con Inteligencia Conversacional
-                </h2>
-                <p class="text-gray-300 text-sm mb-4">
-                    Agente interactivo en tiempo real provisto de personalidad persistente, memoria contextual y procesamiento del lenguaje natural.
+        <!-- CARD 4: TAMAGOTCHI AI -->
+        <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
+            <div class="cyber-corner top-left"></div>
+            <div class="cyber-corner top-right"></div>
+            <div>
+                <div class="text-xs text-neon font-mono font-bold uppercase tracking-widest mb-2">INTERACTIVE AGENT</div>
+                <h3 class="text-2xl font-bold text-white mb-3">
+                    Mascota Virtual con Memoria Persistente
+                </h3>
+                <p class="text-gray-300 text-sm mb-5 leading-relaxed font-light">
+                    Agente interactivo provisto de síntesis de voz, estado emocional dinámico y retención contextual de conversación a largo plazo.
                 </p>
-                <div class="rounded-xl overflow-hidden bg-black/60 border border-gray-800 mb-4">
-                    <video class="w-full h-48 object-cover" autoplay loop muted playsinline>
+                <div class="video-wrapper mb-5">
+                    <video class="w-full h-56 object-cover" autoplay loop muted playsinline>
                         <source src="assets/tamagotchi_ai.mp4" type="video/mp4">
                     </video>
                 </div>
             </div>
-            <div class="px-6 pb-6 text-xs text-gray-400 font-mono">Conversational AI • Memory Persistence</div>
+            <div class="flex flex-wrap gap-1.5 pt-2">
+                <span class="tech-pill">Agentic Memory</span>
+                <span class="tech-pill">NLP</span>
+                <span class="tech-pill">Interactive UI</span>
+            </div>
         </div>
 
-        <!-- CARD 5: System Monitor -->
-        <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between">
-            <div class="p-6">
-                <div class="text-xs text-neon font-mono font-bold uppercase mb-2">Dev Tools & Systems</div>
-                <h2 class="text-xl font-bold text-white mb-2">
-                    Monitor de Rendimiento & Métricas del Sistema
-                </h2>
-                <p class="text-gray-300 text-sm mb-4">
-                    Dashboard analítico en tiempo real para el seguimiento de procesos, consumo de recursos y telemetría de infraestructura.
+        <!-- CARD 5: SYSTEM MONITOR -->
+        <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
+            <div class="cyber-corner top-left"></div>
+            <div class="cyber-corner top-right"></div>
+            <div>
+                <div class="text-xs text-neon font-mono font-bold uppercase tracking-widest mb-2">SYSTEMS & TELEMETRY</div>
+                <h3 class="text-2xl font-bold text-white mb-3">
+                    Monitor de Rendimiento & Métricas Linux
+                </h3>
+                <p class="text-gray-300 text-sm mb-5 leading-relaxed font-light">
+                    Dashboard analítico en tiempo real para el seguimiento de procesos, consumo de recursos e inspección de memoria activa.
                 </p>
-                <div class="rounded-xl overflow-hidden bg-black/60 border border-gray-800 mb-4">
-                    <video class="w-full h-48 object-cover" autoplay loop muted playsinline>
+                <div class="video-wrapper mb-5">
+                    <video class="w-full h-56 object-cover" autoplay loop muted playsinline>
                         <source src="assets/system_monitor.mp4" type="video/mp4">
                     </video>
                 </div>
             </div>
-            <div class="px-6 pb-6 text-xs text-gray-400 font-mono">Linux CLI • Metrics Dashboard • Telemetry</div>
+            <div class="flex flex-wrap gap-1.5 pt-2">
+                <span class="tech-pill">Linux CLI</span>
+                <span class="tech-pill">Telemetry</span>
+                <span class="tech-pill">Real-time Metrics</span>
+            </div>
         </div>
 
     </main>
 
-    <!-- Footer -->
-    <footer class="text-center py-8 text-gray-500 text-xs font-mono border-t border-gray-800/50 mt-8">
-        © 2026 Stefano Del Moro. Publicado mediante GitHub Pages.
+    <!-- FOOTER -->
+    <footer class="relative z-10 border-t border-neon/20 bg-cyber-bg/90 mt-16 py-8 px-6 text-center">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono text-gray-400">
+            <div>
+                <span class="text-neon">© 2026 Stefano Del Moro</span> — Full Stack Engineer
+            </div>
+            <div class="text-gray-500">
+                Desplegado en GitHub Pages • Quito, Ecuador
+            </div>
+        </div>
     </footer>
 
 </body>
