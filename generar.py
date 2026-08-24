@@ -11,38 +11,19 @@ def generar_html():
     destacado = next((p for p in proyectos if p.get('destacado')), proyectos[0] if proyectos else None)
     otros_proyectos = [p for p in proyectos if p != destacado]
 
-    def render_preview(url, project_id, title=""):
-        if not url:
-            return '<div class="w-full h-full bg-gray-950 flex items-center justify-center font-mono text-xs text-cyan-600">[ MEDIA PREVIEW ]</div>'
-        
-        # Si es link de youtube embed o video local
-        if "youtube.com" in url or "youtu.be" in url:
-            # Convertir URL normal/embed a autoplay loop con muted
-            yt_id = url.split('/')[-1].split('?')[0]
-            embed_url = f"https://www.youtube.com/embed/{yt_id}?autoplay=1&mute=1&loop=1&playlist={yt_id}&controls=0&modestbranding=1"
-            return f'''
-            <div class="relative w-full h-full group/player overflow-hidden rounded-xl border border-cyan-900/80 bg-gray-950">
-                <iframe class="w-full h-full pointer-events-none scale-105" src="{embed_url}" title="{title}" frameborder="0" allow="autoplay; encrypted-media"></iframe>
-                <div class="absolute inset-0 bg-transparent group-hover/player:bg-cyan-950/20 transition-all flex items-center justify-center">
-                    <button onclick="openModal('{url}', '{title}')" class="opacity-0 group-hover/player:opacity-100 transition duration-300 px-4 py-2 bg-cyan-400 text-black font-mono font-bold text-xs rounded-lg shadow-[0_0_20px_#00f0ff] flex items-center gap-2 transform translate-y-2 group-hover/player:translate-y-0">
-                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> AMPLIAR DEMO HD
-                    </button>
-                </div>
+    def render_preview(url, title=""):
+        return f'''
+        <div class="relative w-full h-full group/player overflow-hidden rounded-xl border border-cyan-900/80 bg-gray-950">
+            <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+                <source src="{url}" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-cyan-950/20 opacity-0 group-hover/player:opacity-100 transition duration-300 flex items-center justify-center bg-black/40">
+                <button onclick="openModal('{url}', '{title}')" class="px-4 py-2 bg-cyan-400 text-black font-mono font-bold text-xs rounded-lg shadow-[0_0_20px_#00f0ff] flex items-center gap-2 transform translate-y-2 group-hover/player:translate-y-0 transition duration-300">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> AMPLIAR DEMO HD
+                </button>
             </div>
-            '''
-        else:
-            return f'''
-            <div class="relative w-full h-full group/player overflow-hidden rounded-xl border border-cyan-900/80 bg-gray-950">
-                <video class="w-full h-full object-cover scale-100 group-hover/player:scale-105 transition duration-500" autoplay loop muted playsinline>
-                    <source src="{url}" type="video/mp4">
-                </video>
-                <div class="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent flex items-center justify-center">
-                    <button onclick="openModal('{url}', '{title}')" class="opacity-90 group-hover/player:opacity-100 transition duration-300 px-4 py-2 bg-cyan-400 text-black font-mono font-bold text-xs rounded-lg shadow-[0_0_20px_#00f0ff] flex items-center gap-2">
-                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> VER DEMO HD
-                    </button>
-                </div>
-            </div>
-            '''
+        </div>
+        '''
 
     html_content = f"""<!DOCTYPE html>
 <html lang="es" class="dark scroll-smooth">
@@ -91,7 +72,7 @@ def generar_html():
 </head>
 <body class="text-gray-200 min-h-screen font-sans antialiased pt-28">
 
-  <!-- NAVBAR PERMANENTE Y FIJA -->
+  <!-- NAVBAR PERMANENTE -->
   <header class="fixed top-0 left-0 right-0 z-40 bg-cyber-dark/90 backdrop-blur-lg border-b border-cyber-border/80 px-6 py-4 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
     <div class="max-w-6xl mx-auto flex justify-between items-center">
       <div class="flex items-center gap-3">
@@ -119,7 +100,7 @@ def generar_html():
 
   <main class="max-w-6xl mx-auto px-6">
 
-    <!-- HERO METRICS & TITLE -->
+    <!-- HERO METRICS -->
     <div class="text-center max-w-3xl mx-auto mb-16">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
         <div class="p-4 bg-cyber-card border border-cyan-900/60 rounded-2xl glow-cyan">
@@ -188,8 +169,8 @@ def generar_html():
           </div>
 
           <div class="lg:col-span-6">
-            <div class="aspect-video w-full rounded-2xl overflow-hidden border border-cyan-900/80 shadow-2xl">
-              {render_preview(destacado.get('video_url', ''), 'destacado', destacado.get('titulo', ''))}
+            <div class="aspect-video w-full rounded-2xl overflow-hidden shadow-2xl">
+              {render_preview(destacado.get('video_url', ''), destacado.get('titulo', ''))}
             </div>
           </div>
         </div>
@@ -198,12 +179,12 @@ def generar_html():
     """
 
     html_content += """
-    <!-- GRID DE OTROS PROYECTOS -->
+    <!-- OTHER PROJECTS GRID -->
     <section class="mb-20">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
     """
 
-    for idx, p in enumerate(otros_proyectos):
+    for p in otros_proyectos:
         html_content += f"""
         <div class="bg-cyber-card border border-cyber-border hover:border-cyan-400/60 rounded-2xl p-6 transition duration-300 flex flex-col justify-between glow-cyan">
           <div>
@@ -217,7 +198,7 @@ def generar_html():
             <p class="text-gray-400 text-xs leading-relaxed mb-6">{p.get('descripcion', '')}</p>
 
             <div class="aspect-video w-full rounded-xl overflow-hidden mb-6">
-              {render_preview(p.get('video_url', ''), f'proj_{idx}', p.get('titulo', ''))}
+              {render_preview(p.get('video_url', ''), p.get('titulo', ''))}
             </div>
           </div>
 
@@ -238,7 +219,7 @@ def generar_html():
 
   </main>
 
-  <!-- MODAL / LIGHTBOX HD FLOTANTE -->
+  <!-- MODAL LIGHTBOX HD -->
   <div id="videoModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl hidden flex items-center justify-center p-4 md:p-10 transition-all">
     <div class="relative w-full max-w-5xl bg-cyber-card border border-cyan-400/80 rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(0,240,255,0.3)]">
       <div class="flex justify-between items-center px-6 py-4 border-b border-cyan-900/80 bg-gray-950">
@@ -246,8 +227,7 @@ def generar_html():
         <button onclick="closeModal()" class="text-cyan-400 hover:text-white font-mono text-xl font-bold px-3 py-1 bg-cyan-950 rounded-lg border border-cyan-800">✕</button>
       </div>
       <div class="aspect-video w-full bg-black">
-        <iframe id="modalIframe" class="w-full h-full hidden" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <video id="modalVideo" class="w-full h-full hidden" controls autoplay></video>
+        <video id="modalVideo" class="w-full h-full" controls autoplay></video>
       </div>
     </div>
   </div>
@@ -256,42 +236,25 @@ def generar_html():
     function openModal(url, title) {
       const modal = document.getElementById('videoModal');
       const modalTitle = document.getElementById('modalTitle');
-      const iframe = document.getElementById('modalIframe');
       const video = document.getElementById('modalVideo');
 
       modalTitle.innerText = title || "DEMO VIDEO";
-
-      if (url.includes("youtube.com") || url.includes("youtu.be")) {
-        let ytId = url.split('/').pop().split('?')[0];
-        iframe.src = "https://www.youtube.com/embed/" + ytId + "?autoplay=1&controls=1";
-        iframe.classList.remove('hidden');
-        video.classList.add('hidden');
-        video.pause();
-      } else {
-        video.src = url;
-        video.classList.remove('hidden');
-        iframe.classList.add('hidden');
-        iframe.src = "";
-        video.play();
-      }
-
+      video.src = url;
       modal.classList.remove('hidden');
+      video.play();
       document.body.style.overflow = 'hidden';
     }
 
     function closeModal() {
       const modal = document.getElementById('videoModal');
-      const iframe = document.getElementById('modalIframe');
       const video = document.getElementById('modalVideo');
 
       modal.classList.add('hidden');
-      iframe.src = "";
       video.pause();
       video.src = "";
       document.body.style.overflow = 'auto';
     }
 
-    // Cerrar modal con la tecla ESC
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') closeModal();
     });
@@ -308,7 +271,7 @@ def generar_html():
     with open('index.html', 'w', encoding='utf-8') as f:
         f.write(html_content)
 
-    print("✅ Portafolio Senior generado con Previews continuos, Modal Lightbox HD y Navbar Fija.")
+    print("✅ Portafolio restaurado con reproducción MP4 continua.")
 
 if __name__ == '__main__':
     generar_html()

@@ -5,7 +5,7 @@
     "titulo": "Educare AI — Ecosistema Móvil Inteligente",
     "descripcion": "Aplicación Android nativa desarrollada en Kotlin & Jetpack Compose. Incorpora motor conversacional IA con inferencia local (offline-first), monetización avanzada con AdMob y arquitectura escalable multi-idioma.",
     "tags": ["Kotlin", "Jetpack Compose", "Local IA / LLM", "AdMob", "Firebase"],
-    "video_url": "https://www.youtube.com/embed/TU_VIDEO_EDUCARE_ID",
+    "video_url": "assets/videos/educare.mp4",
     "link": "https://play.google.com/store/apps/details?id=com.educareai.app&hl=es_419",
     "destacado": true
   },
@@ -15,7 +15,7 @@
     "titulo": "Scanner de Documentos Médicos AI",
     "descripcion": "Sistema de captura y digitalización inteligente capaz de parsear exámenes clínicos e informes médicos estructurando diagnósticos al instante mediante OCR.",
     "tags": ["Python", "Computer Vision", "OCR", "Health AI"],
-    "video_url": "https://www.youtube.com/embed/VIDEO_SCANNER_ID",
+    "video_url": "assets/videos/scanner.mp4",
     "link": ""
   },
   {
@@ -24,7 +24,7 @@
     "titulo": "Gestor Automatizado de Correos de Gmail",
     "descripcion": "Bot empresarial que analiza bandejas de entrada en tiempo real, extrae casos críticos de asistencia internacional y procesa expedientes sin intervención manual.",
     "tags": ["Python", "Gmail API", "Automation", "NLP"],
-    "video_url": "https://www.youtube.com/embed/VIDEO_GMAIL_ID",
+    "video_url": "assets/videos/gmail.mp4",
     "link": ""
   },
   {
@@ -33,7 +33,7 @@
     "titulo": "Tamagotchi AI & Mascota Virtual",
     "descripcion": "Mascota virtual con estados emocionales dinámicos y agentes conversacionales persistentes integrados.",
     "tags": ["Python", "AI Agents", "JSON DB"],
-    "video_url": "https://www.youtube.com/embed/VIDEO_TAMAGOTCHI_ID",
+    "video_url": "assets/videos/tamagotchi.mp4",
     "link": ""
   }
 ]

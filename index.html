@@ -45,7 +45,7 @@
 </head>
 <body class="text-gray-200 min-h-screen font-sans antialiased pt-28">
 
-  <!-- NAVBAR PERMANENTE Y FIJA -->
+  <!-- NAVBAR PERMANENTE -->
   <header class="fixed top-0 left-0 right-0 z-40 bg-cyber-dark/90 backdrop-blur-lg border-b border-cyber-border/80 px-6 py-4 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
     <div class="max-w-6xl mx-auto flex justify-between items-center">
       <div class="flex items-center gap-3">
@@ -73,7 +73,7 @@
 
   <main class="max-w-6xl mx-auto px-6">
 
-    <!-- HERO METRICS & TITLE -->
+    <!-- HERO METRICS -->
     <div class="text-center max-w-3xl mx-auto mb-16">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
         <div class="p-4 bg-cyber-card border border-cyan-900/60 rounded-2xl glow-cyan">
@@ -132,31 +132,33 @@
             
             <div class="flex items-center gap-4">
               <a href="https://play.google.com/store/apps/details?id=com.educareai.app&hl=es_419" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-cyan-400 text-black font-black text-xs uppercase tracking-wider rounded-xl hover:bg-cyan-300 transition shadow-[0_0_20px_rgba(0,240,255,0.4)]">▶ Ver en Google Play</a>
-              <button onclick="openModal('https://www.youtube.com/embed/TU_VIDEO_EDUCARE_ID', 'Educare AI — Ecosistema Móvil Inteligente')" class="px-5 py-3 border border-cyan-400/60 text-cyan-400 font-mono font-bold text-xs uppercase rounded-xl hover:bg-cyan-400/10 transition">
+              <button onclick="openModal('assets/videos/educare.mp4', 'Educare AI — Ecosistema Móvil Inteligente')" class="px-5 py-3 border border-cyan-400/60 text-cyan-400 font-mono font-bold text-xs uppercase rounded-xl hover:bg-cyan-400/10 transition">
                 📺 Ver Demo Grande
               </button>
             </div>
           </div>
 
           <div class="lg:col-span-6">
-            <div class="aspect-video w-full rounded-2xl overflow-hidden border border-cyan-900/80 shadow-2xl">
+            <div class="aspect-video w-full rounded-2xl overflow-hidden shadow-2xl">
               
-            <div class="relative w-full h-full group/player overflow-hidden rounded-xl border border-cyan-900/80 bg-gray-950">
-                <iframe class="w-full h-full pointer-events-none scale-105" src="https://www.youtube.com/embed/TU_VIDEO_EDUCARE_ID?autoplay=1&mute=1&loop=1&playlist=TU_VIDEO_EDUCARE_ID&controls=0&modestbranding=1" title="Educare AI — Ecosistema Móvil Inteligente" frameborder="0" allow="autoplay; encrypted-media"></iframe>
-                <div class="absolute inset-0 bg-transparent group-hover/player:bg-cyan-950/20 transition-all flex items-center justify-center">
-                    <button onclick="openModal('https://www.youtube.com/embed/TU_VIDEO_EDUCARE_ID', 'Educare AI — Ecosistema Móvil Inteligente')" class="opacity-0 group-hover/player:opacity-100 transition duration-300 px-4 py-2 bg-cyan-400 text-black font-mono font-bold text-xs rounded-lg shadow-[0_0_20px_#00f0ff] flex items-center gap-2 transform translate-y-2 group-hover/player:translate-y-0">
-                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> AMPLIAR DEMO HD
-                    </button>
-                </div>
+        <div class="relative w-full h-full group/player overflow-hidden rounded-xl border border-cyan-900/80 bg-gray-950">
+            <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+                <source src="assets/videos/educare.mp4" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-cyan-950/20 opacity-0 group-hover/player:opacity-100 transition duration-300 flex items-center justify-center bg-black/40">
+                <button onclick="openModal('assets/videos/educare.mp4', 'Educare AI — Ecosistema Móvil Inteligente')" class="px-4 py-2 bg-cyan-400 text-black font-mono font-bold text-xs rounded-lg shadow-[0_0_20px_#00f0ff] flex items-center gap-2 transform translate-y-2 group-hover/player:translate-y-0 transition duration-300">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> AMPLIAR DEMO HD
+                </button>
             </div>
-            
+        </div>
+        
             </div>
           </div>
         </div>
       </div>
     </section>
     
-    <!-- GRID DE OTROS PROYECTOS -->
+    <!-- OTHER PROJECTS GRID -->
     <section class="mb-20">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
     
@@ -173,15 +175,17 @@
 
             <div class="aspect-video w-full rounded-xl overflow-hidden mb-6">
               
-            <div class="relative w-full h-full group/player overflow-hidden rounded-xl border border-cyan-900/80 bg-gray-950">
-                <iframe class="w-full h-full pointer-events-none scale-105" src="https://www.youtube.com/embed/VIDEO_SCANNER_ID?autoplay=1&mute=1&loop=1&playlist=VIDEO_SCANNER_ID&controls=0&modestbranding=1" title="Scanner de Documentos Médicos AI" frameborder="0" allow="autoplay; encrypted-media"></iframe>
-                <div class="absolute inset-0 bg-transparent group-hover/player:bg-cyan-950/20 transition-all flex items-center justify-center">
-                    <button onclick="openModal('https://www.youtube.com/embed/VIDEO_SCANNER_ID', 'Scanner de Documentos Médicos AI')" class="opacity-0 group-hover/player:opacity-100 transition duration-300 px-4 py-2 bg-cyan-400 text-black font-mono font-bold text-xs rounded-lg shadow-[0_0_20px_#00f0ff] flex items-center gap-2 transform translate-y-2 group-hover/player:translate-y-0">
-                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> AMPLIAR DEMO HD
-                    </button>
-                </div>
+        <div class="relative w-full h-full group/player overflow-hidden rounded-xl border border-cyan-900/80 bg-gray-950">
+            <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+                <source src="assets/videos/scanner.mp4" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-cyan-950/20 opacity-0 group-hover/player:opacity-100 transition duration-300 flex items-center justify-center bg-black/40">
+                <button onclick="openModal('assets/videos/scanner.mp4', 'Scanner de Documentos Médicos AI')" class="px-4 py-2 bg-cyan-400 text-black font-mono font-bold text-xs rounded-lg shadow-[0_0_20px_#00f0ff] flex items-center gap-2 transform translate-y-2 group-hover/player:translate-y-0 transition duration-300">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> AMPLIAR DEMO HD
+                </button>
             </div>
-            
+        </div>
+        
             </div>
           </div>
 
@@ -189,7 +193,7 @@
             <div class="flex flex-wrap gap-2 mb-4">
               <span class="text-[10px] font-mono bg-gray-950 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">Python</span><span class="text-[10px] font-mono bg-gray-950 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">Computer Vision</span><span class="text-[10px] font-mono bg-gray-950 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">OCR</span><span class="text-[10px] font-mono bg-gray-950 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">Health AI</span>
             </div>
-            <button onclick="openModal('https://www.youtube.com/embed/VIDEO_SCANNER_ID', 'Scanner de Documentos Médicos AI')" class="w-full py-2.5 bg-cyan-950/60 border border-cyan-800/80 text-cyan-400 font-mono font-bold text-xs uppercase rounded-xl hover:bg-cyan-400 hover:text-black transition">
+            <button onclick="openModal('assets/videos/scanner.mp4', 'Scanner de Documentos Médicos AI')" class="w-full py-2.5 bg-cyan-950/60 border border-cyan-800/80 text-cyan-400 font-mono font-bold text-xs uppercase rounded-xl hover:bg-cyan-400 hover:text-black transition">
               🔍 Ver Demo Completo
             </button>
           </div>
@@ -208,15 +212,17 @@
 
             <div class="aspect-video w-full rounded-xl overflow-hidden mb-6">
               
-            <div class="relative w-full h-full group/player overflow-hidden rounded-xl border border-cyan-900/80 bg-gray-950">
-                <iframe class="w-full h-full pointer-events-none scale-105" src="https://www.youtube.com/embed/VIDEO_GMAIL_ID?autoplay=1&mute=1&loop=1&playlist=VIDEO_GMAIL_ID&controls=0&modestbranding=1" title="Gestor Automatizado de Correos de Gmail" frameborder="0" allow="autoplay; encrypted-media"></iframe>
-                <div class="absolute inset-0 bg-transparent group-hover/player:bg-cyan-950/20 transition-all flex items-center justify-center">
-                    <button onclick="openModal('https://www.youtube.com/embed/VIDEO_GMAIL_ID', 'Gestor Automatizado de Correos de Gmail')" class="opacity-0 group-hover/player:opacity-100 transition duration-300 px-4 py-2 bg-cyan-400 text-black font-mono font-bold text-xs rounded-lg shadow-[0_0_20px_#00f0ff] flex items-center gap-2 transform translate-y-2 group-hover/player:translate-y-0">
-                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> AMPLIAR DEMO HD
-                    </button>
-                </div>
+        <div class="relative w-full h-full group/player overflow-hidden rounded-xl border border-cyan-900/80 bg-gray-950">
+            <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+                <source src="assets/videos/gmail.mp4" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-cyan-950/20 opacity-0 group-hover/player:opacity-100 transition duration-300 flex items-center justify-center bg-black/40">
+                <button onclick="openModal('assets/videos/gmail.mp4', 'Gestor Automatizado de Correos de Gmail')" class="px-4 py-2 bg-cyan-400 text-black font-mono font-bold text-xs rounded-lg shadow-[0_0_20px_#00f0ff] flex items-center gap-2 transform translate-y-2 group-hover/player:translate-y-0 transition duration-300">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> AMPLIAR DEMO HD
+                </button>
             </div>
-            
+        </div>
+        
             </div>
           </div>
 
@@ -224,7 +230,7 @@
             <div class="flex flex-wrap gap-2 mb-4">
               <span class="text-[10px] font-mono bg-gray-950 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">Python</span><span class="text-[10px] font-mono bg-gray-950 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">Gmail API</span><span class="text-[10px] font-mono bg-gray-950 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">Automation</span><span class="text-[10px] font-mono bg-gray-950 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">NLP</span>
             </div>
-            <button onclick="openModal('https://www.youtube.com/embed/VIDEO_GMAIL_ID', 'Gestor Automatizado de Correos de Gmail')" class="w-full py-2.5 bg-cyan-950/60 border border-cyan-800/80 text-cyan-400 font-mono font-bold text-xs uppercase rounded-xl hover:bg-cyan-400 hover:text-black transition">
+            <button onclick="openModal('assets/videos/gmail.mp4', 'Gestor Automatizado de Correos de Gmail')" class="w-full py-2.5 bg-cyan-950/60 border border-cyan-800/80 text-cyan-400 font-mono font-bold text-xs uppercase rounded-xl hover:bg-cyan-400 hover:text-black transition">
               🔍 Ver Demo Completo
             </button>
           </div>
@@ -243,15 +249,17 @@
 
             <div class="aspect-video w-full rounded-xl overflow-hidden mb-6">
               
-            <div class="relative w-full h-full group/player overflow-hidden rounded-xl border border-cyan-900/80 bg-gray-950">
-                <iframe class="w-full h-full pointer-events-none scale-105" src="https://www.youtube.com/embed/VIDEO_TAMAGOTCHI_ID?autoplay=1&mute=1&loop=1&playlist=VIDEO_TAMAGOTCHI_ID&controls=0&modestbranding=1" title="Tamagotchi AI & Mascota Virtual" frameborder="0" allow="autoplay; encrypted-media"></iframe>
-                <div class="absolute inset-0 bg-transparent group-hover/player:bg-cyan-950/20 transition-all flex items-center justify-center">
-                    <button onclick="openModal('https://www.youtube.com/embed/VIDEO_TAMAGOTCHI_ID', 'Tamagotchi AI & Mascota Virtual')" class="opacity-0 group-hover/player:opacity-100 transition duration-300 px-4 py-2 bg-cyan-400 text-black font-mono font-bold text-xs rounded-lg shadow-[0_0_20px_#00f0ff] flex items-center gap-2 transform translate-y-2 group-hover/player:translate-y-0">
-                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> AMPLIAR DEMO HD
-                    </button>
-                </div>
+        <div class="relative w-full h-full group/player overflow-hidden rounded-xl border border-cyan-900/80 bg-gray-950">
+            <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+                <source src="assets/videos/tamagotchi.mp4" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-cyan-950/20 opacity-0 group-hover/player:opacity-100 transition duration-300 flex items-center justify-center bg-black/40">
+                <button onclick="openModal('assets/videos/tamagotchi.mp4', 'Tamagotchi AI & Mascota Virtual')" class="px-4 py-2 bg-cyan-400 text-black font-mono font-bold text-xs rounded-lg shadow-[0_0_20px_#00f0ff] flex items-center gap-2 transform translate-y-2 group-hover/player:translate-y-0 transition duration-300">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> AMPLIAR DEMO HD
+                </button>
             </div>
-            
+        </div>
+        
             </div>
           </div>
 
@@ -259,7 +267,7 @@
             <div class="flex flex-wrap gap-2 mb-4">
               <span class="text-[10px] font-mono bg-gray-950 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">Python</span><span class="text-[10px] font-mono bg-gray-950 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">AI Agents</span><span class="text-[10px] font-mono bg-gray-950 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">JSON DB</span>
             </div>
-            <button onclick="openModal('https://www.youtube.com/embed/VIDEO_TAMAGOTCHI_ID', 'Tamagotchi AI & Mascota Virtual')" class="w-full py-2.5 bg-cyan-950/60 border border-cyan-800/80 text-cyan-400 font-mono font-bold text-xs uppercase rounded-xl hover:bg-cyan-400 hover:text-black transition">
+            <button onclick="openModal('assets/videos/tamagotchi.mp4', 'Tamagotchi AI & Mascota Virtual')" class="w-full py-2.5 bg-cyan-950/60 border border-cyan-800/80 text-cyan-400 font-mono font-bold text-xs uppercase rounded-xl hover:bg-cyan-400 hover:text-black transition">
               🔍 Ver Demo Completo
             </button>
           </div>
@@ -270,7 +278,7 @@
 
   </main>
 
-  <!-- MODAL / LIGHTBOX HD FLOTANTE -->
+  <!-- MODAL LIGHTBOX HD -->
   <div id="videoModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl hidden flex items-center justify-center p-4 md:p-10 transition-all">
     <div class="relative w-full max-w-5xl bg-cyber-card border border-cyan-400/80 rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(0,240,255,0.3)]">
       <div class="flex justify-between items-center px-6 py-4 border-b border-cyan-900/80 bg-gray-950">
@@ -278,8 +286,7 @@
         <button onclick="closeModal()" class="text-cyan-400 hover:text-white font-mono text-xl font-bold px-3 py-1 bg-cyan-950 rounded-lg border border-cyan-800">✕</button>
       </div>
       <div class="aspect-video w-full bg-black">
-        <iframe id="modalIframe" class="w-full h-full hidden" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <video id="modalVideo" class="w-full h-full hidden" controls autoplay></video>
+        <video id="modalVideo" class="w-full h-full" controls autoplay></video>
       </div>
     </div>
   </div>
@@ -288,42 +295,25 @@
     function openModal(url, title) {
       const modal = document.getElementById('videoModal');
       const modalTitle = document.getElementById('modalTitle');
-      const iframe = document.getElementById('modalIframe');
       const video = document.getElementById('modalVideo');
 
       modalTitle.innerText = title || "DEMO VIDEO";
-
-      if (url.includes("youtube.com") || url.includes("youtu.be")) {
-        let ytId = url.split('/').pop().split('?')[0];
-        iframe.src = "https://www.youtube.com/embed/" + ytId + "?autoplay=1&controls=1";
-        iframe.classList.remove('hidden');
-        video.classList.add('hidden');
-        video.pause();
-      } else {
-        video.src = url;
-        video.classList.remove('hidden');
-        iframe.classList.add('hidden');
-        iframe.src = "";
-        video.play();
-      }
-
+      video.src = url;
       modal.classList.remove('hidden');
+      video.play();
       document.body.style.overflow = 'hidden';
     }
 
     function closeModal() {
       const modal = document.getElementById('videoModal');
-      const iframe = document.getElementById('modalIframe');
       const video = document.getElementById('modalVideo');
 
       modal.classList.add('hidden');
-      iframe.src = "";
       video.pause();
       video.src = "";
       document.body.style.overflow = 'auto';
     }
 
-    // Cerrar modal con la tecla ESC
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') closeModal();
     });
