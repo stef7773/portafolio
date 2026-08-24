@@ -1,7 +1,7 @@
 [
   {
     "id": "educare_ai_suite",
-    "titulo": "Educare AI Suite",
+    "titulo": "Educare AI",
     "subtitulo": "Ecosistema Educativo & IA Local",
     "categoria": "Mobile & AI",
     "descripcion": "Suite Android en Kotlin y Jetpack Compose con integración de IA local offline, Firebase y monetización con AdMob.",
@@ -17,7 +17,7 @@
     "categoria": "AI & Health",
     "descripcion": "API en FastAPI y OpenCV para análisis de imágenes médicas, soporte clínico y clasificación automatizada en tiempo real.",
     "techs": ["Python", "FastAPI", "OpenCV", "Uvicorn", "Computer Vision"],
-    "link_demo": "http://127.0.0.1:8000/docs",
+    "link_demo": "",
     "media_url": "assets/med_ai_scanner.mp4",
     "cover_image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80"
   },
@@ -45,7 +45,7 @@
   },
   {
     "id": "asistencias_email_bot",
-    "titulo": "Asistencias Email Bot",
+    "titulo": "Gestor automatizado de correos de Gmail",
     "subtitulo": "Automatización de Coordinación Médica",
     "categoria": "Automation",
     "descripcion": "Bot automatizado para alertas de urgencia médica internacional. Analiza emails, clasifica gravedad y despacha notificaciones.",
