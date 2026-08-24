@@ -1,0 +1,54 @@
+[
+  {
+    "id": "med_ai_scanner",
+    "titulo": "Med AI Scanner",
+    "subtitulo": "Análisis e Visión Artificial para Diagnóstico",
+    "categoria": "AI & Health",
+    "descripcion": "API de alto rendimiento en FastAPI y OpenCV para análisis e inspección de imágenes médicas, soporte clínico y clasificación de datos en tiempo real.",
+    "techs": ["Python", "FastAPI", "OpenCV", "Uvicorn", "Computer Vision"],
+    "link_demo": "http://127.0.0.1:8000/docs",
+    "link_repo": "",
+    "media_type": "video",
+    "media_url": "assets/med_ai_scanner.mp4",
+    "destacado": true
+  },
+  {
+    "id": "system_monitor",
+    "titulo": "System Monitor CLI",
+    "subtitulo": "Monitor de Recursos en Consola de Alto Rendimiento",
+    "categoria": "Linux Tools",
+    "descripcion": "Herramienta de auditoría de sistema en tiempo real para terminales Linux. Monitoriza uso de CPU por núcleo, memoria RAM, threads y métricas del kernel.",
+    "techs": ["Python 3", "Linux CLI", "psutil", "Bash"],
+    "link_demo": "",
+    "link_repo": "",
+    "media_type": "video",
+    "media_url": "assets/system_monitor.mp4",
+    "destacado": true
+  },
+  {
+    "id": "tamagotchi_ai",
+    "titulo": "Tamagotchi AI",
+    "subtitulo": "Mascota Virtual Cognitiva con IA Conversacional",
+    "categoria": "AI & Gaming",
+    "descripcion": "Agente virtual e interfaz gráfica en Pygame. Integra modelos conversacionales e inteligencia de estado para evolución dinámica e interacción en tiempo real.",
+    "techs": ["Python", "Pygame", "Local LLM", "Requests"],
+    "link_demo": "",
+    "link_repo": "",
+    "media_type": "video",
+    "media_url": "assets/tamagotchi_ai.mp4",
+    "destacado": true
+  },
+  {
+    "id": "asistencias_email_bot",
+    "titulo": "Asistencias Email Bot",
+    "subtitulo": "Gestión Automatizada de Coordinación Médica",
+    "categoria": "Automation",
+    "descripcion": "Bot de automatización para procesamiento de alertas e incidencias por email. Analiza correos entrantes, clasifica por nivel de urgencia y gestiona notificaciones.",
+    "techs": ["Python", "IMAP/SMTP", "Parsing", "Automation"],
+    "link_demo": "",
+    "link_repo": "",
+    "media_type": "video",
+    "media_url": "assets/asistencias_email_bot.mp4",
+    "destacado": true
+  }
+]
