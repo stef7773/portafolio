@@ -14,9 +14,9 @@
             cyber: {
               blue: '#00f0ff',
               cyan: '#00d8f6',
-              dark: '#020617',
-              card: '#081226',
-              border: '#102a45'
+              dark: '#030712',
+              card: '#08101e',
+              border: '#0e2338'
             }
           }
         }
@@ -24,31 +24,30 @@
     }
   </script>
   <style>
-    /* FONDO DE CUADRÍCULA CIBERNÉTICA REFORZADO */
     body {
-      background-color: #020617;
+      background-color: #030712;
       background-image: 
         linear-gradient(to right, rgba(0, 240, 255, 0.08) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(0, 240, 255, 0.08) 1px, transparent 1px),
-        radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.18) 0%, transparent 75%);
-      background-size: 32px 32px, 32px 32px, 100% 100%;
+        radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.15) 0%, transparent 70%);
+      background-size: 36px 36px, 36px 36px, 100% 100%;
     }
     .glow-cyan {
-      box-shadow: 0 0 25px rgba(0, 240, 255, 0.12);
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.15);
     }
     .glow-cyan:hover {
-      box-shadow: 0 0 35px rgba(0, 240, 255, 0.25);
+      box-shadow: 0 0 35px rgba(0, 240, 255, 0.3);
     }
     .glow-text {
       text-shadow: 0 0 20px rgba(0, 240, 255, 0.7);
     }
   </style>
 </head>
-<body class="text-gray-100 min-h-screen font-sans antialiased pt-28">
+<body class="text-gray-200 min-h-screen font-sans antialiased pt-28">
 
-  <!-- NAVBAR FIXED SIEMPRE VISIBLE -->
-  <header class="fixed top-0 left-0 right-0 z-50 bg-[#020617]/95 backdrop-blur-md border-b border-cyan-500/30 px-6 py-4 shadow-[0_4px_30px_rgba(0,0,0,0.9)]">
-    <div class="max-w-7xl mx-auto flex justify-between items-center">
+  <!-- NAVBAR FIXED SUPERIOR PROFESIONAL -->
+  <header class="fixed top-0 left-0 right-0 z-40 bg-[#030712]/95 backdrop-blur-md border-b border-cyan-500/30 px-6 py-4 shadow-[0_10px_30px_rgba(0,0,0,0.9)]">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
       <div class="flex items-center gap-3">
         <span class="relative flex h-3.5 w-3.5">
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
@@ -56,75 +55,76 @@
         </span>
         <div>
           <h1 class="text-xl font-black text-white tracking-widest uppercase glow-text">STEFANO DEL MORO</h1>
-          <p class="text-[10px] text-cyan-400 font-mono font-bold tracking-widest uppercase">Full-Stack Architect • Local AI Specialist</p>
+          <p class="text-[11px] text-cyan-400 font-mono font-bold tracking-widest uppercase">Full Stack & AI Engineer • Mobile Architect</p>
         </div>
       </div>
       
       <div class="flex items-center gap-4">
-        <div class="hidden sm:flex items-center gap-2 px-3 py-1 bg-cyan-950/60 border border-cyan-500/40 rounded-lg text-xs font-mono text-cyan-300">
+        <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-cyan-950/60 border border-cyan-500/40 rounded-xl text-xs font-mono text-cyan-400">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
           <span>SYSTEM_ONLINE</span>
         </div>
-        <a href="#contacto" class="px-5 py-2 bg-cyan-400 text-black font-extrabold text-xs tracking-wider font-mono rounded-lg hover:bg-cyan-300 transition duration-300 shadow-[0_0_20px_rgba(0,240,255,0.4)]">
+        <a href="#contacto" class="px-5 py-2.5 bg-cyan-400 text-black font-extrabold text-xs font-mono rounded-xl hover:bg-cyan-300 transition duration-300 shadow-[0_0_20px_rgba(0,240,255,0.4)] uppercase tracking-wider">
           CONTACTAR
         </a>
       </div>
     </div>
   </header>
 
-  <main class="max-w-7xl mx-auto px-6">
+  <main class="max-w-6xl mx-auto px-6">
 
-    <!-- HERO SECTION TITULARES GRANDES -->
-    <div class="text-center max-w-4xl mx-auto mb-20">
-      <span class="px-4 py-1.5 rounded-full text-xs font-mono font-bold bg-cyan-400/10 text-cyan-400 border border-cyan-400/40 uppercase tracking-widest inline-block mb-6 shadow-[0_0_15px_rgba(0,240,255,0.2)]">
-        High-Performance Engineering & On-Device AI
-      </span>
+    <!-- HERO METRICS / HEADER PROFESIONAL -->
+    <div class="text-center max-w-4xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold bg-cyan-400/10 text-cyan-400 border border-cyan-400/40 uppercase tracking-widest mb-6 shadow-[0_0_15px_rgba(0,240,255,0.2)]">
+        <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+        <span>High-Scale Engineering & On-Device AI</span>
+      </div>
 
-      <h2 class="text-4xl sm:text-6xl font-black text-white leading-tight mb-6 tracking-tight">
-        ARQUITECTURA MÓVIL,<br/>
-        <span class="text-cyan-400 glow-text">IA LOCAL & HIGH-SCALE SYSTEMS</span>
+      <h2 class="text-4xl md:text-6xl font-black text-white leading-none tracking-tight mb-6 uppercase">
+        ARQUITECTURA MÓVIL, <br/>
+        <span class="text-cyan-400 glow-text">IA LOCAL & SISTEMAS AUTÓNOMOS</span>
       </h2>
-      
-      <p class="text-gray-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto font-light">
-        Desarrollo de ecosistemas nativos Android, integraciones de modelos LLM offline de ultra-baja latencia y automatización avanzada sobre Linux Mint.
+      <p class="text-gray-300 text-sm md:text-lg leading-relaxed max-w-2xl mx-auto font-light">
+        Especialista en desarrollo Android Nativo (Kotlin/Compose), integración de LLMs locales con inferencia offline y automatización de procesos bajo Linux.
       </p>
     </div>
 
     <!-- PROYECTO INSIGNIA -->
     
-    <section class="mb-20">
-      <div class="bg-cyber-card border border-cyan-400/60 rounded-3xl p-6 sm:p-10 glow-cyan relative overflow-hidden">
+    <section class="mb-16">
+      <div class="bg-cyber-card border border-cyan-400/60 rounded-3xl p-6 md:p-8 glow-cyan transition duration-300">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div class="lg:col-span-6 flex flex-col justify-between h-full">
             <div>
               <div class="mb-4">
-                <span class="px-3 py-1 bg-cyan-400/15 border border-cyan-400/50 text-cyan-400 font-mono font-bold text-xs uppercase tracking-wider rounded-md">
+                <span class="px-3 py-1 bg-cyan-400/15 border border-cyan-400/50 text-cyan-400 font-mono font-bold text-xs uppercase tracking-wider rounded-lg">
                   PROYECTO INSIGNIA • LIVE
                 </span>
               </div>
-              <h3 class="text-3xl sm:text-4xl font-black text-white mb-4 leading-tight tracking-wide">
+              <h3 class="text-2xl md:text-4xl font-black text-white mb-4 leading-tight tracking-wide">
                 Educare AI — Ecosistema Móvil Inteligente
               </h3>
-              <p class="text-gray-300 text-sm sm:text-base leading-relaxed mb-6 font-normal">
+              <p class="text-gray-300 text-sm md:text-base leading-relaxed mb-6 font-normal">
                 Aplicación Android nativa desarrollada en Kotlin & Jetpack Compose. Incorpora motor conversacional IA con inferencia local (offline-first), monetización avanzada con AdMob y arquitectura escalable multi-idioma.
               </p>
               <div class="flex flex-wrap gap-2 mb-8">
-                <span class="text-xs font-mono bg-black/60 text-cyan-300 px-3 py-1 rounded-md border border-cyan-800/80">Kotlin</span><span class="text-xs font-mono bg-black/60 text-cyan-300 px-3 py-1 rounded-md border border-cyan-800/80">Jetpack Compose</span><span class="text-xs font-mono bg-black/60 text-cyan-300 px-3 py-1 rounded-md border border-cyan-800/80">Local IA / LLM</span><span class="text-xs font-mono bg-black/60 text-cyan-300 px-3 py-1 rounded-md border border-cyan-800/80">AdMob</span><span class="text-xs font-mono bg-black/60 text-cyan-300 px-3 py-1 rounded-md border border-cyan-800/80">Firebase</span>
+                <span class="text-xs font-mono bg-gray-950 text-cyan-400 px-3 py-1 rounded-lg border border-cyan-900/80">Kotlin</span><span class="text-xs font-mono bg-gray-950 text-cyan-400 px-3 py-1 rounded-lg border border-cyan-900/80">Jetpack Compose</span><span class="text-xs font-mono bg-gray-950 text-cyan-400 px-3 py-1 rounded-lg border border-cyan-900/80">Local IA / LLM</span><span class="text-xs font-mono bg-gray-950 text-cyan-400 px-3 py-1 rounded-lg border border-cyan-900/80">AdMob</span><span class="text-xs font-mono bg-gray-950 text-cyan-400 px-3 py-1 rounded-lg border border-cyan-900/80">Firebase</span>
               </div>
             </div>
             
             <div class="flex flex-wrap items-center gap-4">
-              <button onclick="openModal('assets/videos/educare.mp4', 'Educare AI — Ecosistema Móvil Inteligente')" class="px-6 py-3 bg-cyan-400 text-black font-black text-xs font-mono uppercase tracking-wider rounded-xl hover:bg-cyan-300 transition shadow-[0_0_25px_rgba(0,240,255,0.5)] flex items-center gap-2">
+              <button onclick="openModal('assets/videos/educare.mp4', 'Educare AI — Ecosistema Móvil Inteligente')" class="px-6 py-3 bg-cyan-400 text-black font-black text-xs font-mono uppercase tracking-wider rounded-xl hover:bg-cyan-300 transition shadow-[0_0_20px_rgba(0,240,255,0.4)] flex items-center gap-2">
                 <span>🔍</span> VER DEMO HD AMPLADA
               </button>
-              <a href="https://play.google.com/store/apps/details?id=com.educareai.app&hl=es_419" target="_blank" class="px-6 py-3 bg-transparent border-2 border-cyan-400/60 text-cyan-400 font-bold text-xs font-mono uppercase tracking-wider rounded-xl hover:bg-cyan-400/10 transition">Google Play ➔</a>
+              <a href="https://play.google.com/store/apps/details?id=com.educareai.app&hl=es_419" target="_blank" class="px-6 py-3 bg-cyan-950 border border-cyan-400/60 text-cyan-400 font-bold text-xs font-mono uppercase tracking-wider rounded-xl hover:bg-cyan-400 hover:text-black transition">Google Play ➔</a>
             </div>
           </div>
 
           <div class="lg:col-span-6">
-            <div class="aspect-video w-full rounded-2xl overflow-hidden border border-cyan-500/50 shadow-2xl bg-black">
+            <div class="aspect-video w-full rounded-2xl overflow-hidden border border-cyan-900/80 shadow-2xl bg-gray-950">
               <video class="w-full h-full object-cover rounded-xl" autoplay loop muted playsinline preload="auto">
                 <source src="assets/videos/educare.mp4" type="video/mp4">
+                Tu navegador no soporta el formato de video.
             </video>
             </div>
           </div>
@@ -133,8 +133,8 @@
     </section>
     
     <!-- OTHER PROJECTS GRID -->
-    <section class="mb-24">
-      <h3 class="text-2xl font-black text-white font-mono uppercase tracking-wider mb-8 text-cyan-400 border-l-4 border-cyan-400 pl-4">
+    <section class="mb-20">
+      <h3 class="text-xl font-black text-white font-mono uppercase tracking-wider mb-8 text-cyan-400 border-l-4 border-cyan-400 pl-4">
         Sistemas & Desarrollos Autónomos
       </h3>
 
@@ -148,22 +148,23 @@
               </span>
             </div>
             
-            <h4 class="text-2xl font-bold text-white mb-3 leading-snug">Scanner de Documentos Médicos AI</h4>
-            <p class="text-gray-300 text-xs leading-relaxed mb-6 font-light">Sistema de captura y digitalización inteligente capaz de parsear exámenes clínicos e informes médicos estructurando diagnósticos al instante mediante OCR.</p>
+            <h4 class="text-xl font-bold text-white mb-3 leading-snug">Scanner de Documentos Médicos AI</h4>
+            <p class="text-gray-400 text-xs leading-relaxed mb-6">Sistema de captura y digitalización inteligente capaz de parsear exámenes clínicos e informes médicos estructurando diagnósticos al instante mediante OCR.</p>
 
-            <div class="aspect-video w-full rounded-xl overflow-hidden border border-cyan-900/80 mb-6 bg-black">
+            <div class="aspect-video w-full rounded-xl overflow-hidden border border-cyan-900/80 mb-6 bg-gray-950">
               <video class="w-full h-full object-cover rounded-xl" autoplay loop muted playsinline preload="auto">
                 <source src="assets/videos/scanner.mp4" type="video/mp4">
+                Tu navegador no soporta el formato de video.
             </video>
             </div>
           </div>
 
           <div>
-            <div class="flex flex-wrap gap-2 mb-6">
-              <span class="text-[10px] font-mono bg-black/60 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">Python</span><span class="text-[10px] font-mono bg-black/60 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">Computer Vision</span><span class="text-[10px] font-mono bg-black/60 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">OCR</span><span class="text-[10px] font-mono bg-black/60 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">Health AI</span>
+            <div class="flex flex-wrap gap-2 mb-5">
+              <span class="text-[10px] font-mono bg-gray-950 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">Python</span><span class="text-[10px] font-mono bg-gray-950 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">Computer Vision</span><span class="text-[10px] font-mono bg-gray-950 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">OCR</span><span class="text-[10px] font-mono bg-gray-950 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">Health AI</span>
             </div>
-            <button onclick="openModal('assets/videos/scanner.mp4', 'Scanner de Documentos Médicos AI')" class="w-full py-3 bg-cyan-950/80 border border-cyan-400/70 text-cyan-400 font-mono font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-cyan-400 hover:text-black transition duration-300 shadow-[0_0_15px_rgba(0,240,255,0.2)] flex items-center justify-center gap-2">
-              <span>🔍</span> VER DEMO EN HD
+            <button onclick="openModal('assets/videos/scanner.mp4', 'Scanner de Documentos Médicos AI')" class="w-full py-3 bg-cyan-950 border border-cyan-400/80 text-cyan-400 font-mono font-bold text-xs uppercase rounded-xl hover:bg-cyan-400 hover:text-black transition shadow-[0_0_15px_rgba(0,240,255,0.15)] flex items-center justify-center gap-2">
+              <span>🔍</span> VER DEMO HD
             </button>
           </div>
         </div>
@@ -176,22 +177,23 @@
               </span>
             </div>
             
-            <h4 class="text-2xl font-bold text-white mb-3 leading-snug">Gestor Automatizado de Correos de Gmail</h4>
-            <p class="text-gray-300 text-xs leading-relaxed mb-6 font-light">Bot empresarial que analiza bandejas de entrada en tiempo real, extrae casos críticos de asistencia internacional y procesa expedientes sin intervención manual.</p>
+            <h4 class="text-xl font-bold text-white mb-3 leading-snug">Gestor Automatizado de Correos de Gmail</h4>
+            <p class="text-gray-400 text-xs leading-relaxed mb-6">Bot empresarial que analiza bandejas de entrada en tiempo real, extrae casos críticos de asistencia internacional y procesa expedientes sin intervención manual.</p>
 
-            <div class="aspect-video w-full rounded-xl overflow-hidden border border-cyan-900/80 mb-6 bg-black">
+            <div class="aspect-video w-full rounded-xl overflow-hidden border border-cyan-900/80 mb-6 bg-gray-950">
               <video class="w-full h-full object-cover rounded-xl" autoplay loop muted playsinline preload="auto">
                 <source src="assets/videos/gmail.mp4" type="video/mp4">
+                Tu navegador no soporta el formato de video.
             </video>
             </div>
           </div>
 
           <div>
-            <div class="flex flex-wrap gap-2 mb-6">
-              <span class="text-[10px] font-mono bg-black/60 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">Python</span><span class="text-[10px] font-mono bg-black/60 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">Gmail API</span><span class="text-[10px] font-mono bg-black/60 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">Automation</span><span class="text-[10px] font-mono bg-black/60 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">NLP</span>
+            <div class="flex flex-wrap gap-2 mb-5">
+              <span class="text-[10px] font-mono bg-gray-950 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">Python</span><span class="text-[10px] font-mono bg-gray-950 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">Gmail API</span><span class="text-[10px] font-mono bg-gray-950 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">Automation</span><span class="text-[10px] font-mono bg-gray-950 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">NLP</span>
             </div>
-            <button onclick="openModal('assets/videos/gmail.mp4', 'Gestor Automatizado de Correos de Gmail')" class="w-full py-3 bg-cyan-950/80 border border-cyan-400/70 text-cyan-400 font-mono font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-cyan-400 hover:text-black transition duration-300 shadow-[0_0_15px_rgba(0,240,255,0.2)] flex items-center justify-center gap-2">
-              <span>🔍</span> VER DEMO EN HD
+            <button onclick="openModal('assets/videos/gmail.mp4', 'Gestor Automatizado de Correos de Gmail')" class="w-full py-3 bg-cyan-950 border border-cyan-400/80 text-cyan-400 font-mono font-bold text-xs uppercase rounded-xl hover:bg-cyan-400 hover:text-black transition shadow-[0_0_15px_rgba(0,240,255,0.15)] flex items-center justify-center gap-2">
+              <span>🔍</span> VER DEMO HD
             </button>
           </div>
         </div>
@@ -204,22 +206,23 @@
               </span>
             </div>
             
-            <h4 class="text-2xl font-bold text-white mb-3 leading-snug">Tamagotchi AI & Mascota Virtual</h4>
-            <p class="text-gray-300 text-xs leading-relaxed mb-6 font-light">Mascota virtual con estados emocionales dinámicos y agentes conversacionales persistentes integrados.</p>
+            <h4 class="text-xl font-bold text-white mb-3 leading-snug">Tamagotchi AI & Mascota Virtual</h4>
+            <p class="text-gray-400 text-xs leading-relaxed mb-6">Mascota virtual con estados emocionales dinámicos y agentes conversacionales persistentes integrados.</p>
 
-            <div class="aspect-video w-full rounded-xl overflow-hidden border border-cyan-900/80 mb-6 bg-black">
+            <div class="aspect-video w-full rounded-xl overflow-hidden border border-cyan-900/80 mb-6 bg-gray-950">
               <video class="w-full h-full object-cover rounded-xl" autoplay loop muted playsinline preload="auto">
                 <source src="assets/videos/tamagotchi.mp4" type="video/mp4">
+                Tu navegador no soporta el formato de video.
             </video>
             </div>
           </div>
 
           <div>
-            <div class="flex flex-wrap gap-2 mb-6">
-              <span class="text-[10px] font-mono bg-black/60 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">Python</span><span class="text-[10px] font-mono bg-black/60 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">AI Agents</span><span class="text-[10px] font-mono bg-black/60 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">JSON DB</span>
+            <div class="flex flex-wrap gap-2 mb-5">
+              <span class="text-[10px] font-mono bg-gray-950 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">Python</span><span class="text-[10px] font-mono bg-gray-950 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">AI Agents</span><span class="text-[10px] font-mono bg-gray-950 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">JSON DB</span>
             </div>
-            <button onclick="openModal('assets/videos/tamagotchi.mp4', 'Tamagotchi AI & Mascota Virtual')" class="w-full py-3 bg-cyan-950/80 border border-cyan-400/70 text-cyan-400 font-mono font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-cyan-400 hover:text-black transition duration-300 shadow-[0_0_15px_rgba(0,240,255,0.2)] flex items-center justify-center gap-2">
-              <span>🔍</span> VER DEMO EN HD
+            <button onclick="openModal('assets/videos/tamagotchi.mp4', 'Tamagotchi AI & Mascota Virtual')" class="w-full py-3 bg-cyan-950 border border-cyan-400/80 text-cyan-400 font-mono font-bold text-xs uppercase rounded-xl hover:bg-cyan-400 hover:text-black transition shadow-[0_0_15px_rgba(0,240,255,0.15)] flex items-center justify-center gap-2">
+              <span>🔍</span> VER DEMO HD
             </button>
           </div>
         </div>
@@ -229,12 +232,12 @@
 
   </main>
 
-  <!-- MODAL / LIGHTBOX HD PANTALLA COMPLETA -->
-  <div id="videoModal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl hidden flex items-center justify-center p-4 md:p-10 transition-all">
-    <div class="relative w-full max-w-5xl bg-cyber-card border border-cyan-400 rounded-2xl overflow-hidden shadow-[0_0_60px_rgba(0,240,255,0.35)]">
-      <div class="flex justify-between items-center px-6 py-4 border-b border-cyan-900/80 bg-[#020617]">
-        <h3 id="modalTitle" class="text-sm font-bold text-cyan-400 font-mono uppercase tracking-wider">DEMO VIDEO</h3>
-        <button onclick="closeModal()" class="text-cyan-400 hover:text-white font-mono text-lg font-bold px-3 py-1 bg-cyan-950 rounded-lg border border-cyan-800 hover:bg-cyan-800 transition">✕ CERRAR</button>
+  <!-- MODAL / LIGHTBOX HD UNIVERSAL -->
+  <div id="videoModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl hidden flex items-center justify-center p-4 md:p-10 transition-all">
+    <div class="relative w-full max-w-5xl bg-cyber-card border border-cyan-400/80 rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(0,240,255,0.3)]">
+      <div class="flex justify-between items-center px-6 py-4 border-b border-cyan-900/80 bg-gray-950">
+        <h3 id="modalTitle" class="text-base font-bold text-cyan-400 font-mono uppercase tracking-wider">DEMO VIDEO</h3>
+        <button onclick="closeModal()" class="text-cyan-400 hover:text-white font-mono text-base font-bold px-3 py-1 bg-cyan-950 rounded-lg border border-cyan-800">✕ CERRAR</button>
       </div>
       <div id="modalMediaContainer" class="aspect-video w-full bg-black">
         <!-- Inyectado dinámicamente -->
@@ -244,20 +247,34 @@
 
   <script>
     function openModal(url, title) {
-      if(!url) return;
+      if (!url) return;
       const modal = document.getElementById('videoModal');
       const modalTitle = document.getElementById('modalTitle');
       const container = document.getElementById('modalMediaContainer');
 
       modalTitle.innerText = title || "DEMO VIDEO";
 
+      // YouTube
       if (url.includes("youtube.com") || url.includes("youtu.be")) {
         let ytId = url.split('/').pop().split('?')[0];
         if (url.includes("watch?v=")) {
             ytId = url.split('v=')[1].split('&')[0];
         }
         container.innerHTML = `<iframe class="w-full h-full" src="https://www.youtube.com/embed/${ytId}?autoplay=1&controls=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-      } else {
+      } 
+      // Google Drive
+      else if (url.includes("drive.google.com")) {
+        let embedUrl = url;
+        const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+        if (match) {
+          embedUrl = `https://drive.google.com/file/d/${match[1]}/preview`;
+        } else {
+          embedUrl = url.replace("/view", "/preview");
+        }
+        container.innerHTML = `<iframe class="w-full h-full" src="${embedUrl}" allow="autoplay" frameborder="0" allowfullscreen></iframe>`;
+      } 
+      // Video MP4 directo
+      else {
         container.innerHTML = `<video class="w-full h-full" controls autoplay><source src="${url}" type="video/mp4"></video>`;
       }
 
@@ -279,9 +296,9 @@
     });
   </script>
 
-  <footer id="contacto" class="py-10 border-t border-cyan-900/60 text-center text-xs font-mono text-gray-400 bg-[#020617]">
-    <p class="mb-2 text-cyan-400 font-bold">STEFANO DEL MORO</p>
-    <p>Software & Android Engineering Portfolio</p>
+  <footer id="contacto" class="py-8 border-t border-cyan-900/60 text-center text-xs font-mono text-gray-500 bg-cyber-dark">
+    <p class="text-cyan-400 font-bold mb-1">STEFANO DEL MORO</p>
+    <p>Software & Mobile Engineering Portfolio</p>
   </footer>
 
 </body>
