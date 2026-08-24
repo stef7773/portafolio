@@ -1,20 +1,19 @@
 import json
 from jinja2 import Template
 
-# 1. Cargar la lista de proyectos desde el JSON
+# 1. Cargar la lista de proyectos
 with open('proyectos.json', 'r', encoding='utf-8') as f:
     proyectos = json.load(f)
 
-# Corregido: .get() evita KeyError si un proyecto no especifica 'categoria'
 categorias = sorted(list(set(p.get('categoria', 'General') for p in proyectos)))
 
-# 2. Plantilla HTML con fallbacks seguros
+# 2. Plantilla HTML: Portada estática con botón desplegable de video en Modal
 html_template = """<!DOCTYPE html>
 <html lang="es" class="dark scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stefano Del Moro | Full Stack & AI Engineer</title>
+    <title>Stefano Del Moro | Full Stack & AI Architect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,10 +28,10 @@ html_template = """<!DOCTYPE html>
         .font-mono { font-family: 'JetBrains Mono', monospace; }
         
         .bg-grid-pattern {
-            background-size: 40px 40px;
+            background-size: 36px 36px;
             background-image: 
-                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+                linear-gradient(to right, rgba(6, 182, 212, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(6, 182, 212, 0.05) 1px, transparent 1px);
         }
 
         .project-card {
@@ -40,8 +39,8 @@ html_template = """<!DOCTYPE html>
         }
         .project-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 40px -15px rgba(6, 182, 212, 0.25);
-            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 20px 40px -15px rgba(6, 182, 212, 0.3);
+            border-color: rgba(56, 189, 248, 0.5);
         }
 
         .filter-btn.active {
@@ -52,7 +51,7 @@ html_template = """<!DOCTYPE html>
         }
 
         .glass-panel {
-            background: rgba(15, 23, 42, 0.75);
+            background: rgba(15, 23, 42, 0.85);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
@@ -60,60 +59,65 @@ html_template = """<!DOCTYPE html>
 </head>
 <body class="bg-grid-pattern min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-black">
 
+    <!-- Header -->
     <nav class="sticky top-0 z-40 glass-panel border-b border-slate-800/80 px-6 py-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-3">
-                <div class="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></div>
-                <span class="font-extrabold text-lg text-white tracking-tight">Stefano Del Moro</span>
+                <div class="w-3.5 h-3.5 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_12px_#06b6d4]"></div>
+                <span class="font-black text-xl text-white tracking-wider uppercase">Stefano Del Moro</span>
             </div>
             <div class="flex items-center space-x-4">
-                <span class="text-xs font-mono text-cyan-400 bg-cyan-950/80 border border-cyan-800 px-3 py-1.5 rounded-full hidden sm:inline-block">
-                    ⚡ Full Stack & AI Developer
+                <span class="text-xs font-mono font-bold text-cyan-400 bg-cyan-950/80 border border-cyan-800/80 px-4 py-1.5 rounded-full hidden sm:inline-block tracking-wider uppercase">
+                    ⚡ Full Stack & AI Architect
                 </span>
-                <a href="#contacto" class="text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-4 py-2 rounded-lg transition shadow-lg shadow-cyan-950">
+                <a href="#contacto" class="text-xs font-black uppercase tracking-widest bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-5 py-2.5 rounded-xl transition shadow-lg shadow-cyan-950/80">
                     Contactar
                 </a>
             </div>
         </div>
     </nav>
 
+    <!-- Hero -->
     <section class="relative text-center py-20 px-6 overflow-hidden">
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none"></div>
         
         <div class="relative z-10 max-w-4xl mx-auto" data-aos="fade-down">
             <span class="inline-block px-4 py-1.5 mb-6 text-xs font-mono font-semibold tracking-wider text-cyan-300 uppercase bg-slate-900/90 border border-cyan-800/60 rounded-full">
-                🚀 Portafolio de Ingeniería de Software
+                🚀 Portafolio de Ingeniería de Software & Demos
             </span>
-            <h1 class="text-4xl sm:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-200 to-cyan-500 mb-6 tracking-tight leading-tight uppercase">
-                Soluciones de Software, Inteligencia Artificial & Móvil
+            <h1 class="text-4xl sm:text-6xl font-black text-white mb-6 tracking-tight leading-tight uppercase">
+                SOLUCIONES DE SOFTWARE, <br/>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-cyan-200 to-blue-500">IA LOCAL & LINUX TOOLS</span>
             </h1>
-            <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-8">
-                Especializado en aplicaciones Android con IA local, herramientas de alto rendimiento para Linux Mint y automatizaciones avanzadas.
+            <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-8">
+                Sistemas construidos en Linux Mint: Apps móviles con IA offline, monitores CLI, visão artificial y bots de automatización.
             </p>
             
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto glass-panel p-4 rounded-2xl border border-slate-800">
                 <div>
-                    <div class="text-2xl font-black text-cyan-400">3+ Años</div>
-                    <div class="text-[11px] text-slate-400 uppercase tracking-wider">Desarrollo Android</div>
+                    <div class="text-2xl font-black text-cyan-400 font-mono">3+ Años</div>
+                    <div class="text-[11px] text-slate-400 uppercase tracking-wider font-bold">Android & Kotlin</div>
                 </div>
                 <div>
-                    <div class="text-2xl font-black text-cyan-400">LLM Local</div>
-                    <div class="text-[11px] text-slate-400 uppercase tracking-wider">IA Offline Módulos</div>
+                    <div class="text-2xl font-black text-cyan-400 font-mono">LLM Local</div>
+                    <div class="text-[11px] text-slate-400 uppercase tracking-wider font-bold">IA Offline</div>
                 </div>
                 <div>
-                    <div class="text-2xl font-black text-cyan-400">Linux Mint</div>
-                    <div class="text-[11px] text-slate-400 uppercase tracking-wider">Entorno & Tools</div>
+                    <div class="text-2xl font-black text-cyan-400 font-mono">Linux Mint</div>
+                    <div class="text-[11px] text-slate-400 uppercase tracking-wider font-bold">Entorno Dev</div>
                 </div>
                 <div>
-                    <div class="text-2xl font-black text-cyan-400">{{ proyectos|length }}</div>
-                    <div class="text-[11px] text-slate-400 uppercase tracking-wider">Proyectos Clave</div>
+                    <div class="text-2xl font-black text-cyan-400 font-mono">{{ proyectos|length }}</div>
+                    <div class="text-[11px] text-slate-400 uppercase tracking-wider font-bold">Demos en Video</div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Main Grid -->
     <main class="max-w-7xl mx-auto px-6 py-6 flex-grow w-full">
         
+        <!-- Filter Controls -->
         <div class="flex flex-wrap justify-center gap-2 mb-12" data-aos="fade-up">
             <button onclick="filterProjects('all')" class="filter-btn active text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-xl border border-slate-800 bg-slate-900 text-slate-300 hover:border-cyan-500 transition">
                 Todos los Proyectos ({{ proyectos|length }})
@@ -125,44 +129,36 @@ html_template = """<!DOCTYPE html>
             {% endfor %}
         </div>
 
+        <!-- Cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
             {% for p in proyectos %}
-            {% set cat_nombre = p.categoria if p.categoria else 'General' %}
             <div class="project-card glass-panel border border-slate-800/90 rounded-2xl overflow-hidden flex flex-col justify-between" 
-                 data-category="{{ cat_nombre }}" data-aos="fade-up">
+                 data-category="{{ p.categoria }}" data-aos="fade-up">
                 
                 <div>
-                    <div class="relative h-48 w-full overflow-hidden bg-slate-950 group cursor-pointer" onclick="openMediaModal('{{ p.media_type }}', '{{ p.media_url }}', '{{ p.titulo }}')">
-                        {% if p.media_type == 'video' %}
-                        <video autoplay loop muted playsinline class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-80 group-hover:opacity-100">
-                            <source src="{{ p.media_url }}" type="video/mp4">
-                        </video>
+                    <!-- Cover Image -->
+                    <div class="relative h-48 w-full overflow-hidden bg-slate-950 group cursor-pointer" onclick="openVideoModal('{{ p.media_url }}', '{{ p.titulo }}')">
+                        <img src="{{ p.cover_image }}" alt="{{ p.titulo }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-85 group-hover:opacity-100">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
-                        <span class="absolute bottom-3 right-3 bg-cyan-950/90 text-cyan-300 border border-cyan-800 text-[10px] font-mono px-2.5 py-1 rounded-md flex items-center gap-1">
-                            ▶ VER VIDEO DEMO
-                        </span>
-                        {% else %}
-                        <img src="{{ p.media_url }}" alt="{{ p.titulo }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-80 group-hover:opacity-100">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
-                        <span class="absolute bottom-3 right-3 bg-slate-900/90 text-cyan-300 border border-slate-700 text-[10px] font-mono px-2.5 py-1 rounded-md flex items-center gap-1">
-                            🔍 AMPLIAR CAPTURA
-                        </span>
-                        {% endif %}
-
+                        
                         <span class="absolute top-3 left-3 text-[10px] uppercase tracking-widest text-cyan-300 font-extrabold px-3 py-1 bg-cyan-950/90 border border-cyan-800 rounded-lg">
-                            {{ cat_nombre }}
+                            {{ p.categoria }}
+                        </span>
+
+                        <span class="absolute bottom-3 right-3 bg-cyan-950/90 text-cyan-300 border border-cyan-800/80 text-[10px] font-mono font-bold px-3 py-1.5 rounded-md flex items-center gap-1.5 shadow-md group-hover:bg-cyan-500 group-hover:text-slate-950 transition">
+                            ▶ VER VIDEO DEMO
                         </span>
                     </div>
 
+                    <!-- Body -->
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-white mb-1 tracking-tight">{{ p.titulo }}</h3>
-                        {% if p.subtitulo %}
-                        <p class="text-xs font-mono text-cyan-400 mb-3">{{ p.subtitulo }}</p>
-                        {% endif %}
-                        <p class="text-slate-400 text-sm mb-6 leading-relaxed">{{ p.descripcion }}</p>
+                        <p class="text-xs font-mono font-bold text-cyan-400 mb-3">{{ p.subtitulo }}</p>
+                        <p class="text-slate-300 text-sm mb-6 leading-relaxed">{{ p.descripcion }}</p>
                     </div>
                 </div>
 
+                <!-- Footer / Techs & Action Button -->
                 <div class="px-6 pb-6">
                     <div class="flex flex-wrap gap-1.5 mb-6">
                         {% for tech in p.techs %}
@@ -174,13 +170,13 @@ html_template = """<!DOCTYPE html>
 
                     <div class="flex gap-2">
                         {% if p.link_demo %}
-                        <a href="{{ p.link_demo }}" target="_blank" class="flex-1 text-center bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-2.5 px-3 rounded-xl text-xs uppercase tracking-wider transition shadow-lg shadow-cyan-950/50">
+                        <a href="{{ p.link_demo }}" target="_blank" class="flex-1 text-center bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-black py-2.5 px-3 rounded-xl text-xs uppercase tracking-wider transition shadow-lg shadow-cyan-950/50">
                             Demo / Link
                         </a>
                         {% endif %}
 
-                        <button onclick="openMediaModal('{{ p.media_type }}', '{{ p.media_url }}', '{{ p.titulo }}')" class="flex-1 text-center bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-slate-700 font-bold py-2.5 px-3 rounded-xl text-xs uppercase tracking-wider transition">
-                            {% if p.media_type == 'video' %}🎬 Demo Video{% else %}🖼️ Ver Imagen{% endif %}
+                        <button onclick="openVideoModal('{{ p.media_url }}', '{{ p.titulo }}')" class="flex-1 text-center bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-slate-700 font-bold py-2.5 px-3 rounded-xl text-xs uppercase tracking-wider transition">
+                            🎬 Ver Video
                         </button>
                     </div>
                 </div>
@@ -190,35 +186,38 @@ html_template = """<!DOCTYPE html>
         </div>
     </main>
 
+    <!-- Contact & Footer -->
     <section id="contacto" class="border-t border-slate-800/80 bg-slate-950/80 py-16 px-6 mt-20">
         <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-3xl font-bold text-white mb-4">¿Interesado en colaborar o contratar?</h2>
+            <h2 class="text-3xl font-black text-white mb-4">¿Listo para construir software de alto impacto?</h2>
             <p class="text-slate-400 mb-8 max-w-xl mx-auto">
-                Disponible para oportunidades como Full Stack Developer, Android Engineer o desarrollador de soluciones de Inteligencia Artificial.
+                Disponible para roles como Full Stack Engineer, Android Developer o desarrollo de soluciones con Inteligencia Artificial.
             </p>
             <div class="flex flex-wrap justify-center gap-4">
-                <a href="https://github.com/stef7773" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-white font-mono text-sm px-6 py-3 rounded-xl border border-slate-700 transition flex items-center gap-2">
+                <a href="https://github.com/stef7773" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-white font-mono text-sm px-6 py-3 rounded-xl border border-slate-700 transition flex items-center gap-2 shadow-lg">
                     💻 GitHub: @stef7773
                 </a>
             </div>
         </div>
     </section>
 
-    <footer class="text-center py-6 text-slate-600 border-t border-slate-900 text-xs font-mono">
-        <p>© Stefano Del Moro — Desarrollado en Linux Mint & Python 3</p>
+    <footer class="text-center py-6 text-slate-500 border-t border-slate-900 text-xs font-mono">
+        <p>© Stefano Del Moro — Linux Mint & Python 3</p>
     </footer>
 
-    <div id="mediaModal" class="fixed inset-0 bg-black/95 backdrop-blur-xl hidden z-50 flex items-center justify-center p-4">
+    <!-- Video Modal -->
+    <div id="videoModal" class="fixed inset-0 bg-black/95 backdrop-blur-xl hidden z-50 flex items-center justify-center p-4">
         <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-5xl w-full p-4 relative overflow-hidden flex flex-col shadow-2xl">
             <div class="flex justify-between items-center mb-4 px-2 border-b border-slate-800 pb-3">
-                <h3 id="modalTitle" class="text-xl font-bold text-cyan-400"></h3>
-                <button onclick="closeMediaModal()" class="text-slate-400 hover:text-white text-3xl font-bold leading-none px-3">&times;</button>
+                <h3 id="modalTitle" class="text-xl font-bold text-cyan-400 font-mono"></h3>
+                <button onclick="closeVideoModal()" class="text-slate-400 hover:text-white text-3xl font-bold leading-none px-3">&times;</button>
             </div>
-            <div id="modalBody" class="w-full flex justify-center items-center rounded-xl overflow-hidden bg-black/80 min-h-[400px]">
+            <div id="modalBody" class="w-full flex justify-center items-center rounded-xl overflow-hidden bg-black/90 min-h-[400px]">
             </div>
         </div>
     </div>
 
+    <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 600, once: true });
@@ -239,36 +238,31 @@ html_template = """<!DOCTYPE html>
             });
         }
 
-        function openMediaModal(type, url, title) {
-            const modal = document.getElementById('mediaModal');
+        function openVideoModal(url, title) {
+            const modal = document.getElementById('videoModal');
             const modalBody = document.getElementById('modalBody');
             document.getElementById('modalTitle').innerText = title;
-
-            if (type === 'video') {
-                modalBody.innerHTML = `<video controls autoplay loop class="max-h-[80vh] w-full object-contain rounded-lg"><source src="${url}" type="video/mp4">Navegador no soporta video.</video>`;
-            } else {
-                modalBody.innerHTML = `<img src="${url}" class="max-h-[80vh] w-auto object-contain rounded-lg" alt="${title}">`;
-            }
-
+            modalBody.innerHTML = `<video controls autoplay loop class="max-h-[80vh] w-full object-contain rounded-lg"><source src="${url}" type="video/mp4">Navegador no soporta video.</video>`;
             modal.classList.remove('hidden');
         }
 
-        function closeMediaModal() {
-            const modal = document.getElementById('mediaModal');
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
             document.getElementById('modalBody').innerHTML = '';
             modal.classList.add('hidden');
         }
 
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMediaModal(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeVideoModal(); });
     </script>
 </body>
 </html>
 """
 
+# Renderizar
 template = Template(html_template)
 output_html = template.render(proyectos=proyectos, categorias=categorias)
 
 with open('index.html', 'w', encoding='utf-8') as f:
     f.write(output_html)
 
-print("✅ Landing page 'index.html' generada exitosamente sin errores.")
+print("✅ Landing page actualizada con portadas estáticas e integración de video en reproductor modal HD.")
