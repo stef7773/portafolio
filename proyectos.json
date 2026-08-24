@@ -2,64 +2,91 @@
   {
     "id": "educare_ai_suite",
     "titulo": "Educare AI Suite",
+    "subtitulo": "Ecosistema Educativo Múltiple & IA Local",
     "categoria": "Mobile & AI",
-    "descripcion": "Suite principal de aplicaciones móviles educativas impulsadas por IA local y remota, con arquitectura modular y monetización.",
-    "techs": ["Kotlin", "Jetpack Compose", "Python", "AdMob", "Firebase"],
+    "descripcion": "Suite de aplicaciones móviles en Android para aprendizaje adaptativo. Integra modelos LLM conversacionales que funcionan de manera local/offline, UI en Jetpack Compose, integración con Firebase y monetización optimizada con AdMob.",
+    "techs": ["Kotlin", "Jetpack Compose", "Python", "Local LLM", "Firebase", "AdMob"],
     "link_demo": "https://play.google.com/store/apps/details?id=com.educareai.app",
-    "link_repo": ""
+    "link_repo": "",
+    "media_type": "image",
+    "media_url": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80",
+    "destacado": true
+  },
+  {
+    "id": "cyber_hud",
+    "titulo": "Cyber HUD Desktop",
+    "subtitulo": "Sistema de Control & HUD Futurista para Linux",
+    "categoria": "Linux & UI",
+    "descripcion": "Panel gráfico de supervisión de procesos y monitoreo contextual con estética neón / cyberpunk diseñado a medida para entornos de escritorio Linux Mint.",
+    "techs": ["Python 3", "Linux Mint", "Desktop UI", "Shell Scripting"],
+    "link_demo": "",
+    "link_repo": "",
+    "media_type": "image",
+    "media_url": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80",
+    "destacado": true
   },
   {
     "id": "med_ai_scanner",
     "titulo": "Med AI Scanner",
+    "subtitulo": "Análisis e Visión Artificial para Diagnóstico",
     "categoria": "AI & Health",
-    "descripcion": "Herramienta de asistencia y análisis médico asistido por inteligencia artificial para clasificación y soporte diagnóstico.",
-    "techs": ["Python", "TensorFlow/PyTorch", "Computer Vision"],
+    "descripcion": "Plataforma de procesamiento de imágenes médicas basada en redes neuronales para detección de patrones, soporte clínico y clasificación automatizada de casos.",
+    "techs": ["Python", "Computer Vision", "TensorFlow", "Deep Learning"],
     "link_demo": "",
-    "link_repo": ""
-  },
-  {
-    "id": "cyber_hud",
-    "titulo": "Cyber HUD",
-    "categoria": "Linux & UI",
-    "descripcion": "Interfaz gráfica con estética futurista / cyberpunk para monitoreo y control contextual de tareas en entorno de escritorio Linux.",
-    "techs": ["Python", "Linux Mint", "Desktop UI", "Shell"],
-    "link_demo": "",
-    "link_repo": ""
+    "link_repo": "",
+    "media_type": "image",
+    "media_url": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80",
+    "destacado": true
   },
   {
     "id": "system_monitor",
     "titulo": "System Monitor CLI",
+    "subtitulo": "Monitor de Recursos en Consola de Alto Rendimiento",
     "categoria": "Linux Tools",
-    "descripcion": "Utilidad ligera de línea de comandos para auditoría y monitoreo en tiempo real de recursos, procesos y red en Linux.",
-    "techs": ["Python 3", "Linux CLI", "Bash"],
+    "descripcion": "Herramienta ligera de auditoría de sistema en tiempo real para terminales Linux. Inspecciona consumo de CPU por núcleo, sockets, memoria y procesos del kernel.",
+    "techs": ["Python 3", "Linux CLI", "Bash", "System API"],
     "link_demo": "",
-    "link_repo": ""
+    "link_repo": "",
+    "media_type": "video",
+    "media_url": "https://assets.mixkit.co/videos/preview/mixkit-code-animation-on-a-computer-screen-28042-large.mp4",
+    "destacado": false
   },
   {
     "id": "tamagotchi_ai",
     "titulo": "Tamagotchi AI",
-    "categoria": "AI & Gaming",
-    "descripcion": "Mascota virtual interactiva impulsada por modelos conversacionales locales de IA que evolucionan según el trato recibido.",
-    "techs": ["Python", "LLM Local", "Gaming UI"],
+    "subtitulo": "Mascota Virtual Cognitiva con IA Conversacional",
+    "descripcion": "Agente virtual interactivo con personalidad evolutiva. Utiliza modelos conversacionales ejecutados de forma local para interactuar sin necesidad de internet.",
+    "techs": ["Python", "Local LLM", "Pygame", "Voice AI"],
     "link_demo": "",
-    "link_repo": ""
+    "link_repo": "",
+    "media_type": "video",
+    "media_url": "https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-screens-with-data-41539-large.mp4",
+    "destacado": false
   },
   {
     "id": "asistencias_email_bot",
     "titulo": "Asistencias Email Bot",
     "categoria": "Automation",
-    "descripcion": "Bot de automatización para procesamiento, clasificación y respuesta de correos de asistencia médica internacional.",
-    "techs": ["Python", "IMAP/SMTP", "Automation", "Parsing"],
+    "subtitulo": "Gestión Automatizada de Coordinación Médica",
+    "descripcion": "Bot empresarial para procesamiento de casos médicos de urgencia internacional. Analiza correos entrantes, clasifica según nivel de gravedad y despacha asignaciones.",
+    "techs": ["Python", "IMAP/SMTP", "Parsing", "Automation"],
     "link_demo": "",
-    "link_repo": ""
+    "link_repo": "",
+    "media_type": "image",
+    "media_url": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
+    "destacado": false
   },
   {
     "id": "educare_email_bot",
-    "titulo": "Educare Email Bot",
+    "titulo": "Educare Support Bot",
     "categoria": "Automation",
-    "descripcion": "Sistema automatizado de gestión de correo y soporte a usuarios para el ecosistema de Educare AI.",
-    "techs": ["Python", "API REST", "Automation"],
+    "subtitulo": "Soporte Técnico & Notificaciones Automáticas",
+    "descripcion": "Sistema automatizado de correo para atención al usuario de Educare AI, resolviendo dudas frecuentes, licencias y generando informes de feedback.",
+    "techs": ["Python", "API REST", "Automation", "Email API"],
     "link_demo": "",
-    "link_repo": ""
+    "link_repo": "",
+    "media_type": "image",
+    "media_url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+    "destacado": false
   }
 ]
