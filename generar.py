@@ -1,11 +1,14 @@
 import json
 from jinja2 import Template
 
+# 1. Cargar la lista de proyectos desde el JSON
 with open('proyectos.json', 'r', encoding='utf-8') as f:
     proyectos = json.load(f)
 
-categorias = sorted(list(set(p['categoria'] for p in proyectos)))
+# Corregido: .get() evita KeyError si un proyecto no especifica 'categoria'
+categorias = sorted(list(set(p.get('categoria', 'General') for p in proyectos)))
 
+# 2. Plantilla HTML con fallbacks seguros
 html_template = """<!DOCTYPE html>
 <html lang="es" class="dark scroll-smooth">
 <head>
@@ -25,7 +28,6 @@ html_template = """<!DOCTYPE html>
         }
         .font-mono { font-family: 'JetBrains Mono', monospace; }
         
-        /* Grid background pattern */
         .bg-grid-pattern {
             background-size: 40px 40px;
             background-image: 
@@ -33,7 +35,6 @@ html_template = """<!DOCTYPE html>
                 linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
         }
 
-        /* Neon Glow card animation */
         .project-card {
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -43,7 +44,6 @@ html_template = """<!DOCTYPE html>
             border-color: rgba(56, 189, 248, 0.4);
         }
 
-        /* Filter buttons */
         .filter-btn.active {
             background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
             color: #ffffff;
@@ -51,7 +51,6 @@ html_template = """<!DOCTYPE html>
             box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
         }
 
-        /* Glassmorphism */
         .glass-panel {
             background: rgba(15, 23, 42, 0.75);
             backdrop-filter: blur(12px);
@@ -61,7 +60,6 @@ html_template = """<!DOCTYPE html>
 </head>
 <body class="bg-grid-pattern min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-black">
 
-    <!-- Navbar / Header -->
     <nav class="sticky top-0 z-40 glass-panel border-b border-slate-800/80 px-6 py-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-3">
@@ -79,47 +77,43 @@ html_template = """<!DOCTYPE html>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="relative text-center py-24 px-6 overflow-hidden">
+    <section class="relative text-center py-20 px-6 overflow-hidden">
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none"></div>
         
         <div class="relative z-10 max-w-4xl mx-auto" data-aos="fade-down">
             <span class="inline-block px-4 py-1.5 mb-6 text-xs font-mono font-semibold tracking-wider text-cyan-300 uppercase bg-slate-900/90 border border-cyan-800/60 rounded-full">
                 🚀 Portafolio de Ingeniería de Software
             </span>
-            <h1 class="text-5xl sm:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-200 to-cyan-500 mb-6 tracking-tight leading-tight">
+            <h1 class="text-4xl sm:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-200 to-cyan-500 mb-6 tracking-tight leading-tight uppercase">
                 Soluciones de Software, Inteligencia Artificial & Móvil
             </h1>
-            <p class="text-slate-400 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed mb-8">
+            <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-8">
                 Especializado en aplicaciones Android con IA local, herramientas de alto rendimiento para Linux Mint y automatizaciones avanzadas.
             </p>
             
-            <!-- Quick Stats Bar -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto glass-panel p-4 rounded-2xl border border-slate-800">
                 <div>
                     <div class="text-2xl font-black text-cyan-400">3+ Años</div>
-                    <div class="text-xs text-slate-400 uppercase tracking-wider">Desarrollo Android</div>
+                    <div class="text-[11px] text-slate-400 uppercase tracking-wider">Desarrollo Android</div>
                 </div>
                 <div>
                     <div class="text-2xl font-black text-cyan-400">LLM Local</div>
-                    <div class="text-xs text-slate-400 uppercase tracking-wider">IA Offline Módulos</div>
+                    <div class="text-[11px] text-slate-400 uppercase tracking-wider">IA Offline Módulos</div>
                 </div>
                 <div>
                     <div class="text-2xl font-black text-cyan-400">Linux Mint</div>
-                    <div class="text-xs text-slate-400 uppercase tracking-wider">Entorno & Tools</div>
+                    <div class="text-[11px] text-slate-400 uppercase tracking-wider">Entorno & Tools</div>
                 </div>
                 <div>
-                    <div class="text-2xl font-black text-cyan-400">7+</div>
-                    <div class="text-xs text-slate-400 uppercase tracking-wider">Proyectos Clave</div>
+                    <div class="text-2xl font-black text-cyan-400">{{ proyectos|length }}</div>
+                    <div class="text-[11px] text-slate-400 uppercase tracking-wider">Proyectos Clave</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Main Projects Section -->
-    <main class="max-w-7xl mx-auto px-6 py-8 flex-grow w-full">
+    <main class="max-w-7xl mx-auto px-6 py-6 flex-grow w-full">
         
-        <!-- Filter Controls -->
         <div class="flex flex-wrap justify-center gap-2 mb-12" data-aos="fade-up">
             <button onclick="filterProjects('all')" class="filter-btn active text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-xl border border-slate-800 bg-slate-900 text-slate-300 hover:border-cyan-500 transition">
                 Todos los Proyectos ({{ proyectos|length }})
@@ -131,14 +125,13 @@ html_template = """<!DOCTYPE html>
             {% endfor %}
         </div>
 
-        <!-- Projects Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
             {% for p in proyectos %}
+            {% set cat_nombre = p.categoria if p.categoria else 'General' %}
             <div class="project-card glass-panel border border-slate-800/90 rounded-2xl overflow-hidden flex flex-col justify-between" 
-                 data-category="{{ p.categoria }}" data-aos="fade-up">
+                 data-category="{{ cat_nombre }}" data-aos="fade-up">
                 
                 <div>
-                    <!-- Visual Header / Thumbnail -->
                     <div class="relative h-48 w-full overflow-hidden bg-slate-950 group cursor-pointer" onclick="openMediaModal('{{ p.media_type }}', '{{ p.media_url }}', '{{ p.titulo }}')">
                         {% if p.media_type == 'video' %}
                         <video autoplay loop muted playsinline class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-80 group-hover:opacity-100">
@@ -157,19 +150,19 @@ html_template = """<!DOCTYPE html>
                         {% endif %}
 
                         <span class="absolute top-3 left-3 text-[10px] uppercase tracking-widest text-cyan-300 font-extrabold px-3 py-1 bg-cyan-950/90 border border-cyan-800 rounded-lg">
-                            {{ p.categoria }}
+                            {{ cat_nombre }}
                         </span>
                     </div>
 
-                    <!-- Card Body -->
                     <div class="p-6">
-                        <h3 class="text-2xl font-bold text-white mb-1 tracking-tight">{{ p.titulo }}</h3>
+                        <h3 class="text-xl font-bold text-white mb-1 tracking-tight">{{ p.titulo }}</h3>
+                        {% if p.subtitulo %}
                         <p class="text-xs font-mono text-cyan-400 mb-3">{{ p.subtitulo }}</p>
+                        {% endif %}
                         <p class="text-slate-400 text-sm mb-6 leading-relaxed">{{ p.descripcion }}</p>
                     </div>
                 </div>
 
-                <!-- Card Footer / Tech & Links -->
                 <div class="px-6 pb-6">
                     <div class="flex flex-wrap gap-1.5 mb-6">
                         {% for tech in p.techs %}
@@ -182,12 +175,12 @@ html_template = """<!DOCTYPE html>
                     <div class="flex gap-2">
                         {% if p.link_demo %}
                         <a href="{{ p.link_demo }}" target="_blank" class="flex-1 text-center bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold py-2.5 px-3 rounded-xl text-xs uppercase tracking-wider transition shadow-lg shadow-cyan-950/50">
-                            Play Store / Demo
+                            Demo / Link
                         </a>
                         {% endif %}
 
                         <button onclick="openMediaModal('{{ p.media_type }}', '{{ p.media_url }}', '{{ p.titulo }}')" class="flex-1 text-center bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-slate-700 font-bold py-2.5 px-3 rounded-xl text-xs uppercase tracking-wider transition">
-                            {% if p.media_type == 'video' %}🎬 Ver Demo Video{% else %}🖼️ Captura HD{% endif %}
+                            {% if p.media_type == 'video' %}🎬 Demo Video{% else %}🖼️ Ver Imagen{% endif %}
                         </button>
                     </div>
                 </div>
@@ -197,7 +190,6 @@ html_template = """<!DOCTYPE html>
         </div>
     </main>
 
-    <!-- Contact & Footer Section -->
     <section id="contacto" class="border-t border-slate-800/80 bg-slate-950/80 py-16 px-6 mt-20">
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="text-3xl font-bold text-white mb-4">¿Interesado en colaborar o contratar?</h2>
@@ -216,7 +208,6 @@ html_template = """<!DOCTYPE html>
         <p>© Stefano Del Moro — Desarrollado en Linux Mint & Python 3</p>
     </footer>
 
-    <!-- Fullscreen Lightbox / Media Modal -->
     <div id="mediaModal" class="fixed inset-0 bg-black/95 backdrop-blur-xl hidden z-50 flex items-center justify-center p-4">
         <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-5xl w-full p-4 relative overflow-hidden flex flex-col shadow-2xl">
             <div class="flex justify-between items-center mb-4 px-2 border-b border-slate-800 pb-3">
@@ -224,12 +215,10 @@ html_template = """<!DOCTYPE html>
                 <button onclick="closeMediaModal()" class="text-slate-400 hover:text-white text-3xl font-bold leading-none px-3">&times;</button>
             </div>
             <div id="modalBody" class="w-full flex justify-center items-center rounded-xl overflow-hidden bg-black/80 min-h-[400px]">
-                <!-- Media rendered here dynamically -->
             </div>
         </div>
     </div>
 
-    <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 600, once: true });
@@ -282,4 +271,4 @@ output_html = template.render(proyectos=proyectos, categorias=categorias)
 with open('index.html', 'w', encoding='utf-8') as f:
     f.write(output_html)
 
-print("✅ Landing page 'index.html' generada exitosamente con UI de nivel senior.")
+print("✅ Landing page 'index.html' generada exitosamente sin errores.")
