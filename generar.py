@@ -13,14 +13,16 @@ def generar_html():
 
     def render_media(url, titulo=""):
         if not url:
-            return '<div class="w-full h-full bg-gray-950/80 flex items-center justify-center font-mono text-xs text-cyan-500 border border-cyan-900/40">[ VIDEO PREVIEW ]</div>'
+            return '<div class="w-full h-full bg-gray-950 flex items-center justify-center font-mono text-xs text-cyan-500 border border-cyan-900/40">[ VIDEO PREVIEW ]</div>'
         
+        # YouTube directo
         if "youtube.com" in url or "youtu.be" in url:
             yt_id = url.split('/')[-1].split('?')[0]
             if "watch?v=" in url:
                 yt_id = url.split('v=')[1].split('&')[0]
-            return f'''<iframe class="w-full h-full rounded-xl pointer-events-none" src="https://www.youtube.com/embed/{yt_id}?autoplay=1&mute=1&loop=1&playlist={yt_id}&controls=0" title="{titulo}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>'''
+            return f'''<iframe class="w-full h-full rounded-xl" src="https://www.youtube.com/embed/{yt_id}?autoplay=1&mute=1&loop=1&playlist={yt_id}&enablejsapi=1" title="{titulo}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'''
         else:
+            # Video MP4 local/remoto sin bloqueos
             return f'''<video class="w-full h-full object-cover rounded-xl" autoplay loop muted playsinline preload="auto">
                 <source src="{url}" type="video/mp4">
             </video>'''
@@ -51,30 +53,30 @@ def generar_html():
     }}
   </script>
   <style>
-    /* FONDO CIBERNÉTICO DE CUADRÍCULA VIBRANTE */
+    /* FONDO DE CUADRÍCULA CIBERNÉTICA REFORZADO */
     body {{
       background-color: #020617;
       background-image: 
-        linear-gradient(to right, rgba(0, 240, 255, 0.07) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(0, 240, 255, 0.07) 1px, transparent 1px),
-        radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.18) 0%, transparent 70%);
-      background-size: 40px 40px, 40px 40px, 100% 100%;
+        linear-gradient(to right, rgba(0, 240, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 240, 255, 0.08) 1px, transparent 1px),
+        radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.18) 0%, transparent 75%);
+      background-size: 32px 32px, 32px 32px, 100% 100%;
     }}
     .glow-cyan {{
-      box-shadow: 0 0 30px rgba(0, 240, 255, 0.12);
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.12);
     }}
     .glow-cyan:hover {{
-      box-shadow: 0 0 40px rgba(0, 240, 255, 0.28);
+      box-shadow: 0 0 35px rgba(0, 240, 255, 0.25);
     }}
     .glow-text {{
-      text-shadow: 0 0 25px rgba(0, 240, 255, 0.7);
+      text-shadow: 0 0 20px rgba(0, 240, 255, 0.7);
     }}
   </style>
 </head>
 <body class="text-gray-100 min-h-screen font-sans antialiased pt-28">
 
-  <!-- NAVBAR FIXED SIEMPRE VISIBLE CON NOMBRE Y STATUS -->
-  <header class="fixed top-0 left-0 right-0 z-50 bg-[#020617]/90 backdrop-blur-xl border-b border-cyan-500/30 px-6 py-4 shadow-[0_4px_30px_rgba(0,240,255,0.15)]">
+  <!-- NAVBAR FIXED SIEMPRE VISIBLE -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-[#020617]/95 backdrop-blur-md border-b border-cyan-500/30 px-6 py-4 shadow-[0_4px_30px_rgba(0,0,0,0.9)]">
     <div class="max-w-7xl mx-auto flex justify-between items-center">
       <div class="flex items-center gap-3">
         <span class="relative flex h-3.5 w-3.5">
@@ -101,7 +103,7 @@ def generar_html():
 
   <main class="max-w-7xl mx-auto px-6">
 
-    <!-- HERO SECTION IMPACTANTE -->
+    <!-- HERO SECTION TITULARES GRANDES -->
     <div class="text-center max-w-4xl mx-auto mb-20">
       <span class="px-4 py-1.5 rounded-full text-xs font-mono font-bold bg-cyan-400/10 text-cyan-400 border border-cyan-400/40 uppercase tracking-widest inline-block mb-6 shadow-[0_0_15px_rgba(0,240,255,0.2)]">
         High-Performance Engineering & On-Device AI
@@ -113,7 +115,7 @@ def generar_html():
       </h2>
       
       <p class="text-gray-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto font-light">
-        Desarrollo de ecosistemas nativos Android, integraciones de modelos LLM offline de ultra-baja latencia y automatización avanzada sobre infraestructura Linux Mint.
+        Desarrollo de ecosistemas nativos Android, integraciones de modelos LLM offline de ultra-baja latencia y automatización avanzada sobre Linux Mint.
       </p>
     </div>
 
@@ -145,20 +147,15 @@ def generar_html():
             
             <div class="flex flex-wrap items-center gap-4">
               <button onclick="openModal('{destacado.get('video_url', '')}', '{destacado.get('titulo', '')}')" class="px-6 py-3 bg-cyan-400 text-black font-black text-xs font-mono uppercase tracking-wider rounded-xl hover:bg-cyan-300 transition shadow-[0_0_25px_rgba(0,240,255,0.5)] flex items-center gap-2">
-                <span>▶</span> VER DEMO HD AMPLADA
+                <span>🔍</span> VER DEMO HD AMPLADA
               </button>
               {f'<a href="{destacado["link"]}" target="_blank" class="px-6 py-3 bg-transparent border-2 border-cyan-400/60 text-cyan-400 font-bold text-xs font-mono uppercase tracking-wider rounded-xl hover:bg-cyan-400/10 transition">Google Play ➔</a>' if destacado.get('link') else ''}
             </div>
           </div>
 
           <div class="lg:col-span-6">
-            <div class="relative group cursor-pointer aspect-video w-full rounded-2xl overflow-hidden border border-cyan-500/50 shadow-2xl bg-black" onclick="openModal('{destacado.get('video_url', '')}', '{destacado.get('titulo', '')}')">
+            <div class="aspect-video w-full rounded-2xl overflow-hidden border border-cyan-500/50 shadow-2xl bg-black">
               {render_media(destacado.get('video_url', ''), destacado.get('titulo', ''))}
-              <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition flex items-center justify-center">
-                <span class="px-4 py-2 bg-black/80 border border-cyan-400/80 text-cyan-400 font-mono text-xs rounded-lg backdrop-blur-md opacity-90 group-hover:scale-110 transition duration-300">
-                  🔍 Clic para pantalla completa
-                </span>
-              </div>
             </div>
           </div>
         </div>
@@ -189,13 +186,8 @@ def generar_html():
             <h4 class="text-2xl font-bold text-white mb-3 leading-snug">{p.get('titulo', '')}</h4>
             <p class="text-gray-300 text-xs leading-relaxed mb-6 font-light">{p.get('descripcion', '')}</p>
 
-            <div class="relative group cursor-pointer aspect-video w-full rounded-xl overflow-hidden border border-cyan-900/80 mb-6 bg-black" onclick="openModal('{p.get('video_url', '')}', '{p.get('titulo', '')}')">
+            <div class="aspect-video w-full rounded-xl overflow-hidden border border-cyan-900/80 mb-6 bg-black">
               {render_media(p.get('video_url', ''), p.get('titulo', ''))}
-              <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition flex items-center justify-center">
-                <span class="px-3 py-1.5 bg-black/80 border border-cyan-400/80 text-cyan-400 font-mono text-[11px] rounded-lg backdrop-blur-md opacity-90 group-hover:scale-105 transition duration-300">
-                  🔍 Clic para ampliar
-                </span>
-              </div>
             </div>
           </div>
 
@@ -204,7 +196,7 @@ def generar_html():
               {"".join([f'<span class="text-[10px] font-mono bg-black/60 text-gray-300 px-2.5 py-1 rounded-md border border-gray-800">{tag}</span>' for tag in p.get('tags', [])])}
             </div>
             <button onclick="openModal('{p.get('video_url', '')}', '{p.get('titulo', '')}')" class="w-full py-3 bg-cyan-950/80 border border-cyan-400/70 text-cyan-400 font-mono font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-cyan-400 hover:text-black transition duration-300 shadow-[0_0_15px_rgba(0,240,255,0.2)] flex items-center justify-center gap-2">
-              <span>🔍</span> AMPLIAR DEMO EN HD
+              <span>🔍</span> VER DEMO EN HD
             </button>
           </div>
         </div>
@@ -268,7 +260,7 @@ def generar_html():
 
   <footer id="contacto" class="py-10 border-t border-cyan-900/60 text-center text-xs font-mono text-gray-400 bg-[#020617]">
     <p class="mb-2 text-cyan-400 font-bold">STEFANO DEL MORO</p>
-    <p>Software & Android Engineering Portfolio • Quito, Ecuador</p>
+    <p>Software & Android Engineering Portfolio</p>
   </footer>
 
 </body>
@@ -278,7 +270,7 @@ def generar_html():
     with open('index.html', 'w', encoding='utf-8') as f:
         f.write(html_content)
 
-    print("✅ Portafolio con diseño en cuadrícula, navbar fija y visualizador HD listo.")
+    print("✅ Portafolio corregido: Previsualizaciones activas, fondo en cuadrícula y barra superior fija.")
 
 if __name__ == '__main__':
     generar_html()
