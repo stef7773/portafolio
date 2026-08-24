@@ -1,13 +1,13 @@
 import json
 from jinja2 import Template
 
-# 1. Cargar la lista de proyectos
+# 1. Cargar datos
 with open('proyectos.json', 'r', encoding='utf-8') as f:
     proyectos = json.load(f)
 
 categorias = sorted(list(set(p.get('categoria', 'General') for p in proyectos)))
 
-# 2. Plantilla HTML: Portada estática con botón desplegable de video en Modal
+# 2. Plantilla HTML (sin etiquetas flotantes de video sobre la imagen)
 html_template = """<!DOCTYPE html>
 <html lang="es" class="dark scroll-smooth">
 <head>
@@ -90,7 +90,7 @@ html_template = """<!DOCTYPE html>
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-cyan-200 to-blue-500">IA LOCAL & LINUX TOOLS</span>
             </h1>
             <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-8">
-                Sistemas construidos en Linux Mint: Apps móviles con IA offline, monitores CLI, visão artificial y bots de automatización.
+                Sistemas construidos en Linux Mint: Apps móviles con IA offline, monitores CLI, visión artificial y bots de automatización.
             </p>
             
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto glass-panel p-4 rounded-2xl border border-slate-800">
@@ -136,17 +136,13 @@ html_template = """<!DOCTYPE html>
                  data-category="{{ p.categoria }}" data-aos="fade-up">
                 
                 <div>
-                    <!-- Cover Image -->
+                    <!-- Cover Image Limpia (Sin boton flotante de video) -->
                     <div class="relative h-48 w-full overflow-hidden bg-slate-950 group cursor-pointer" onclick="openVideoModal('{{ p.media_url }}', '{{ p.titulo }}')">
                         <img src="{{ p.cover_image }}" alt="{{ p.titulo }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-85 group-hover:opacity-100">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
                         
                         <span class="absolute top-3 left-3 text-[10px] uppercase tracking-widest text-cyan-300 font-extrabold px-3 py-1 bg-cyan-950/90 border border-cyan-800 rounded-lg">
                             {{ p.categoria }}
-                        </span>
-
-                        <span class="absolute bottom-3 right-3 bg-cyan-950/90 text-cyan-300 border border-cyan-800/80 text-[10px] font-mono font-bold px-3 py-1.5 rounded-md flex items-center gap-1.5 shadow-md group-hover:bg-cyan-500 group-hover:text-slate-950 transition">
-                            ▶ VER VIDEO DEMO
                         </span>
                     </div>
 
@@ -170,12 +166,12 @@ html_template = """<!DOCTYPE html>
 
                     <div class="flex gap-2">
                         {% if p.link_demo %}
-                        <a href="{{ p.link_demo }}" target="_blank" class="flex-1 text-center bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-black py-2.5 px-3 rounded-xl text-xs uppercase tracking-wider transition shadow-lg shadow-cyan-950/50">
+                        <a href="{{ p.link_demo }}" target="_blank" class="flex-1 text-center bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-black py-2.5 px-3 rounded-xl text-xs uppercase tracking-wider transition shadow-lg shadow-cyan-950/50 flex items-center justify-center">
                             Demo / Link
                         </a>
                         {% endif %}
 
-                        <button onclick="openVideoModal('{{ p.media_url }}', '{{ p.titulo }}')" class="flex-1 text-center bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-slate-700 font-bold py-2.5 px-3 rounded-xl text-xs uppercase tracking-wider transition">
+                        <button onclick="openVideoModal('{{ p.media_url }}', '{{ p.titulo }}')" class="flex-1 text-center bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-slate-700 font-bold py-2.5 px-3 rounded-xl text-xs uppercase tracking-wider transition flex items-center justify-center gap-1">
                             🎬 Ver Video
                         </button>
                     </div>
@@ -265,4 +261,4 @@ output_html = template.render(proyectos=proyectos, categorias=categorias)
 with open('index.html', 'w', encoding='utf-8') as f:
     f.write(output_html)
 
-print("✅ Landing page actualizada con portadas estáticas e integración de video en reproductor modal HD.")
+print("✅ 'index.html' generado exitosamente sin etiquetas duplicadas.")
