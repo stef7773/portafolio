@@ -159,20 +159,23 @@ a, button{ -webkit-tap-highlight-color: transparent; }
   border:1px solid var(--border);
   border-radius:16px;
   overflow:hidden;
-  transition:transform .45s cubic-bezier(.16,1,.3,1), border-color .45s ease, box-shadow .45s ease;
-  transform-style:preserve-3d;
+  transition:transform .35s cubic-bezier(.16,1,.3,1), border-color .35s ease, box-shadow .35s ease;
 }
 .unit-card:hover{
+  transform:translateY(-6px);
   border-color:rgba(143,209,79,0.4);
   box-shadow:0 24px 48px -20px rgba(0,0,0,0.55), 0 0 32px -8px rgba(143,209,79,0.18);
 }
 .unit-card::before{
   content:"";
-  position:absolute; inset:0; z-index:1; opacity:0; pointer-events:none;
-  background:radial-gradient(360px circle at var(--mx,50%) var(--my,50%), rgba(143,209,79,0.12), transparent 60%);
+  position:absolute; inset:0; z-index:0; opacity:0; pointer-events:none;
+  background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%), rgba(143,209,79,0.055), transparent 65%);
   transition:opacity .3s ease;
 }
 .unit-card:hover::before{ opacity:1; }
+.unit-header, .thumb-wrap, .unit-card > .p-5{
+  position:relative; z-index:1;
+}
 .unit-header{
   display:flex; align-items:center; justify-content:space-between;
   padding:10px 14px; border-bottom:1px solid var(--border);
@@ -216,7 +219,7 @@ a, button{ -webkit-tap-highlight-color: transparent; }
 .btn-ghost:hover{ border-color:var(--mint); color:var(--mint); background:rgba(143,209,79,0.06); }
 
 /* ---------- reveal on scroll ---------- */
-.reveal{ opacity:0; transform:translateY(22px); transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+.reveal{ opacity:0; transform:translateY(14px); transition:opacity .55s cubic-bezier(.16,1,.3,1), transform .55s cubic-bezier(.16,1,.3,1); }
 .reveal.in{ opacity:1; transform:translateY(0); }
 
 /* ---------- modal ---------- */
@@ -730,7 +733,7 @@ document.addEventListener('scroll', onScroll, { passive:true });
 const revealEls = document.querySelectorAll('.reveal');
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
 revealEls.forEach(el => io.observe(el));
 
 /* ---------- animated counters ---------- */
@@ -769,19 +772,14 @@ filterBtns.forEach(btn => {
   });
 });
 
-/* ---------- card spotlight / tilt ---------- */
+/* ---------- card spotlight (position only, no tilt — keeps scroll smooth) ---------- */
 cards.forEach(card => {
   card.addEventListener('mousemove', (e) => {
     if (reduceMotion) return;
     const r = card.getBoundingClientRect();
-    const x = e.clientX - r.left, y = e.clientY - r.top;
-    card.style.setProperty('--mx', x + 'px');
-    card.style.setProperty('--my', y + 'px');
-    const rx = ((y / r.height) - 0.5) * -4;
-    const ry = ((x / r.width) - 0.5) * 4;
-    card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+    card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    card.style.setProperty('--my', (e.clientY - r.top) + 'px');
   });
-  card.addEventListener('mouseleave', () => { card.style.transform = ''; });
 });
 
 /* ---------- video modal ---------- */
