@@ -114,7 +114,8 @@ a, button{ -webkit-tap-highlight-color: transparent; }
   background:rgba(255,255,255,0.02);
 }
 .term-dot{ width:10px; height:10px; border-radius:50%; }
-.term-body{ padding:20px; min-height:230px; }
+.term-body{ padding:20px; min-height:230px; transition:opacity .28s ease; }
+.term-body.term-fading{ opacity:0; }
 .caret{
   display:inline-block; width:8px; height:1.1em; background:var(--mint);
   margin-left:2px; vertical-align:-2px; animation:blink 1s step-end infinite;
@@ -444,17 +445,24 @@ function renderStatic(){
 
 async function typeBoot(){
   if (reduceMotion){ renderStatic(); return; }
-  for (const line of bootLines){
-    const div = document.createElement('div');
-    div.className = `term-line shown ${line.cls}`;
-    termBody.appendChild(div);
-    if (!line.t){ div.innerHTML = '&nbsp;'; await sleep(120); continue; }
-    for (let i = 0; i <= line.t.length; i++){
-      div.innerHTML = line.t.slice(0, i) + '<span class="caret"></span>';
-      await sleep(line.t.startsWith('stefano@dev') ? 22 : 8);
+  while (true){
+    termBody.innerHTML = '';
+    for (const line of bootLines){
+      const div = document.createElement('div');
+      div.className = `term-line shown ${line.cls}`;
+      termBody.appendChild(div);
+      if (!line.t){ div.innerHTML = '&nbsp;'; await sleep(120); continue; }
+      for (let i = 0; i <= line.t.length; i++){
+        div.innerHTML = line.t.slice(0, i) + '<span class="caret"></span>';
+        await sleep(line.t.startsWith('stefano@dev') ? 22 : 8);
+      }
+      div.innerHTML = line.t;
+      await sleep(90);
     }
-    div.innerHTML = line.t;
-    await sleep(90);
+    await sleep(4500);
+    termBody.classList.add('term-fading');
+    await sleep(280);
+    termBody.classList.remove('term-fading');
   }
 }
 function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
