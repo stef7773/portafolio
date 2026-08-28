@@ -7,22 +7,8 @@ with open('proyectos.json', 'r', encoding='utf-8') as f:
 
 categorias = sorted(list(set(p.get('categoria', 'General') for p in proyectos)))
 
-STATUS_LABELS = {
-    "PRODUCTION": "active (running)",
-    "PROTOTYPE": "build (prototype)",
-    "INTERNAL": "internal (deployed)",
-}
-STATUS_DOT = {
-    "PRODUCTION": "dot-mint",
-    "PROTOTYPE": "dot-amber",
-    "INTERNAL": "dot-blue",
-}
-
 for i, p in enumerate(proyectos):
     p['unit'] = p['id'].replace('_', '-') + '.service'
-    p['pid'] = 1000 + i * 137 + len(p['titulo'])
-    p['status_label'] = STATUS_LABELS.get(p.get('status'), 'active (running)')
-    p['status_dot'] = STATUS_DOT.get(p.get('status'), 'dot-mint')
 
 # 2. Plantilla HTML
 html_template = """<!DOCTYPE html>
@@ -109,9 +95,6 @@ a, button{ -webkit-tap-highlight-color: transparent; }
   box-shadow:0 0 0 0 rgba(143,209,79,0.6);
   animation:pulse-ring 2.2s cubic-bezier(0.4,0,0.6,1) infinite;
 }
-.dot-mint{ background:var(--mint); box-shadow:0 0 8px var(--mint-glow); }
-.dot-amber{ background:var(--amber); box-shadow:0 0 8px rgba(255,180,84,0.35); }
-.dot-blue{ background:var(--blue); box-shadow:0 0 8px rgba(94,200,240,0.35); }
 @keyframes pulse-ring{
   0%{ box-shadow:0 0 0 0 rgba(143,209,79,0.55); }
   70%{ box-shadow:0 0 0 7px rgba(143,209,79,0); }
@@ -165,23 +148,24 @@ a, button{ -webkit-tap-highlight-color: transparent; }
 
 /* ---------- filter chips ---------- */
 .filter-btn{
-  font-family:'JetBrains Mono', monospace;
+  font-family:'IBM Plex Sans', sans-serif;
   border:1px solid var(--border); background:var(--surface);
-  color:var(--text-dim); border-radius:10px;
-  padding:9px 16px; font-size:12px; font-weight:500; letter-spacing:.02em;
+  color:var(--text-dim); border-radius:999px;
+  padding:9px 18px; font-size:12.5px; font-weight:600; letter-spacing:.01em;
   transition:all .25s ease;
 }
 .filter-btn:hover{ border-color:var(--border-strong); color:var(--text); }
 .filter-btn.active{
-  background:rgba(143,209,79,0.1);
-  border-color:var(--mint);
-  color:var(--mint);
-  box-shadow:0 0 0 1px rgba(143,209,79,0.15) inset, 0 0 18px rgba(143,209,79,0.12);
+  background:linear-gradient(135deg, var(--mint) 0%, #6bc229 100%);
+  border-color:transparent;
+  color:#0b0d10;
+  box-shadow:0 8px 20px -8px rgba(143,209,79,0.5);
 }
 
 /* ---------- project cards ---------- */
 .unit-card{
   position:relative;
+  display:flex; flex-direction:column;
   background:var(--surface);
   border:1px solid var(--border);
   border-radius:16px;
@@ -192,12 +176,6 @@ a, button{ -webkit-tap-highlight-color: transparent; }
   transform:translateY(-6px);
   border-color:rgba(143,209,79,0.4);
   box-shadow:0 24px 48px -20px rgba(0,0,0,0.55), 0 0 32px -8px rgba(143,209,79,0.18);
-}
-.unit-header{
-  display:flex; align-items:center; justify-content:space-between;
-  padding:10px 14px; border-bottom:1px solid var(--border);
-  background:rgba(255,255,255,0.015);
-  font-family:'JetBrains Mono', monospace; font-size:11px;
 }
 .thumb-wrap{ position:relative; height:190px; overflow:hidden; background:#000; cursor:pointer; }
 .thumb-wrap img{ transition:transform .6s cubic-bezier(.16,1,.3,1), opacity .4s ease; }
@@ -215,11 +193,16 @@ a, button{ -webkit-tap-highlight-color: transparent; }
   display:flex; align-items:center; justify-content:center;
 }
 
-.tag-flag{
-  font-family:'JetBrains Mono', monospace; font-size:10.5px; font-weight:500;
-  color:var(--mint); background:rgba(143,209,79,0.07);
-  border:1px solid rgba(143,209,79,0.18);
-  padding:3px 8px; border-radius:6px;
+.card-body{ display:flex; flex-direction:column; flex:1; padding:1.25rem; }
+.card-actions{ margin-top:auto; padding-top:1.1rem; }
+
+.tag-chip{
+  font-family:'IBM Plex Sans', sans-serif; font-size:11px; font-weight:600; letter-spacing:.01em;
+  color:var(--mint);
+  background:linear-gradient(135deg, rgba(143,209,79,0.14), rgba(94,200,240,0.06));
+  border:1px solid rgba(143,209,79,0.22);
+  padding:4px 11px; border-radius:999px;
+  white-space:nowrap;
 }
 
 .btn-primary{
@@ -262,8 +245,7 @@ a, button{ -webkit-tap-highlight-color: transparent; }
   <div class="max-w-7xl mx-auto flex justify-between items-center">
     <div class="flex items-center space-x-2.5">
       <span class="status-dot"></span>
-      <span class="font-display font-bold text-[15px] sm:text-lg text-white tracking-tight">Stefano Del Moro</span>
-      <span class="hidden sm:inline font-mono text-[11px] text-[var(--text-faint)] ml-2" id="clock">--:--:--</span>
+      <span class="font-display font-bold text-xl sm:text-2xl text-white tracking-tight">Stefano Del Moro</span>
     </div>
     <div class="flex items-center space-x-3">
       <span class="hidden md:inline-flex items-center gap-1.5 text-[11px] font-mono font-medium text-[var(--mint)] bg-[rgba(143,209,79,0.08)] border border-[rgba(143,209,79,0.25)] px-3 py-1.5 rounded-full tracking-wide">
@@ -347,36 +329,25 @@ a, button{ -webkit-tap-highlight-color: transparent; }
 
   <div class="flex flex-wrap items-center justify-center gap-2 mb-3 reveal">
     <button data-filter="all" class="filter-btn active">
-      $ ls --all ({{ proyectos|length }})
+      Todos ({{ proyectos|length }})
     </button>
     {% for cat in categorias %}
     <button data-filter="{{ cat }}" class="filter-btn">
-      --{{ cat|lower|replace(' ', '-')|replace('&', 'n') }}
+      {{ cat }}
     </button>
     {% endfor %}
   </div>
-  <p class="text-center font-mono text-[11px] text-[var(--text-faint)] mb-12 reveal">// haz clic en una miniatura o en "run --demo" para reproducir el video</p>
+  <p class="text-center text-[13px] text-[var(--text-faint)] mb-12 reveal">Haz clic en una miniatura para reproducir el video de cada proyecto.</p>
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7" id="projects-grid">
     {% for p in proyectos %}
     <div class="unit-card reveal" data-category="{{ p.categoria }}" style="transition-delay:{{ (loop.index0 % 3) * 0.08 }}s">
 
-      <div class="unit-header">
-        <div class="flex items-center gap-2 min-w-0">
-          <span class="w-2 h-2 rounded-full {{ p.status_dot }} shrink-0"></span>
-          <span class="text-[var(--text-dim)] truncate">{{ p.unit }}</span>
-        </div>
-        <span class="text-[var(--text-faint)] shrink-0">pid {{ p.pid }}</span>
-      </div>
-
       <div class="thumb-wrap" onclick="openVideoModal('{{ p.media_url }}', '{{ p.unit }}')">
         <img src="{{ p.cover_image }}" alt="{{ p.titulo }}" loading="lazy" class="w-full h-full object-cover opacity-80">
         <div class="thumb-fade"></div>
-        <span class="absolute top-3 left-3 text-[10px] uppercase tracking-widest text-[var(--mint)] font-bold font-mono px-2.5 py-1 bg-[rgba(11,13,16,0.75)] border border-[rgba(143,209,79,0.3)] rounded-md backdrop-blur-sm">
+        <span class="absolute top-3 left-3 text-[10.5px] uppercase tracking-widest text-[var(--mint)] font-bold px-3 py-1.5 bg-[rgba(11,13,16,0.75)] border border-[rgba(143,209,79,0.3)] rounded-full backdrop-blur-sm">
           {{ p.categoria }}
-        </span>
-        <span class="absolute top-3 right-3 text-[9.5px] uppercase tracking-widest font-bold font-mono px-2.5 py-1 bg-[rgba(11,13,16,0.75)] border border-[var(--border-strong)] rounded-md backdrop-blur-sm text-[var(--text-dim)]">
-          {{ p.status_label }}
         </span>
         <div class="play-glyph">
           <span>
@@ -385,18 +356,18 @@ a, button{ -webkit-tap-highlight-color: transparent; }
         </div>
       </div>
 
-      <div class="p-5">
+      <div class="card-body">
         <h3 class="font-display text-lg font-bold text-white mb-0.5 tracking-tight">{{ p.titulo }}</h3>
         <p class="text-[11.5px] font-mono font-semibold text-[var(--mint)] mb-3">{{ p.subtitulo }}</p>
         <p class="text-[var(--text-dim)] text-[13.5px] leading-relaxed mb-5">{{ p.descripcion }}</p>
 
-        <div class="flex flex-wrap gap-1.5 mb-5">
+        <div class="flex flex-nowrap gap-1.5 mb-1">
           {% for tech in p.techs %}
-          <span class="tag-flag">--{{ tech|lower|replace(' ', '-') }}</span>
+          <span class="tag-chip">{{ tech }}</span>
           {% endfor %}
         </div>
 
-        <div class="flex gap-2">
+        <div class="card-actions flex gap-2">
           {% if p.link_demo %}
           <a href="{{ p.link_demo }}" target="_blank" rel="noopener" class="btn-primary flex-1 text-center py-2.5 px-3 rounded-lg text-[11px] font-mono font-bold uppercase tracking-wide">
             $ ./deploy
@@ -430,8 +401,8 @@ a, button{ -webkit-tap-highlight-color: transparent; }
   </div>
 </section>
 
-<footer class="text-center py-7 text-[var(--text-faint)] border-t border-[var(--border)] text-[11px] font-mono relative z-10">
-  <span id="footerClock">stefano.service — active</span> · build for Linux · Windows · macOS · Android
+<footer class="text-center py-7 text-[var(--text-faint)] border-t border-[var(--border)] text-[12px] relative z-10">
+  © Stefano Del Moro · Software &amp; AI para Linux · Windows · macOS · Android
 </footer>
 
 <!-- Video Modal -->
@@ -488,21 +459,6 @@ async function typeBoot(){
 }
 function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
 typeBoot();
-
-/* ---------- live clock ---------- */
-function tickClock(){
-  const now = new Date();
-  const hh = String(now.getHours()).padStart(2,'0');
-  const mm = String(now.getMinutes()).padStart(2,'0');
-  const ss = String(now.getSeconds()).padStart(2,'0');
-  const str = `${hh}:${mm}:${ss}`;
-  const clock = document.getElementById('clock');
-  const fclock = document.getElementById('footerClock');
-  if (clock) clock.textContent = str;
-  if (fclock) fclock.textContent = `stefano.service — active — ${str}`;
-}
-tickClock();
-setInterval(tickClock, 1000);
 
 /* ---------- scroll progress ---------- */
 function onScroll(){
