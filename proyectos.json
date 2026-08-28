@@ -5,8 +5,13 @@
     "subtitulo": "Ecosistema Educativo con IA en la Nube",
     "categoria": "Mobile & AI",
     "status": "PRODUCTION",
-    "descripcion": "App educativa multilenguaje (58 idiomas) que conversa por texto y voz, traduce en tiempo real apuntando la cámara a cualquier texto, genera imágenes, música y video con IA, e incluye ARIA: un asistente que puede operar el teléfono por voz para usuarios con necesidades motoras o visuales. Publicada en Google Play en 177 países.",
-    "techs": ["Kotlin", "Jetpack Compose", "Gemini AI", "Firebase"],
+    "descripcion": "App educativa multilenguaje que conversa por texto y voz, traduce con la cámara en tiempo real y genera imágenes, música y video con IA. Incluye ARIA, un asistente que opera el teléfono por voz.",
+    "techs": [
+      "Kotlin",
+      "Compose",
+      "Gemini AI",
+      "Firebase"
+    ],
     "link_demo": "https://play.google.com/store/apps/details?id=com.educareai.app",
     "media_url": "assets/educare_ai.mp4",
     "cover_image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80"
@@ -18,7 +23,12 @@
     "categoria": "AI & Health",
     "status": "PROTOTYPE",
     "descripcion": "Analiza imágenes médicas al instante y clasifica automáticamente los hallazgos clínicos relevantes, entregando un resultado priorizado que agiliza la revisión y ayuda a detectar casos urgentes más rápido.",
-    "techs": ["Python", "FastAPI", "OpenCV", "Computer Vision"],
+    "techs": [
+      "Python",
+      "FastAPI",
+      "OpenCV",
+      "Vision"
+    ],
     "link_demo": "",
     "media_url": "assets/med_ai_scanner.mp4",
     "cover_image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80"
@@ -30,7 +40,12 @@
     "categoria": "Systems & CLI",
     "status": "PRODUCTION",
     "descripcion": "Vigila el estado del equipo en tiempo real desde la terminal: uso de CPU por núcleo, memoria, procesos activos y temperatura, sin depender de un entorno gráfico. Funciona igual en Linux, Windows y macOS.",
-    "techs": ["Python 3", "psutil", "CLI", "Multiplataforma"],
+    "techs": [
+      "Python",
+      "psutil",
+      "CLI",
+      "Cross-OS"
+    ],
     "link_demo": "",
     "media_url": "assets/system_monitor.mp4",
     "cover_image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80"
@@ -42,19 +57,29 @@
     "categoria": "AI & Gaming",
     "status": "PROTOTYPE",
     "descripcion": "Una mascota virtual con memoria propia que conversa, reacciona a cómo la cuidas y va cambiando de comportamiento con el tiempo según esa relación, en lugar de repetir siempre las mismas animaciones fijas.",
-    "techs": ["Python", "Pygame", "Local LLM", "Requests"],
+    "techs": [
+      "Python",
+      "Pygame",
+      "LLM",
+      "Requests"
+    ],
     "link_demo": "",
     "media_url": "assets/tamagotchi_ai.mp4",
     "cover_image": "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1200&q=80"
   },
   {
     "id": "asistencias_email_bot",
-    "titulo": "Gestor de Casos Médicos por Correo",
-    "subtitulo": "Automatización de Coordinación Médica",
+    "titulo": "Gestor Automatizado de Correos de Gmail",
+    "subtitulo": "Organiza tu Bandeja con IA Local",
     "categoria": "Automation",
     "status": "INTERNAL",
-    "descripcion": "Sincroniza una bandeja de Gmail y organiza cada caso de asistencia médica internacional por hilo de correo, usando un modelo de IA local para leer cada mensaje y extraer aseguradora, referencia, paciente y resumen del caso, sin modificar nunca el correo original.",
-    "techs": ["Python", "PyQt6", "IMAP/SMTP", "Ollama LLM"],
+    "descripcion": "Sincroniza una bandeja de Gmail y organiza cada correo por caso con IA local, extrayendo remitente, referencia y resumen. Sirve para clínicas, dentistas o cualquier negocio — aquí, aplicado a coordinación médica.",
+    "techs": [
+      "Python",
+      "PyQt6",
+      "IMAP/SMTP",
+      "Ollama"
+    ],
     "link_demo": "",
     "media_url": "assets/asistencias_email_bot.mp4",
     "cover_image": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80"
