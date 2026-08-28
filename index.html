@@ -166,16 +166,6 @@ a, button{ -webkit-tap-highlight-color: transparent; }
   border-color:rgba(143,209,79,0.4);
   box-shadow:0 24px 48px -20px rgba(0,0,0,0.55), 0 0 32px -8px rgba(143,209,79,0.18);
 }
-.unit-card::before{
-  content:"";
-  position:absolute; inset:0; z-index:0; opacity:0; pointer-events:none;
-  background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%), rgba(143,209,79,0.055), transparent 65%);
-  transition:opacity .3s ease;
-}
-.unit-card:hover::before{ opacity:1; }
-.unit-header, .thumb-wrap, .unit-card > .p-5{
-  position:relative; z-index:1;
-}
 .unit-header{
   display:flex; align-items:center; justify-content:space-between;
   padding:10px 14px; border-bottom:1px solid var(--border);
@@ -399,8 +389,6 @@ a, button{ -webkit-tap-highlight-color: transparent; }
           
           <span class="tag-flag">--firebase</span>
           
-          <span class="tag-flag">--admob</span>
-          
         </div>
 
         <div class="flex gap-2">
@@ -454,8 +442,6 @@ a, button{ -webkit-tap-highlight-color: transparent; }
           <span class="tag-flag">--fastapi</span>
           
           <span class="tag-flag">--opencv</span>
-          
-          <span class="tag-flag">--uvicorn</span>
           
           <span class="tag-flag">--computer-vision</span>
           
@@ -769,16 +755,6 @@ filterBtns.forEach(btn => {
       const match = cat === 'all' || card.getAttribute('data-category') === cat;
       card.style.display = match ? 'block' : 'none';
     });
-  });
-});
-
-/* ---------- card spotlight (position only, no tilt — keeps scroll smooth) ---------- */
-cards.forEach(card => {
-  card.addEventListener('mousemove', (e) => {
-    if (reduceMotion) return;
-    const r = card.getBoundingClientRect();
-    card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-    card.style.setProperty('--my', (e.clientY - r.top) + 'px');
   });
 });
 

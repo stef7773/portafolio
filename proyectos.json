@@ -6,7 +6,7 @@
     "categoria": "Mobile & AI",
     "status": "PRODUCTION",
     "descripcion": "App educativa multilenguaje (58 idiomas) que conversa por texto y voz, traduce en tiempo real apuntando la cámara a cualquier texto, genera imágenes, música y video con IA, e incluye ARIA: un asistente que puede operar el teléfono por voz para usuarios con necesidades motoras o visuales. Publicada en Google Play en 177 países.",
-    "techs": ["Kotlin", "Jetpack Compose", "Gemini AI", "Firebase", "AdMob"],
+    "techs": ["Kotlin", "Jetpack Compose", "Gemini AI", "Firebase"],
     "link_demo": "https://play.google.com/store/apps/details?id=com.educareai.app",
     "media_url": "assets/educare_ai.mp4",
     "cover_image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80"
@@ -18,7 +18,7 @@
     "categoria": "AI & Health",
     "status": "PROTOTYPE",
     "descripcion": "Analiza imágenes médicas al instante y clasifica automáticamente los hallazgos clínicos relevantes, entregando un resultado priorizado que agiliza la revisión y ayuda a detectar casos urgentes más rápido.",
-    "techs": ["Python", "FastAPI", "OpenCV", "Uvicorn", "Computer Vision"],
+    "techs": ["Python", "FastAPI", "OpenCV", "Computer Vision"],
     "link_demo": "",
     "media_url": "assets/med_ai_scanner.mp4",
     "cover_image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80"
