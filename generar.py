@@ -242,8 +242,8 @@ a, button{ -webkit-tap-highlight-color: transparent; }
 <div class="scanline"></div>
 
 <!-- Nav -->
-<nav class="glass-nav sticky top-0 z-40 px-5 sm:px-8 lg:px-12 xl:px-16 py-3.5">
-  <div class="max-w-screen-2xl mx-auto flex justify-between items-center">
+<nav class="glass-nav sticky top-0 z-40 px-5 sm:px-8 lg:px-16 2xl:px-24 py-3.5">
+  <div class="w-full flex justify-between items-center">
     <div class="flex items-center space-x-2.5">
       <span class="status-dot"></span>
       <span class="font-display font-bold text-xl sm:text-2xl text-white tracking-tight">Stefano Del Moro</span>
@@ -260,8 +260,8 @@ a, button{ -webkit-tap-highlight-color: transparent; }
 </nav>
 
 <!-- Hero -->
-<section class="relative px-5 sm:px-8 lg:px-12 xl:px-16 pt-16 pb-14 z-10">
-  <div class="max-w-screen-2xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+<section class="relative px-5 sm:px-8 lg:px-16 2xl:px-24 pt-16 pb-14 z-10">
+  <div class="w-full grid lg:grid-cols-2 gap-16 items-center">
 
     <!-- Left: headline -->
     <div class="reveal">
@@ -326,7 +326,7 @@ a, button{ -webkit-tap-highlight-color: transparent; }
 </section>
 
 <!-- Main -->
-<main class="max-w-screen-2xl mx-auto px-5 sm:px-8 lg:px-12 xl:px-16 pb-6 flex-grow w-full relative z-10" id="proyectos">
+<main class="w-full px-5 sm:px-8 lg:px-16 2xl:px-24 pb-6 flex-grow relative z-10" id="proyectos">
 
   <div class="flex flex-wrap items-center justify-center gap-2 mb-3 reveal">
     <button data-filter="all" class="filter-btn active">
@@ -340,7 +340,7 @@ a, button{ -webkit-tap-highlight-color: transparent; }
   </div>
   <p class="text-center text-[13px] text-[var(--text-faint)] mb-12 reveal">Haz clic en una miniatura para reproducir el video de cada proyecto.</p>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7" id="projects-grid">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-7" id="projects-grid">
     {% for p in proyectos %}
     <div class="unit-card reveal" data-category="{{ p.categoria }}" style="transition-delay:{{ (loop.index0 % 3) * 0.08 }}s">
 
@@ -385,7 +385,7 @@ a, button{ -webkit-tap-highlight-color: transparent; }
 </main>
 
 <!-- Contact -->
-<section id="contacto" class="relative border-t border-[var(--border)] py-20 px-5 sm:px-8 lg:px-12 xl:px-16 mt-20 z-10">
+<section id="contacto" class="relative border-t border-[var(--border)] py-20 px-5 sm:px-8 lg:px-16 2xl:px-24 mt-20 z-10">
   <div class="max-w-3xl mx-auto text-center reveal">
     <p class="font-mono text-xs text-[var(--mint)] mb-4">stefano@dev:~$ contact --init</p>
     <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mb-4 tracking-tight">¿Construimos algo juntos?</h2>
