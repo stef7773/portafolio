@@ -265,7 +265,7 @@ a, button{ -webkit-tap-highlight-color: transparent; }
   <div class="w-full flex justify-between items-center">
     <div class="flex items-center space-x-3">
       <img src="assets/logo.png" alt="Stefano Del Moro logo" class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl shrink-0">
-      <span class="font-display font-bold text-xl sm:text-2xl text-white tracking-tight">Stefano Del Moro</span>
+      <span class="font-display font-bold text-base sm:text-2xl text-white tracking-tight whitespace-nowrap">Stefano Del Moro</span>
     </div>
     <div class="flex items-center space-x-3">
       <span class="hidden md:inline-flex items-center gap-1.5 text-[11px] font-mono font-medium text-[var(--mint)] bg-[rgba(143,209,79,0.08)] border border-[rgba(143,209,79,0.25)] px-3 py-1.5 rounded-full tracking-wide">
@@ -284,8 +284,8 @@ a, button{ -webkit-tap-highlight-color: transparent; }
 
     <!-- Left: headline -->
     <div class="reveal">
-      <span class="inline-flex items-center gap-2 mb-6 px-3.5 py-1.5 text-[11px] font-mono font-semibold tracking-wider text-[var(--mint)] uppercase bg-[rgba(143,209,79,0.07)] border border-[rgba(143,209,79,0.25)] rounded-full">
-        <span class="w-1.5 h-1.5 rounded-full bg-[var(--mint)]"></span>
+      <span class="inline-flex items-center gap-2 mb-6 px-3.5 py-1.5 text-[10.5px] sm:text-[11px] font-mono font-semibold tracking-wider text-[var(--mint)] uppercase bg-[rgba(143,209,79,0.07)] border border-[rgba(143,209,79,0.25)] rounded-full whitespace-nowrap">
+        <span class="w-1.5 h-1.5 rounded-full bg-[var(--mint)] shrink-0"></span>
         Full Stack &amp; AI Architect
       </span>
       <h1 class="font-display text-5xl sm:text-6xl xl:text-[4.4rem] font-bold text-white leading-[1.04] tracking-tight uppercase mb-6">
