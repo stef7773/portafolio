@@ -105,7 +105,7 @@ a, button{ -webkit-tap-highlight-color: transparent; }
 .term-window{
   background:linear-gradient(180deg, var(--surface) 0%, var(--bg-alt) 100%);
   border:1px solid var(--border-strong);
-  border-radius:14px;
+  border-radius:6px;
   box-shadow:0 30px 60px -20px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.02) inset;
 }
 .term-bar{
@@ -114,7 +114,7 @@ a, button{ -webkit-tap-highlight-color: transparent; }
   background:rgba(255,255,255,0.02);
 }
 .term-dot{ width:10px; height:10px; border-radius:50%; }
-.term-body{ padding:20px; min-height:230px; transition:opacity .28s ease; }
+.term-body{ padding:24px; min-height:340px; display:flex; flex-direction:column; justify-content:center; transition:opacity .28s ease; }
 .term-body.term-fading{ opacity:0; }
 .caret{
   display:inline-block; width:8px; height:1.1em; background:var(--mint);
@@ -269,7 +269,7 @@ a, button{ -webkit-tap-highlight-color: transparent; }
         <span class="w-1.5 h-1.5 rounded-full bg-[var(--mint)]"></span>
         Full Stack &amp; AI Architect
       </span>
-      <h1 class="font-display text-4xl sm:text-5xl xl:text-[3.4rem] font-bold text-white leading-[1.08] tracking-tight uppercase mb-6">
+      <h1 class="font-display text-5xl sm:text-6xl xl:text-[4.4rem] font-bold text-white leading-[1.04] tracking-tight uppercase mb-6">
         SOLUCIONES DE SOFTWARE<br/>
         <span class="headline-accent">IA LOCAL &amp; EN LA NUBE · MULTIPLATAFORMA</span>
       </h1>
@@ -358,7 +358,7 @@ a, button{ -webkit-tap-highlight-color: transparent; }
       </div>
 
       <div class="card-body">
-        <h3 class="font-display text-lg font-bold text-white mb-0.5 tracking-tight">{{ p.titulo }}</h3>
+        <h3 class="font-display text-xl font-bold text-white mb-0.5 tracking-tight">{{ p.titulo }}</h3>
         <p class="text-[11.5px] font-mono font-semibold text-[var(--mint)] mb-3">{{ p.subtitulo }}</p>
         <p class="text-[var(--text-dim)] text-[13.5px] leading-relaxed mb-5">{{ p.descripcion }}</p>
 
@@ -388,7 +388,7 @@ a, button{ -webkit-tap-highlight-color: transparent; }
 <section id="contacto" class="relative border-t border-[var(--border)] py-20 px-5 sm:px-8 lg:px-16 2xl:px-24 mt-20 z-10">
   <div class="max-w-3xl mx-auto text-center reveal">
     <p class="font-mono text-xs text-[var(--mint)] mb-4">stefano@dev:~$ contact --init</p>
-    <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mb-4 tracking-tight">¿Construimos algo juntos?</h2>
+    <h2 class="font-display text-4xl sm:text-5xl font-bold text-white mb-4 tracking-tight">¿Construimos algo juntos?</h2>
     <p class="text-[var(--text-dim)] mb-3 max-w-xl mx-auto">
       Disponible para roles como Full Stack Engineer, Android Developer o desarrollo de soluciones con Inteligencia Artificial.
     </p>
