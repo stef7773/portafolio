@@ -271,8 +271,8 @@ a, button{ -webkit-tap-highlight-color: transparent; }
       <span class="hidden md:inline-flex items-center gap-1.5 text-[11px] font-mono font-medium text-[var(--mint)] bg-[rgba(143,209,79,0.08)] border border-[rgba(143,209,79,0.25)] px-3 py-1.5 rounded-full tracking-wide">
         SYSTEM: ONLINE
       </span>
-      <a href="#contacto" class="btn-primary text-xs font-bold uppercase tracking-wider px-4 sm:px-5 py-2.5 rounded-lg font-mono">
-        contact --init
+      <a href="#contacto" class="btn-primary text-[11px] sm:text-xs font-bold uppercase tracking-wider px-3.5 sm:px-4 py-2 rounded-lg font-mono">
+        contact
       </a>
     </div>
   </div>
@@ -284,7 +284,7 @@ a, button{ -webkit-tap-highlight-color: transparent; }
 
     <!-- Left: headline -->
     <div class="reveal">
-      <span class="inline-flex items-center gap-2 mb-6 px-3.5 py-1.5 text-[10.5px] sm:text-[11px] font-mono font-semibold tracking-wider text-[var(--mint)] uppercase bg-[rgba(143,209,79,0.07)] border border-[rgba(143,209,79,0.25)] rounded-full whitespace-nowrap">
+      <span class="inline-flex items-center gap-2 mb-6 px-2.5 sm:px-3.5 py-1.5 text-[9px] sm:text-[11px] font-mono font-semibold tracking-wider text-[var(--mint)] uppercase bg-[rgba(143,209,79,0.07)] border border-[rgba(143,209,79,0.25)] rounded-full whitespace-nowrap">
         <span class="w-1.5 h-1.5 rounded-full bg-[var(--mint)] shrink-0"></span>
         Full Stack &amp; AI Architect
       </span>
@@ -416,6 +416,14 @@ a, button{ -webkit-tap-highlight-color: transparent; }
       <a href="https://github.com/stef7773" target="_blank" rel="noopener" class="btn-primary font-mono text-sm px-6 py-3.5 rounded-xl flex items-center gap-2">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.98 5.24.98 11.52c0 5.02 3.26 9.28 7.78 10.78.57.1.78-.25.78-.55 0-.27-.01-1.16-.02-2.1-3.17.69-3.83-1.35-3.83-1.35-.52-1.31-1.26-1.66-1.26-1.66-1.03-.7.08-.69.08-.69 1.14.08 1.74 1.17 1.74 1.17 1.01 1.74 2.65 1.24 3.3.95.1-.73.4-1.24.72-1.53-2.53-.29-5.2-1.27-5.2-5.63 0-1.24.44-2.26 1.17-3.06-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.14 1.17a10.9 10.9 0 0 1 5.72 0c2.18-1.48 3.14-1.17 3.14-1.17.62 1.57.23 2.73.11 3.02.73.8 1.17 1.82 1.17 3.06 0 4.37-2.68 5.34-5.22 5.62.41.36.77 1.06.77 2.14 0 1.55-.01 2.79-.01 3.17 0 .3.2.66.79.55A11.03 11.03 0 0 0 23 11.52C23 5.24 18.27.5 12 .5Z"/></svg>
         github.com/stef7773
+      </a>
+      <a href="mailto:stefanodelmoro7773@gmail.com" class="btn-ghost font-mono text-sm px-6 py-3.5 rounded-xl flex items-center gap-2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z" stroke="none"/><path d="M22 6 12 13 2 6"/><path d="M2 6h20v12H2z"/></svg>
+        stefanodelmoro7773@gmail.com
+      </a>
+      <a href="tel:+593982630024" class="btn-ghost font-mono text-sm px-6 py-3.5 rounded-xl flex items-center gap-2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        +593 98 263 0024
       </a>
     </div>
   </div>
