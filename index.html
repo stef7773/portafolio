@@ -9,7 +9,7 @@
 <!-- Open Graph / redes sociales (WhatsApp, LinkedIn, Facebook, Telegram) -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Stefano Del Moro">
-<meta property="og:title" content="Stefano Del Moro — Full Stack & AI Architect">
+<meta property="og:title" content="Full Stack & AI Architect">
 <meta property="og:description" content="Soluciones de software con IA local y en la nube: apps, bots, visión artificial y programas multiplataforma para Linux, Windows, macOS y Android.">
 <meta property="og:url" content="https://stef7773.github.io/portafolio/">
 <meta property="og:image" content="https://stef7773.github.io/portafolio/assets/og-cover.png">
@@ -19,7 +19,7 @@
 
 <!-- Twitter / X -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Stefano Del Moro — Full Stack & AI Architect">
+<meta name="twitter:title" content="Full Stack & AI Architect">
 <meta name="twitter:description" content="Soluciones de software con IA local y en la nube: apps, bots, visión artificial y programas multiplataforma para Linux, Windows, macOS y Android.">
 <meta name="twitter:image" content="https://stef7773.github.io/portafolio/assets/og-cover.png">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
@@ -309,7 +309,7 @@ a, button{ -webkit-tap-highlight-color: transparent; }
           <div class="text-[10.5px] text-[var(--text-faint)] uppercase tracking-wider font-bold font-mono mt-1">Entorno Dev</div>
         </div>
         <div class="stat-box p-4">
-          <div class="text-xl font-display font-bold text-[var(--mint)] counter" data-target="5">0</div>
+          <div class="text-xl font-display font-bold text-[var(--mint)] counter" data-target="6">0</div>
           <div class="text-[10.5px] text-[var(--text-faint)] uppercase tracking-wider font-bold font-mono mt-1">Demos en Video</div>
         </div>
       </div>
@@ -336,7 +336,7 @@ a, button{ -webkit-tap-highlight-color: transparent; }
 
   <div class="flex flex-wrap items-center justify-center gap-2 mb-3 reveal">
     <button data-filter="all" class="filter-btn active">
-      Todos (5)
+      Todos (6)
     </button>
     
     <button data-filter="AI & Gaming" class="filter-btn">
@@ -349,6 +349,10 @@ a, button{ -webkit-tap-highlight-color: transparent; }
     
     <button data-filter="Automation" class="filter-btn">
       Automation
+    </button>
+    
+    <button data-filter="Business & Finance" class="filter-btn">
+      Business & Finance
     </button>
     
     <button data-filter="Mobile & AI" class="filter-btn">
@@ -567,6 +571,47 @@ a, button{ -webkit-tap-highlight-color: transparent; }
         <div class="card-actions flex gap-2">
           
           <button onclick="openVideoModal('assets/asistencias_email_bot.mp4', 'asistencias-email-bot.service')" class="btn-ghost w-full text-center py-2.5 px-3 rounded-lg text-[11px] font-mono font-bold uppercase tracking-wide">
+            $ ./run --demo
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="unit-card reveal" data-category="Business & Finance" style="transition-delay:0.16s">
+
+      <div class="thumb-wrap" onclick="openVideoModal('assets/contabilidad_pro.mp4', 'contabilidad-pro.service')">
+        <img src="" alt="CONTA PRO" loading="lazy" class="w-full h-full object-cover opacity-80">
+        <div class="thumb-fade"></div>
+        <span class="absolute top-3 left-3 text-[10.5px] uppercase tracking-widest text-[var(--mint)] font-bold px-3 py-1.5 bg-[rgba(11,13,16,0.75)] border border-[rgba(143,209,79,0.3)] rounded-full backdrop-blur-sm">
+          Business & Finance
+        </span>
+        <div class="play-glyph">
+          <span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#8fd14f"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <h3 class="font-display text-xl font-bold text-white mb-0.5 tracking-tight">CONTA PRO</h3>
+        <p class="text-[11.5px] font-mono font-semibold text-[var(--mint)] mb-3">Sistema de Gestión Contable de Escritorio</p>
+        <p class="text-[var(--text-dim)] text-[13.5px] leading-relaxed mb-5">Sistema contable de escritorio: factura con cálculo automático de IVA por tarifa, controla cuentas por cobrar, gastos e inventario, y genera reportes financieros exportables a PDF y Excel.</p>
+
+        <div class="flex flex-nowrap gap-1.5 mb-1">
+          
+          <span class="tag-chip">Python</span>
+          
+          <span class="tag-chip">PyQt6</span>
+          
+          <span class="tag-chip">SQLite</span>
+          
+          <span class="tag-chip">ReportLab</span>
+          
+        </div>
+
+        <div class="card-actions flex gap-2">
+          
+          <button onclick="openVideoModal('assets/contabilidad_pro.mp4', 'contabilidad-pro.service')" class="btn-ghost w-full text-center py-2.5 px-3 rounded-lg text-[11px] font-mono font-bold uppercase tracking-wide">
             $ ./run --demo
           </button>
         </div>
