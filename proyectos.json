@@ -100,5 +100,22 @@
     "link_demo": "",
     "media_url": "assets/contabilidad_pro.mp4",
     "cover_image": "assets/contabilidad_pro_cover.jpg"
+  },
+  {
+    "id": "academia_pro",
+    "titulo": "Academia pro",
+    "subtitulo": "Horarios, Asistencia y Nómina de Profesores",
+    "categoria": "Education",
+    "status": "PROTOTYPE",
+    "descripcion": "Gestiona horarios semanales de clases con vista tipo calendario, toma de asistencia por alumno y calcula automáticamente horas dictadas y nómina de profesores, con reportes exportables a Excel.",
+    "techs": [
+      "Python",
+      "PyQt6",
+      "SQLite",
+      "Matplotlib"
+    ],
+    "link_demo": "",
+    "media_url": "assets/academia_pro.mp4",
+    "cover_image": "assets/academia_pro_cover.jpg"
   }
 ]
