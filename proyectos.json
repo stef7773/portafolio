@@ -124,7 +124,7 @@
     "subtitulo": "Analizador Universal de Archivos con IA Local",
     "categoria": "AI & Multimodal",
     "status": "PROTOTYPE",
-    "descripcion": "Sistema RAG 100% local que analiza documentos, imágenes, audio y video sin enviar datos a la nube. Usa Ollama para embeddings y respuestas, LLaVA para visión y Whisper para transcripción — costo de operación: $0.",
+    "descripcion": "Analiza documentos, imágenes, audio y video con IA que corre enteramente en el equipo, sin enviar información a la nube. Ideal para trabajar con datos sensibles que no pueden salir del entorno local, con costo de operación cero.",
     "techs": [
       "Python",
       "FastAPI",
