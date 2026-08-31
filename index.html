@@ -309,7 +309,7 @@ a, button{ -webkit-tap-highlight-color: transparent; }
           <div class="text-[10.5px] text-[var(--text-faint)] uppercase tracking-wider font-bold font-mono mt-1">Entorno Dev</div>
         </div>
         <div class="stat-box p-4">
-          <div class="text-xl font-display font-bold text-[var(--mint)] counter" data-target="7">0</div>
+          <div class="text-xl font-display font-bold text-[var(--mint)] counter" data-target="8">0</div>
           <div class="text-[10.5px] text-[var(--text-faint)] uppercase tracking-wider font-bold font-mono mt-1">Demos en Video</div>
         </div>
       </div>
@@ -336,7 +336,7 @@ a, button{ -webkit-tap-highlight-color: transparent; }
 
   <div class="flex flex-wrap items-center justify-center gap-2 mb-3 reveal">
     <button data-filter="all" class="filter-btn active">
-      Todos (7)
+      Todos (8)
     </button>
     
     <button data-filter="AI & Gaming" class="filter-btn">
@@ -345,6 +345,10 @@ a, button{ -webkit-tap-highlight-color: transparent; }
     
     <button data-filter="AI & Health" class="filter-btn">
       AI & Health
+    </button>
+    
+    <button data-filter="AI & Multimodal" class="filter-btn">
+      AI & Multimodal
     </button>
     
     <button data-filter="Automation" class="filter-btn">
@@ -375,7 +379,7 @@ a, button{ -webkit-tap-highlight-color: transparent; }
     <div class="unit-card reveal" data-category="Mobile & AI" style="transition-delay:0.0s">
 
       <div class="thumb-wrap" onclick="openVideoModal('assets/educare_ai.mp4', 'educare-ai.service')">
-        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80" alt="Educare AI" loading="lazy" class="w-full h-full object-cover opacity-80">
+        <img src="assets/educare_ai_cover.png" alt="Educare AI" loading="lazy" class="w-full h-full object-cover opacity-80">
         <div class="thumb-fade"></div>
         <span class="absolute top-3 left-3 text-[10.5px] uppercase tracking-widest text-[var(--mint)] font-bold px-3 py-1.5 bg-[rgba(11,13,16,0.75)] border border-[rgba(143,209,79,0.3)] rounded-full backdrop-blur-sm">
           Mobile & AI
@@ -657,6 +661,49 @@ a, button{ -webkit-tap-highlight-color: transparent; }
         <div class="card-actions flex gap-2">
           
           <button onclick="openVideoModal('assets/academia_pro.mp4', 'academia-pro.service')" class="btn-ghost w-full text-center py-2.5 px-3 rounded-lg text-[11px] font-mono font-bold uppercase tracking-wide">
+            $ ./run --demo
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="unit-card reveal" data-category="AI & Multimodal" style="transition-delay:0.08s">
+
+      <div class="thumb-wrap" onclick="openVideoModal('assets/Nexus_ai.mp4', 'nexus-ai.service')">
+        <img src="assets/nexus-banner.png" alt="Nexus" loading="lazy" class="w-full h-full object-cover opacity-80">
+        <div class="thumb-fade"></div>
+        <span class="absolute top-3 left-3 text-[10.5px] uppercase tracking-widest text-[var(--mint)] font-bold px-3 py-1.5 bg-[rgba(11,13,16,0.75)] border border-[rgba(143,209,79,0.3)] rounded-full backdrop-blur-sm">
+          AI & Multimodal
+        </span>
+        <div class="play-glyph">
+          <span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#8fd14f"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <h3 class="font-display text-xl font-bold text-white mb-0.5 tracking-tight">Nexus</h3>
+        <p class="text-[11.5px] font-mono font-semibold text-[var(--mint)] mb-3">Analizador Universal de Archivos con IA Local</p>
+        <p class="text-[var(--text-dim)] text-[13.5px] leading-relaxed mb-5">Sistema RAG 100% local que analiza documentos, imágenes, audio y video sin enviar datos a la nube. Usa Ollama para embeddings y respuestas, LLaVA para visión y Whisper para transcripción — costo de operación: $0.</p>
+
+        <div class="flex flex-nowrap gap-1.5 mb-1">
+          
+          <span class="tag-chip">Python</span>
+          
+          <span class="tag-chip">FastAPI</span>
+          
+          <span class="tag-chip">Ollama</span>
+          
+          <span class="tag-chip">ChromaDB</span>
+          
+          <span class="tag-chip">Whisper</span>
+          
+        </div>
+
+        <div class="card-actions flex gap-2">
+          
+          <button onclick="openVideoModal('assets/Nexus_ai.mp4', 'nexus-ai.service')" class="btn-ghost w-full text-center py-2.5 px-3 rounded-lg text-[11px] font-mono font-bold uppercase tracking-wide">
             $ ./run --demo
           </button>
         </div>
