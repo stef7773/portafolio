@@ -393,8 +393,9 @@ a, button{ -webkit-tap-highlight-color: transparent; }
             $ ./deploy
           </a>
           {% endif %}
-          <button onclick="openVideoModal('{{ p.media_url }}', '{{ p.unit }}')" class="btn-ghost {{ 'flex-1' if p.link_demo else 'w-full' }} text-center py-2.5 px-3 rounded-lg text-[11px] font-mono font-bold uppercase tracking-wide">
-            $ ./run --demo
+          <button onclick="openVideoModal('{{ p.media_url }}', '{{ p.unit }}')" class="btn-ghost {{ 'flex-1' if p.link_demo else 'w-full' }} flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg text-[11px] font-mono font-bold uppercase tracking-wide">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg>
+            Ver Demo
           </button>
         </div>
       </div>
