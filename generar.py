@@ -197,7 +197,7 @@ a, button{ -webkit-tap-highlight-color: transparent; }
   border-color:rgba(143,209,79,0.4);
   box-shadow:0 24px 48px -20px rgba(0,0,0,0.55), 0 0 32px -8px rgba(143,209,79,0.18);
 }
-.thumb-wrap{ position:relative; height:190px; overflow:hidden; background:#000; cursor:pointer; }
+.thumb-wrap{ position:relative; height:225px; overflow:hidden; background:#000; cursor:pointer; }
 .thumb-wrap img{ transition:transform .6s cubic-bezier(.16,1,.3,1), opacity .4s ease; }
 .thumb-wrap:hover img{ transform:scale(1.06); opacity:1; }
 .thumb-fade{ position:absolute; inset:0; background:linear-gradient(to top, var(--surface) 0%, transparent 55%); }
@@ -213,7 +213,7 @@ a, button{ -webkit-tap-highlight-color: transparent; }
   display:flex; align-items:center; justify-content:center;
 }
 
-.card-body{ display:flex; flex-direction:column; flex:1; padding:1.25rem; }
+.card-body{ display:flex; flex-direction:column; flex:1; padding:1.5rem; }
 .card-actions{ margin-top:auto; padding-top:1.1rem; }
 
 .tag-chip{
@@ -247,6 +247,20 @@ a, button{ -webkit-tap-highlight-color: transparent; }
   background:var(--surface); border:1px solid var(--border-strong); border-radius:14px;
   box-shadow:0 40px 90px -20px rgba(0,0,0,0.8);
 }
+
+/* ---------- sites panel (Websites & AI modal) ---------- */
+.sites-panel{ width:100%; padding:10px; display:flex; flex-direction:column; gap:10px; }
+.site-row{
+  display:flex; align-items:center; gap:16px;
+  background:var(--surface-2); border:1px solid var(--border); border-radius:12px;
+  padding:16px 18px; transition:border-color .2s ease, transform .2s ease, background .2s ease;
+}
+.site-row:hover{ border-color:rgba(143,209,79,0.4); transform:translateY(-2px); background:rgba(143,209,79,0.04); }
+.site-row-logo{ width:48px; height:48px; border-radius:10px; object-fit:cover; background:#0b0d10; flex-shrink:0; }
+.site-row-text{ display:flex; flex-direction:column; flex:1; min-width:0; }
+.site-row-name{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:16px; color:var(--text); }
+.site-row-desc{ font-family:'IBM Plex Sans', sans-serif; font-size:12.5px; color:var(--text-dim); margin-top:2px; }
+.site-row-arrow{ color:var(--mint); flex-shrink:0; }
 
 @media (prefers-reduced-motion: reduce){
   *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
@@ -357,13 +371,17 @@ a, button{ -webkit-tap-highlight-color: transparent; }
     </button>
     {% endfor %}
   </div>
-  <p class="text-center text-[13px] text-[var(--text-faint)] mb-12 reveal">Haz clic en una miniatura para reproducir el video de cada proyecto.</p>
+  <p class="text-center text-[13px] text-[var(--text-faint)] mb-12 reveal">Haz clic en una miniatura para ver el detalle de cada proyecto.</p>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-7" id="projects-grid">
+  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-9" id="projects-grid">
     {% for p in proyectos %}
     <div class="unit-card reveal" data-category="{{ p.categoria }}" style="transition-delay:{{ (loop.index0 % 3) * 0.08 }}s">
 
+      {% if p.sites %}
+      <div class="thumb-wrap" onclick="openSitesModal({{ p.sites|tojson|e }}, '{{ p.titulo }}')">
+      {% else %}
       <div class="thumb-wrap" onclick="openVideoModal('{{ p.media_url }}', '{{ p.unit }}')">
+      {% endif %}
         <img src="{{ p.cover_image }}" alt="{{ p.titulo }}" loading="lazy" class="w-full h-full object-cover opacity-80">
         <div class="thumb-fade"></div>
         <span class="absolute top-3 left-3 text-[10.5px] uppercase tracking-widest text-[var(--mint)] font-bold px-3 py-1.5 bg-[rgba(11,13,16,0.75)] border border-[rgba(143,209,79,0.3)] rounded-full backdrop-blur-sm">
@@ -371,15 +389,19 @@ a, button{ -webkit-tap-highlight-color: transparent; }
         </span>
         <div class="play-glyph">
           <span>
+            {% if p.sites %}
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8fd14f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            {% else %}
             <svg width="18" height="18" viewBox="0 0 24 24" fill="#8fd14f"><path d="M8 5v14l11-7z"/></svg>
+            {% endif %}
           </span>
         </div>
       </div>
 
       <div class="card-body">
-        <h3 class="font-display text-xl font-bold text-white mb-0.5 tracking-tight">{{ p.titulo }}</h3>
+        <h3 class="font-display text-2xl font-bold text-white mb-1 tracking-tight">{{ p.titulo }}</h3>
         <p class="text-[11.5px] font-mono font-semibold text-[var(--mint)] mb-3">{{ p.subtitulo }}</p>
-        <p class="text-[var(--text-dim)] text-[13.5px] leading-relaxed mb-5">{{ p.descripcion }}</p>
+        <p class="text-[var(--text-dim)] text-[14.5px] leading-relaxed mb-5">{{ p.descripcion }}</p>
 
         <div class="flex flex-nowrap gap-1.5 mb-1">
           {% for tech in p.techs %}
@@ -394,10 +416,17 @@ a, button{ -webkit-tap-highlight-color: transparent; }
             Descargar
           </a>
           {% endif %}
+          {% if p.sites %}
+          <button onclick="openSitesModal({{ p.sites|tojson|e }}, '{{ p.titulo }}')" class="btn-ghost {{ 'flex-1' if p.link_demo else 'w-full' }} flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg text-[11px] font-mono font-bold uppercase tracking-wide">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            Ver Sitios
+          </button>
+          {% else %}
           <button onclick="openVideoModal('{{ p.media_url }}', '{{ p.unit }}')" class="btn-ghost {{ 'flex-1' if p.link_demo else 'w-full' }} flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg text-[11px] font-mono font-bold uppercase tracking-wide">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg>
             Ver Demo
           </button>
+          {% endif %}
         </div>
       </div>
     </div>
@@ -554,6 +583,27 @@ function openVideoModal(url, title){
   const modalBody = document.getElementById('modalBody');
   document.getElementById('modalTitle').innerText = `$ ./run ${title} --demo`;
   modalBody.innerHTML = `<video controls autoplay loop playsinline class="max-h-[75vh] w-full object-contain"><source src="${url}" type="video/mp4">Tu navegador no soporta video.</video>`;
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+  document.body.style.overflow = 'hidden';
+}
+
+/* ---------- sites modal (Websites & AI) ---------- */
+function openSitesModal(sites, title){
+  const modal = document.getElementById('videoModal');
+  const modalBody = document.getElementById('modalBody');
+  document.getElementById('modalTitle').innerText = `$ ls ./${title.toLowerCase().replace(/\\s+/g, '-')}`;
+  const rows = sites.map(s => `
+    <a href="${s.url}" target="_blank" rel="noopener" class="site-row">
+      <img src="${s.logo}" alt="${s.nombre}" class="site-row-logo" loading="lazy">
+      <span class="site-row-text">
+        <span class="site-row-name">${s.nombre}</span>
+        <span class="site-row-desc">${s.descripcion}</span>
+      </span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="site-row-arrow"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+    </a>
+  `).join('');
+  modalBody.innerHTML = `<div class="sites-panel">${rows}</div>`;
   modal.classList.remove('hidden');
   modal.classList.add('flex');
   document.body.style.overflow = 'hidden';

@@ -184,7 +184,7 @@ a, button{ -webkit-tap-highlight-color: transparent; }
   border-color:rgba(143,209,79,0.4);
   box-shadow:0 24px 48px -20px rgba(0,0,0,0.55), 0 0 32px -8px rgba(143,209,79,0.18);
 }
-.thumb-wrap{ position:relative; height:190px; overflow:hidden; background:#000; cursor:pointer; }
+.thumb-wrap{ position:relative; height:225px; overflow:hidden; background:#000; cursor:pointer; }
 .thumb-wrap img{ transition:transform .6s cubic-bezier(.16,1,.3,1), opacity .4s ease; }
 .thumb-wrap:hover img{ transform:scale(1.06); opacity:1; }
 .thumb-fade{ position:absolute; inset:0; background:linear-gradient(to top, var(--surface) 0%, transparent 55%); }
@@ -200,7 +200,7 @@ a, button{ -webkit-tap-highlight-color: transparent; }
   display:flex; align-items:center; justify-content:center;
 }
 
-.card-body{ display:flex; flex-direction:column; flex:1; padding:1.25rem; }
+.card-body{ display:flex; flex-direction:column; flex:1; padding:1.5rem; }
 .card-actions{ margin-top:auto; padding-top:1.1rem; }
 
 .tag-chip{
@@ -234,6 +234,20 @@ a, button{ -webkit-tap-highlight-color: transparent; }
   background:var(--surface); border:1px solid var(--border-strong); border-radius:14px;
   box-shadow:0 40px 90px -20px rgba(0,0,0,0.8);
 }
+
+/* ---------- sites panel (Websites & AI modal) ---------- */
+.sites-panel{ width:100%; padding:10px; display:flex; flex-direction:column; gap:10px; }
+.site-row{
+  display:flex; align-items:center; gap:16px;
+  background:var(--surface-2); border:1px solid var(--border); border-radius:12px;
+  padding:16px 18px; transition:border-color .2s ease, transform .2s ease, background .2s ease;
+}
+.site-row:hover{ border-color:rgba(143,209,79,0.4); transform:translateY(-2px); background:rgba(143,209,79,0.04); }
+.site-row-logo{ width:48px; height:48px; border-radius:10px; object-fit:cover; background:#0b0d10; flex-shrink:0; }
+.site-row-text{ display:flex; flex-direction:column; flex:1; min-width:0; }
+.site-row-name{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:16px; color:var(--text); }
+.site-row-desc{ font-family:'IBM Plex Sans', sans-serif; font-size:12.5px; color:var(--text-dim); margin-top:2px; }
+.site-row-arrow{ color:var(--mint); flex-shrink:0; }
 
 @media (prefers-reduced-motion: reduce){
   *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
@@ -309,7 +323,7 @@ a, button{ -webkit-tap-highlight-color: transparent; }
           <div class="text-[10.5px] text-[var(--text-faint)] uppercase tracking-wider font-bold font-mono mt-1">Entorno Dev</div>
         </div>
         <div class="stat-box p-4">
-          <div class="text-xl font-display font-bold text-[var(--mint)] counter" data-target="8">0</div>
+          <div class="text-xl font-display font-bold text-[var(--mint)] counter" data-target="9">0</div>
           <div class="text-[10.5px] text-[var(--text-faint)] uppercase tracking-wider font-bold font-mono mt-1">Demos en Video</div>
         </div>
       </div>
@@ -336,7 +350,7 @@ a, button{ -webkit-tap-highlight-color: transparent; }
 
   <div class="flex flex-wrap items-center justify-center gap-2 mb-3 reveal">
     <button data-filter="all" class="filter-btn active">
-      Todos (8)
+      Todos (9)
     </button>
     
     <button data-filter="AI & Gaming" class="filter-btn">
@@ -371,14 +385,68 @@ a, button{ -webkit-tap-highlight-color: transparent; }
       Systems & CLI
     </button>
     
-  </div>
-  <p class="text-center text-[13px] text-[var(--text-faint)] mb-12 reveal">Haz clic en una miniatura para reproducir el video de cada proyecto.</p>
-
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-7" id="projects-grid">
+    <button data-filter="Websites & AI" class="filter-btn">
+      Websites & AI
+    </button>
     
-    <div class="unit-card reveal" data-category="Mobile & AI" style="transition-delay:0.0s">
+  </div>
+  <p class="text-center text-[13px] text-[var(--text-faint)] mb-12 reveal">Haz clic en una miniatura para ver el detalle de cada proyecto.</p>
 
+  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-9" id="projects-grid">
+    
+    <div class="unit-card reveal" data-category="Websites & AI" style="transition-delay:0.0s">
+
+      
+      <div class="thumb-wrap" onclick="openSitesModal([{"descripcion": "Restaurante \u00b7 Cucina Italiana", "logo": "https://stef7773.github.io/palermo/assets/images/logo.png", "nombre": "Palermo", "url": "https://stef7773.github.io/palermo/"}, {"descripcion": "Almuerzos a domicilio \u00b7 Comida ecuatoriana", "logo": "https://stef7773.github.io/raices-ecuatorianas/assets/images/logo-icon.png", "nombre": "Ra\u00edces Ecuatorianas", "url": "https://stef7773.github.io/raices-ecuatorianas/"}, {"descripcion": "Educaci\u00f3n \u00b7 Clases online de idiomas", "logo": "https://stef7773.github.io/clases-idiomas/assets/images/favicon-180.png", "nombre": "Clases de Idiomas", "url": "https://stef7773.github.io/clases-idiomas/"}], 'Websites & AI')">
+      
+        <img src="assets/websites_ai_cover.jpg" alt="Websites & AI" loading="lazy" class="w-full h-full object-cover opacity-80">
+        <div class="thumb-fade"></div>
+        <span class="absolute top-3 left-3 text-[10.5px] uppercase tracking-widest text-[var(--mint)] font-bold px-3 py-1.5 bg-[rgba(11,13,16,0.75)] border border-[rgba(143,209,79,0.3)] rounded-full backdrop-blur-sm">
+          Websites & AI
+        </span>
+        <div class="play-glyph">
+          <span>
+            
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8fd14f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            
+          </span>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <h3 class="font-display text-2xl font-bold text-white mb-1 tracking-tight">Websites & AI</h3>
+        <p class="text-[11.5px] font-mono font-semibold text-[var(--mint)] mb-3">Sitios Web a Medida, Diseñados con IA</p>
+        <p class="text-[var(--text-dim)] text-[14.5px] leading-relaxed mb-5">Landing pages y sitios a medida para negocios reales, diseñados y programados con asistencia de IA: código a mano, sin plantillas, con animaciones propias y publicados en producción.</p>
+
+        <div class="flex flex-nowrap gap-1.5 mb-1">
+          
+          <span class="tag-chip">HTML</span>
+          
+          <span class="tag-chip">CSS</span>
+          
+          <span class="tag-chip">JavaScript</span>
+          
+          <span class="tag-chip">Claude AI</span>
+          
+        </div>
+
+        <div class="card-actions flex gap-2">
+          
+          
+          <button onclick="openSitesModal([{"descripcion": "Restaurante \u00b7 Cucina Italiana", "logo": "https://stef7773.github.io/palermo/assets/images/logo.png", "nombre": "Palermo", "url": "https://stef7773.github.io/palermo/"}, {"descripcion": "Almuerzos a domicilio \u00b7 Comida ecuatoriana", "logo": "https://stef7773.github.io/raices-ecuatorianas/assets/images/logo-icon.png", "nombre": "Ra\u00edces Ecuatorianas", "url": "https://stef7773.github.io/raices-ecuatorianas/"}, {"descripcion": "Educaci\u00f3n \u00b7 Clases online de idiomas", "logo": "https://stef7773.github.io/clases-idiomas/assets/images/favicon-180.png", "nombre": "Clases de Idiomas", "url": "https://stef7773.github.io/clases-idiomas/"}], 'Websites & AI')" class="btn-ghost w-full flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg text-[11px] font-mono font-bold uppercase tracking-wide">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            Ver Sitios
+          </button>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="unit-card reveal" data-category="Mobile & AI" style="transition-delay:0.08s">
+
+      
       <div class="thumb-wrap" onclick="openVideoModal('assets/educare_ai.mp4', 'educare-ai.service')">
+      
         <img src="assets/educare_ai_cover.png" alt="Educare AI" loading="lazy" class="w-full h-full object-cover opacity-80">
         <div class="thumb-fade"></div>
         <span class="absolute top-3 left-3 text-[10.5px] uppercase tracking-widest text-[var(--mint)] font-bold px-3 py-1.5 bg-[rgba(11,13,16,0.75)] border border-[rgba(143,209,79,0.3)] rounded-full backdrop-blur-sm">
@@ -386,15 +454,17 @@ a, button{ -webkit-tap-highlight-color: transparent; }
         </span>
         <div class="play-glyph">
           <span>
+            
             <svg width="18" height="18" viewBox="0 0 24 24" fill="#8fd14f"><path d="M8 5v14l11-7z"/></svg>
+            
           </span>
         </div>
       </div>
 
       <div class="card-body">
-        <h3 class="font-display text-xl font-bold text-white mb-0.5 tracking-tight">Educare AI</h3>
+        <h3 class="font-display text-2xl font-bold text-white mb-1 tracking-tight">Educare AI</h3>
         <p class="text-[11.5px] font-mono font-semibold text-[var(--mint)] mb-3">Ecosistema Educativo con IA en la Nube</p>
-        <p class="text-[var(--text-dim)] text-[13.5px] leading-relaxed mb-5">App educativa multilenguaje que conversa por texto y voz, traduce con la cámara en tiempo real y genera imágenes, música y video con IA. Incluye ARIA, un asistente que opera el teléfono por voz.</p>
+        <p class="text-[var(--text-dim)] text-[14.5px] leading-relaxed mb-5">App educativa multilenguaje que conversa por texto y voz, traduce con la cámara en tiempo real y genera imágenes, música y video con IA. Incluye ARIA, un asistente que opera el teléfono por voz.</p>
 
         <div class="flex flex-nowrap gap-1.5 mb-1">
           
@@ -415,17 +485,21 @@ a, button{ -webkit-tap-highlight-color: transparent; }
             Descargar
           </a>
           
+          
           <button onclick="openVideoModal('assets/educare_ai.mp4', 'educare-ai.service')" class="btn-ghost flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg text-[11px] font-mono font-bold uppercase tracking-wide">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg>
             Ver Demo
           </button>
+          
         </div>
       </div>
     </div>
     
-    <div class="unit-card reveal" data-category="AI & Health" style="transition-delay:0.08s">
+    <div class="unit-card reveal" data-category="AI & Health" style="transition-delay:0.16s">
 
+      
       <div class="thumb-wrap" onclick="openVideoModal('assets/med_ai_scanner.mp4', 'med-ai-scanner.service')">
+      
         <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80" alt="Med AI Scanner" loading="lazy" class="w-full h-full object-cover opacity-80">
         <div class="thumb-fade"></div>
         <span class="absolute top-3 left-3 text-[10.5px] uppercase tracking-widest text-[var(--mint)] font-bold px-3 py-1.5 bg-[rgba(11,13,16,0.75)] border border-[rgba(143,209,79,0.3)] rounded-full backdrop-blur-sm">
@@ -433,15 +507,17 @@ a, button{ -webkit-tap-highlight-color: transparent; }
         </span>
         <div class="play-glyph">
           <span>
+            
             <svg width="18" height="18" viewBox="0 0 24 24" fill="#8fd14f"><path d="M8 5v14l11-7z"/></svg>
+            
           </span>
         </div>
       </div>
 
       <div class="card-body">
-        <h3 class="font-display text-xl font-bold text-white mb-0.5 tracking-tight">Med AI Scanner</h3>
+        <h3 class="font-display text-2xl font-bold text-white mb-1 tracking-tight">Med AI Scanner</h3>
         <p class="text-[11.5px] font-mono font-semibold text-[var(--mint)] mb-3">Visión Artificial para Diagnóstico Médico</p>
-        <p class="text-[var(--text-dim)] text-[13.5px] leading-relaxed mb-5">Analiza imágenes médicas al instante y clasifica automáticamente los hallazgos clínicos relevantes, entregando un resultado priorizado que agiliza la revisión y ayuda a detectar casos urgentes más rápido.</p>
+        <p class="text-[var(--text-dim)] text-[14.5px] leading-relaxed mb-5">Analiza imágenes médicas al instante y clasifica automáticamente los hallazgos clínicos relevantes, entregando un resultado priorizado que agiliza la revisión y ayuda a detectar casos urgentes más rápido.</p>
 
         <div class="flex flex-nowrap gap-1.5 mb-1">
           
@@ -457,17 +533,21 @@ a, button{ -webkit-tap-highlight-color: transparent; }
 
         <div class="card-actions flex gap-2">
           
+          
           <button onclick="openVideoModal('assets/med_ai_scanner.mp4', 'med-ai-scanner.service')" class="btn-ghost w-full flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg text-[11px] font-mono font-bold uppercase tracking-wide">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg>
             Ver Demo
           </button>
+          
         </div>
       </div>
     </div>
     
-    <div class="unit-card reveal" data-category="Systems & CLI" style="transition-delay:0.16s">
+    <div class="unit-card reveal" data-category="Systems & CLI" style="transition-delay:0.0s">
 
+      
       <div class="thumb-wrap" onclick="openVideoModal('assets/system_monitor.mp4', 'system-monitor.service')">
+      
         <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80" alt="System Monitor CLI" loading="lazy" class="w-full h-full object-cover opacity-80">
         <div class="thumb-fade"></div>
         <span class="absolute top-3 left-3 text-[10.5px] uppercase tracking-widest text-[var(--mint)] font-bold px-3 py-1.5 bg-[rgba(11,13,16,0.75)] border border-[rgba(143,209,79,0.3)] rounded-full backdrop-blur-sm">
@@ -475,15 +555,17 @@ a, button{ -webkit-tap-highlight-color: transparent; }
         </span>
         <div class="play-glyph">
           <span>
+            
             <svg width="18" height="18" viewBox="0 0 24 24" fill="#8fd14f"><path d="M8 5v14l11-7z"/></svg>
+            
           </span>
         </div>
       </div>
 
       <div class="card-body">
-        <h3 class="font-display text-xl font-bold text-white mb-0.5 tracking-tight">System Monitor CLI</h3>
+        <h3 class="font-display text-2xl font-bold text-white mb-1 tracking-tight">System Monitor CLI</h3>
         <p class="text-[11.5px] font-mono font-semibold text-[var(--mint)] mb-3">Monitoreo de Sistema Multiplataforma</p>
-        <p class="text-[var(--text-dim)] text-[13.5px] leading-relaxed mb-5">Vigila el estado del equipo en tiempo real desde la terminal: uso de CPU por núcleo, memoria, procesos activos y temperatura, sin depender de un entorno gráfico. Funciona igual en Linux, Windows y macOS.</p>
+        <p class="text-[var(--text-dim)] text-[14.5px] leading-relaxed mb-5">Vigila el estado del equipo en tiempo real desde la terminal: uso de CPU por núcleo, memoria, procesos activos y temperatura, sin depender de un entorno gráfico. Funciona igual en Linux, Windows y macOS.</p>
 
         <div class="flex flex-nowrap gap-1.5 mb-1">
           
@@ -499,17 +581,21 @@ a, button{ -webkit-tap-highlight-color: transparent; }
 
         <div class="card-actions flex gap-2">
           
+          
           <button onclick="openVideoModal('assets/system_monitor.mp4', 'system-monitor.service')" class="btn-ghost w-full flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg text-[11px] font-mono font-bold uppercase tracking-wide">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg>
             Ver Demo
           </button>
+          
         </div>
       </div>
     </div>
     
-    <div class="unit-card reveal" data-category="AI & Gaming" style="transition-delay:0.0s">
+    <div class="unit-card reveal" data-category="AI & Gaming" style="transition-delay:0.08s">
 
+      
       <div class="thumb-wrap" onclick="openVideoModal('assets/tamagotchi_ai.mp4', 'tamagotchi-ai.service')">
+      
         <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1200&q=80" alt="Tamagotchi AI" loading="lazy" class="w-full h-full object-cover opacity-80">
         <div class="thumb-fade"></div>
         <span class="absolute top-3 left-3 text-[10.5px] uppercase tracking-widest text-[var(--mint)] font-bold px-3 py-1.5 bg-[rgba(11,13,16,0.75)] border border-[rgba(143,209,79,0.3)] rounded-full backdrop-blur-sm">
@@ -517,15 +603,17 @@ a, button{ -webkit-tap-highlight-color: transparent; }
         </span>
         <div class="play-glyph">
           <span>
+            
             <svg width="18" height="18" viewBox="0 0 24 24" fill="#8fd14f"><path d="M8 5v14l11-7z"/></svg>
+            
           </span>
         </div>
       </div>
 
       <div class="card-body">
-        <h3 class="font-display text-xl font-bold text-white mb-0.5 tracking-tight">Tamagotchi AI</h3>
+        <h3 class="font-display text-2xl font-bold text-white mb-1 tracking-tight">Tamagotchi AI</h3>
         <p class="text-[11.5px] font-mono font-semibold text-[var(--mint)] mb-3">Mascota Cognitiva con IA Conversacional</p>
-        <p class="text-[var(--text-dim)] text-[13.5px] leading-relaxed mb-5">Una mascota virtual con memoria propia que conversa, reacciona a cómo la cuidas y va cambiando de comportamiento con el tiempo según esa relación, en lugar de repetir siempre las mismas animaciones fijas.</p>
+        <p class="text-[var(--text-dim)] text-[14.5px] leading-relaxed mb-5">Una mascota virtual con memoria propia que conversa, reacciona a cómo la cuidas y va cambiando de comportamiento con el tiempo según esa relación, en lugar de repetir siempre las mismas animaciones fijas.</p>
 
         <div class="flex flex-nowrap gap-1.5 mb-1">
           
@@ -541,17 +629,21 @@ a, button{ -webkit-tap-highlight-color: transparent; }
 
         <div class="card-actions flex gap-2">
           
+          
           <button onclick="openVideoModal('assets/tamagotchi_ai.mp4', 'tamagotchi-ai.service')" class="btn-ghost w-full flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg text-[11px] font-mono font-bold uppercase tracking-wide">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg>
             Ver Demo
           </button>
+          
         </div>
       </div>
     </div>
     
-    <div class="unit-card reveal" data-category="Automation" style="transition-delay:0.08s">
+    <div class="unit-card reveal" data-category="Automation" style="transition-delay:0.16s">
 
+      
       <div class="thumb-wrap" onclick="openVideoModal('assets/asistencias_email_bot.mp4', 'asistencias-email-bot.service')">
+      
         <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80" alt="Gestor Automatizado de Correos de Gmail" loading="lazy" class="w-full h-full object-cover opacity-80">
         <div class="thumb-fade"></div>
         <span class="absolute top-3 left-3 text-[10.5px] uppercase tracking-widest text-[var(--mint)] font-bold px-3 py-1.5 bg-[rgba(11,13,16,0.75)] border border-[rgba(143,209,79,0.3)] rounded-full backdrop-blur-sm">
@@ -559,15 +651,17 @@ a, button{ -webkit-tap-highlight-color: transparent; }
         </span>
         <div class="play-glyph">
           <span>
+            
             <svg width="18" height="18" viewBox="0 0 24 24" fill="#8fd14f"><path d="M8 5v14l11-7z"/></svg>
+            
           </span>
         </div>
       </div>
 
       <div class="card-body">
-        <h3 class="font-display text-xl font-bold text-white mb-0.5 tracking-tight">Gestor Automatizado de Correos de Gmail</h3>
+        <h3 class="font-display text-2xl font-bold text-white mb-1 tracking-tight">Gestor Automatizado de Correos de Gmail</h3>
         <p class="text-[11.5px] font-mono font-semibold text-[var(--mint)] mb-3">Organiza tu Bandeja con IA Local</p>
-        <p class="text-[var(--text-dim)] text-[13.5px] leading-relaxed mb-5">Sincroniza una bandeja de Gmail y organiza cada correo por caso con IA local, extrayendo remitente, referencia y resumen. Sirve para clínicas, dentistas o cualquier negocio — aquí, aplicado a coordinación médica.</p>
+        <p class="text-[var(--text-dim)] text-[14.5px] leading-relaxed mb-5">Sincroniza una bandeja de Gmail y organiza cada correo por caso con IA local, extrayendo remitente, referencia y resumen. Sirve para clínicas, dentistas o cualquier negocio — aquí, aplicado a coordinación médica.</p>
 
         <div class="flex flex-nowrap gap-1.5 mb-1">
           
@@ -583,17 +677,21 @@ a, button{ -webkit-tap-highlight-color: transparent; }
 
         <div class="card-actions flex gap-2">
           
+          
           <button onclick="openVideoModal('assets/asistencias_email_bot.mp4', 'asistencias-email-bot.service')" class="btn-ghost w-full flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg text-[11px] font-mono font-bold uppercase tracking-wide">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg>
             Ver Demo
           </button>
+          
         </div>
       </div>
     </div>
     
-    <div class="unit-card reveal" data-category="Business & Finance" style="transition-delay:0.16s">
+    <div class="unit-card reveal" data-category="Business & Finance" style="transition-delay:0.0s">
 
+      
       <div class="thumb-wrap" onclick="openVideoModal('assets/contabilidad_pro.mp4', 'contabilidad-pro.service')">
+      
         <img src="assets/contabilidad_pro_cover.jpg" alt="Conta Pro" loading="lazy" class="w-full h-full object-cover opacity-80">
         <div class="thumb-fade"></div>
         <span class="absolute top-3 left-3 text-[10.5px] uppercase tracking-widest text-[var(--mint)] font-bold px-3 py-1.5 bg-[rgba(11,13,16,0.75)] border border-[rgba(143,209,79,0.3)] rounded-full backdrop-blur-sm">
@@ -601,15 +699,17 @@ a, button{ -webkit-tap-highlight-color: transparent; }
         </span>
         <div class="play-glyph">
           <span>
+            
             <svg width="18" height="18" viewBox="0 0 24 24" fill="#8fd14f"><path d="M8 5v14l11-7z"/></svg>
+            
           </span>
         </div>
       </div>
 
       <div class="card-body">
-        <h3 class="font-display text-xl font-bold text-white mb-0.5 tracking-tight">Conta Pro</h3>
+        <h3 class="font-display text-2xl font-bold text-white mb-1 tracking-tight">Conta Pro</h3>
         <p class="text-[11.5px] font-mono font-semibold text-[var(--mint)] mb-3">Sistema de Gestión Contable de Escritorio</p>
-        <p class="text-[var(--text-dim)] text-[13.5px] leading-relaxed mb-5">Sistema contable de escritorio: factura con cálculo automático de IVA por tarifa, controla cuentas por cobrar, gastos e inventario, y genera reportes financieros exportables a PDF y Excel.</p>
+        <p class="text-[var(--text-dim)] text-[14.5px] leading-relaxed mb-5">Sistema contable de escritorio: factura con cálculo automático de IVA por tarifa, controla cuentas por cobrar, gastos e inventario, y genera reportes financieros exportables a PDF y Excel.</p>
 
         <div class="flex flex-nowrap gap-1.5 mb-1">
           
@@ -625,17 +725,21 @@ a, button{ -webkit-tap-highlight-color: transparent; }
 
         <div class="card-actions flex gap-2">
           
+          
           <button onclick="openVideoModal('assets/contabilidad_pro.mp4', 'contabilidad-pro.service')" class="btn-ghost w-full flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg text-[11px] font-mono font-bold uppercase tracking-wide">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg>
             Ver Demo
           </button>
+          
         </div>
       </div>
     </div>
     
-    <div class="unit-card reveal" data-category="Education" style="transition-delay:0.0s">
+    <div class="unit-card reveal" data-category="Education" style="transition-delay:0.08s">
 
+      
       <div class="thumb-wrap" onclick="openVideoModal('assets/academia_pro.mp4', 'academia-pro.service')">
+      
         <img src="assets/academia_pro_cover.jpg" alt="ClassSync" loading="lazy" class="w-full h-full object-cover opacity-80">
         <div class="thumb-fade"></div>
         <span class="absolute top-3 left-3 text-[10.5px] uppercase tracking-widest text-[var(--mint)] font-bold px-3 py-1.5 bg-[rgba(11,13,16,0.75)] border border-[rgba(143,209,79,0.3)] rounded-full backdrop-blur-sm">
@@ -643,15 +747,17 @@ a, button{ -webkit-tap-highlight-color: transparent; }
         </span>
         <div class="play-glyph">
           <span>
+            
             <svg width="18" height="18" viewBox="0 0 24 24" fill="#8fd14f"><path d="M8 5v14l11-7z"/></svg>
+            
           </span>
         </div>
       </div>
 
       <div class="card-body">
-        <h3 class="font-display text-xl font-bold text-white mb-0.5 tracking-tight">ClassSync</h3>
+        <h3 class="font-display text-2xl font-bold text-white mb-1 tracking-tight">ClassSync</h3>
         <p class="text-[11.5px] font-mono font-semibold text-[var(--mint)] mb-3">Horarios, Asistencia y Nómina de Profesores</p>
-        <p class="text-[var(--text-dim)] text-[13.5px] leading-relaxed mb-5">Gestiona horarios semanales de clases con vista tipo calendario, toma de asistencia por alumno y calcula automáticamente horas dictadas y nómina de profesores, con reportes exportables a Excel.</p>
+        <p class="text-[var(--text-dim)] text-[14.5px] leading-relaxed mb-5">Gestiona horarios semanales de clases con vista tipo calendario, toma de asistencia por alumno y calcula automáticamente horas dictadas y nómina de profesores, con reportes exportables a Excel.</p>
 
         <div class="flex flex-nowrap gap-1.5 mb-1">
           
@@ -667,17 +773,21 @@ a, button{ -webkit-tap-highlight-color: transparent; }
 
         <div class="card-actions flex gap-2">
           
+          
           <button onclick="openVideoModal('assets/academia_pro.mp4', 'academia-pro.service')" class="btn-ghost w-full flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg text-[11px] font-mono font-bold uppercase tracking-wide">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg>
             Ver Demo
           </button>
+          
         </div>
       </div>
     </div>
     
-    <div class="unit-card reveal" data-category="AI & Multimodal" style="transition-delay:0.08s">
+    <div class="unit-card reveal" data-category="AI & Multimodal" style="transition-delay:0.16s">
 
+      
       <div class="thumb-wrap" onclick="openVideoModal('assets/Nexus_ai.mp4', 'nexus-ai.service')">
+      
         <img src="assets/nexus-banner.png" alt="Nexus" loading="lazy" class="w-full h-full object-cover opacity-80">
         <div class="thumb-fade"></div>
         <span class="absolute top-3 left-3 text-[10.5px] uppercase tracking-widest text-[var(--mint)] font-bold px-3 py-1.5 bg-[rgba(11,13,16,0.75)] border border-[rgba(143,209,79,0.3)] rounded-full backdrop-blur-sm">
@@ -685,15 +795,17 @@ a, button{ -webkit-tap-highlight-color: transparent; }
         </span>
         <div class="play-glyph">
           <span>
+            
             <svg width="18" height="18" viewBox="0 0 24 24" fill="#8fd14f"><path d="M8 5v14l11-7z"/></svg>
+            
           </span>
         </div>
       </div>
 
       <div class="card-body">
-        <h3 class="font-display text-xl font-bold text-white mb-0.5 tracking-tight">Nexus</h3>
+        <h3 class="font-display text-2xl font-bold text-white mb-1 tracking-tight">Nexus</h3>
         <p class="text-[11.5px] font-mono font-semibold text-[var(--mint)] mb-3">Analizador Universal de Archivos con IA Local</p>
-        <p class="text-[var(--text-dim)] text-[13.5px] leading-relaxed mb-5">Analiza documentos, imágenes, audio y video con IA que corre enteramente en el equipo, sin enviar información a la nube. Ideal para trabajar con datos sensibles que no pueden salir del entorno local, con costo de operación cero.</p>
+        <p class="text-[var(--text-dim)] text-[14.5px] leading-relaxed mb-5">Analiza documentos, imágenes, audio y video con IA que corre enteramente en el equipo, sin enviar información a la nube. Ideal para trabajar con datos sensibles que no pueden salir del entorno local, con costo de operación cero.</p>
 
         <div class="flex flex-nowrap gap-1.5 mb-1">
           
@@ -711,10 +823,12 @@ a, button{ -webkit-tap-highlight-color: transparent; }
 
         <div class="card-actions flex gap-2">
           
+          
           <button onclick="openVideoModal('assets/Nexus_ai.mp4', 'nexus-ai.service')" class="btn-ghost w-full flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg text-[11px] font-mono font-bold uppercase tracking-wide">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg>
             Ver Demo
           </button>
+          
         </div>
       </div>
     </div>
@@ -871,6 +985,27 @@ function openVideoModal(url, title){
   const modalBody = document.getElementById('modalBody');
   document.getElementById('modalTitle').innerText = `$ ./run ${title} --demo`;
   modalBody.innerHTML = `<video controls autoplay loop playsinline class="max-h-[75vh] w-full object-contain"><source src="${url}" type="video/mp4">Tu navegador no soporta video.</video>`;
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+  document.body.style.overflow = 'hidden';
+}
+
+/* ---------- sites modal (Websites & AI) ---------- */
+function openSitesModal(sites, title){
+  const modal = document.getElementById('videoModal');
+  const modalBody = document.getElementById('modalBody');
+  document.getElementById('modalTitle').innerText = `$ ls ./${title.toLowerCase().replace(/\s+/g, '-')}`;
+  const rows = sites.map(s => `
+    <a href="${s.url}" target="_blank" rel="noopener" class="site-row">
+      <img src="${s.logo}" alt="${s.nombre}" class="site-row-logo" loading="lazy">
+      <span class="site-row-text">
+        <span class="site-row-name">${s.nombre}</span>
+        <span class="site-row-desc">${s.descripcion}</span>
+      </span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="site-row-arrow"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+    </a>
+  `).join('');
+  modalBody.innerHTML = `<div class="sites-panel">${rows}</div>`;
   modal.classList.remove('hidden');
   modal.classList.add('flex');
   document.body.style.overflow = 'hidden';
