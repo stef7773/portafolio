@@ -104,9 +104,9 @@ a, button{ -webkit-tap-highlight-color: transparent; }
 .page-bg-video{ position:fixed; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
 .page-bg-video video{
   position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-  filter:saturate(0.55) brightness(0.42) contrast(1.05);
+  filter:saturate(0.65) brightness(0.62) contrast(1.05);
 }
-.page-bg-video::after{ content:""; position:absolute; inset:0; background:rgba(11,13,16,0.45); }
+.page-bg-video::after{ content:""; position:absolute; inset:0; background:rgba(11,13,16,0.25); }
 
 /* ---------- top scroll progress ---------- */
 #scrollbar{ position:fixed; top:0; left:0; height:2px; background:linear-gradient(90deg, var(--mint), var(--blue)); z-index:100; width:0%; box-shadow:0 0 8px var(--mint-glow); }
