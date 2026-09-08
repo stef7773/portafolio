@@ -251,7 +251,7 @@ a, button{ -webkit-tap-highlight-color: transparent; }
 /* ---------- full-bleed video banner (contacto) ---------- */
 .full-bleed-video{
   position:relative; width:100vw; margin-left:calc(50% - 50vw); margin-top:64px;
-  height:clamp(200px, 30vw, 460px); overflow:hidden;
+  height:clamp(130px, 16vw, 260px); overflow:hidden;
 }
 .full-bleed-video video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
 .full-bleed-video::before{
