@@ -279,8 +279,8 @@ a, button{ -webkit-tap-highlight-color: transparent; }
 
 <div id="scrollbar"></div>
 <div class="page-bg-video" aria-hidden="true">
-  <video autoplay muted loop playsinline preload="auto">
-    <source src="assets/nexus_banner.mp4" type="video/mp4">
+  <video id="pageBgVideo" autoplay muted loop playsinline preload="auto">
+    <source src="assets/bg_video_v2.mp4" type="video/mp4">
   </video>
 </div>
 <div class="bg-grid"></div>
@@ -538,6 +538,10 @@ async function typeBoot(){
 }
 function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
 typeBoot();
+
+/* ---------- fondo mas lento y elegante ---------- */
+const pageBgVideo = document.getElementById('pageBgVideo');
+if (pageBgVideo){ pageBgVideo.playbackRate = 0.5; }
 
 /* ---------- scroll progress ---------- */
 function onScroll(){
