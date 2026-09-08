@@ -1,42 +1,5 @@
 [
   {
-    "id": "websites_ai",
-    "titulo": "Websites & AI",
-    "subtitulo": "Sitios Web a Medida, Diseñados con IA",
-    "categoria": "Websites & AI",
-    "status": "PRODUCTION",
-    "descripcion": "Landing pages y sitios a medida para negocios reales, diseñados y programados con asistencia de IA: código a mano, sin plantillas, con animaciones propias y publicados en producción.",
-    "techs": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "Claude AI"
-    ],
-    "link_demo": "",
-    "media_url": "",
-    "cover_image": "assets/websites_ai_cover.jpg",
-    "sites": [
-      {
-        "nombre": "Palermo",
-        "descripcion": "Restaurante · Cucina Italiana",
-        "logo": "https://stef7773.github.io/palermo/assets/images/logo.png",
-        "url": "https://stef7773.github.io/palermo/"
-      },
-      {
-        "nombre": "Raíces Ecuatorianas",
-        "descripcion": "Almuerzos a domicilio · Comida ecuatoriana",
-        "logo": "https://stef7773.github.io/raices-ecuatorianas/assets/images/logo-icon.png",
-        "url": "https://stef7773.github.io/raices-ecuatorianas/"
-      },
-      {
-        "nombre": "Clases de Idiomas",
-        "descripcion": "Educación · Clases online de idiomas",
-        "logo": "https://stef7773.github.io/clases-idiomas/assets/images/favicon-180.png",
-        "url": "https://stef7773.github.io/clases-idiomas/"
-      }
-    ]
-  },
-  {
     "id": "educare_ai",
     "titulo": "Educare AI",
     "subtitulo": "Ecosistema Educativo con IA en la Nube",
@@ -172,5 +135,42 @@
     "link_demo": "",
     "media_url": "assets/Nexus_ai.mp4",
     "cover_image": "assets/nexus-banner.png"
+  },
+  {
+    "id": "websites_ai",
+    "titulo": "Websites & AI",
+    "subtitulo": "Sitios Web a Medida, Diseñados con IA",
+    "categoria": "Websites & AI",
+    "status": "PRODUCTION",
+    "descripcion": "Landing pages y sitios a medida para negocios reales, diseñados y programados con asistencia de IA: código a mano, sin plantillas, con animaciones propias y publicados en producción.",
+    "techs": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Claude AI"
+    ],
+    "link_demo": "",
+    "media_url": "",
+    "cover_image": "assets/websites_ai_cover.jpg",
+    "sites": [
+      {
+        "nombre": "Palermo",
+        "descripcion": "Restaurante · Cucina Italiana",
+        "logo": "https://stef7773.github.io/palermo/assets/images/logo.png",
+        "url": "https://stef7773.github.io/palermo/"
+      },
+      {
+        "nombre": "Raíces Ecuatorianas",
+        "descripcion": "Almuerzos a domicilio · Comida ecuatoriana",
+        "logo": "https://stef7773.github.io/raices-ecuatorianas/assets/images/logo-icon.png",
+        "url": "https://stef7773.github.io/raices-ecuatorianas/"
+      },
+      {
+        "nombre": "Clases de Idiomas",
+        "descripcion": "Educación · Clases online de idiomas",
+        "logo": "https://stef7773.github.io/clases-idiomas/assets/images/favicon-180.png",
+        "url": "https://stef7773.github.io/clases-idiomas/"
+      }
+    ]
   }
 ]

@@ -378,7 +378,7 @@ a, button{ -webkit-tap-highlight-color: transparent; }
     <div class="unit-card reveal" data-category="{{ p.categoria }}" style="transition-delay:{{ (loop.index0 % 3) * 0.08 }}s">
 
       {% if p.sites %}
-      <div class="thumb-wrap" onclick="openSitesModal({{ p.sites|tojson|e }}, '{{ p.titulo }}')">
+      <div class="thumb-wrap" onclick='openSitesModal({{ p.sites|tojson }}, "{{ p.titulo }}")'>
       {% else %}
       <div class="thumb-wrap" onclick="openVideoModal('{{ p.media_url }}', '{{ p.unit }}')">
       {% endif %}
@@ -417,7 +417,7 @@ a, button{ -webkit-tap-highlight-color: transparent; }
           </a>
           {% endif %}
           {% if p.sites %}
-          <button onclick="openSitesModal({{ p.sites|tojson|e }}, '{{ p.titulo }}')" class="btn-ghost {{ 'flex-1' if p.link_demo else 'w-full' }} flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg text-[11px] font-mono font-bold uppercase tracking-wide">
+          <button onclick='openSitesModal({{ p.sites|tojson }}, "{{ p.titulo }}")' class="btn-ghost {{ 'flex-1' if p.link_demo else 'w-full' }} flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg text-[11px] font-mono font-bold uppercase tracking-wide">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
             Ver Sitios
           </button>
